@@ -4,3 +4,8 @@ migrations
 vagrant/.vagrant
 vagrant/site.retry
 vagrant/a4keypair.pem
+MovieSummaries/
+.ipynb_checkpoints/
+MovieSummaries.tar.gz
+MyProject.komodoproject
+reviews_Movies_and_TV_5.json.gz
