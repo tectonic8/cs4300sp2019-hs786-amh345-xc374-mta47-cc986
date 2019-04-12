@@ -1,39 +1,30 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="/static/bootstrap.min.css">
-        <link rel="stylesheet" href="/static/main.css">
-    </head>
-    <body>
-        <div class="topcorner">
-            <p>Project Name: {{ name }}</p>
-            <p>Student Names: {{ netid }}</p>
-        </div>
-        <form class="form-inline global-search">
-            <h1 style="font-size: 55px; font-family:Futura; color: #4285F4">
-                C
-                <font color=#EA4335>S</font>
-                <font color=#FBBC05>4</font>
-                3
-                <font color=#34A853>0</font>
-                <font color=#EA4335>0</font>
-            </h1>
-            
-            <br><br>
-            
-            <div class="form-group">
-                <input id="input" type="text" name="search" class="form-control" placeholder="Your Input">
-            </div>
-            <button type="submit" class="btn btn-info"> Go! </button>
-        </form>
-        <form class="form-inline global-search">
-        {% if data %}
-            <h1>{{output_message}}</h1>
-            {% for d in data %}  
-                <br>
-                <p>{{d}}</p>
-            {% endfor %}
-        {% endif %}
-        </form>
-    </body>
+	<head>
+		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"> </script>
+		<link rel="stylesheet" type="text/css" href="/static/main.css">
+	</head>
 
+	<body style="background-color: #FFF7DF;">
+		<div id = "Header">
+			<h1>The Book Was Better.</h1>
+			<h2>Literature reccomendations for the age of film.</h2>
+			<form id="inForm">
+	            <input type="text" name="search" placeholder="Input a Movie">
+            	<button type="submit"> Go! </button>
+        	</form>
+		</div>
+
+		<div id = "Output">
+			<h2>OUTPUT HERE</h2>
+			<form id="outForm">
+	        	{% if data %}
+		            <p>{{output_message}}</p>
+		            {% for d in data %}  
+		                <br>
+		                <p>{{d}}</p>
+		            {% endfor %}
+	        	{% endif %}
+       		</form>
+		</div>
+	</body>
 </html>
