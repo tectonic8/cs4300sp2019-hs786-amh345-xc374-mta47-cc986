@@ -1,9 +1,7 @@
 from . import *  
 from app.irsystem.models.helpers import *
+from app.irsystem.controllers.TVTropesScraper.TFIDF import *
 from app.irsystem.models.helpers import NumpyEncoder as NumpyEncoder
-
-project_name = "The Book Was Better"
-net_id = ", ".join(["Hartek Sabharwal (hs786)", "Alena Hutchinson (amh345)", "Xingyu Chen (xc374)", "Morgan Aloia (mta47)", "Caleb Chiam (cc982)"])
 
 @irsystem.route('/', methods=['GET'])
 def search():
@@ -13,8 +11,16 @@ def search():
 		output_message = ''
 	else:
 		output_message = "Your search: " + query
-		data = range(5)
-	return render_template('search.html', name=project_name, netid=net_id, output_message=output_message, data=data)
+		data = find_relevant(datasets=datasets,
+                                      inverted_indices=inverted_indices,
+                                      query=query, 
+                                      input_category="movie",
+                                      result_category="book",
+                                      min_df=3,
+                                      normalize=True,
+                                      idf="log"
+                                     )
+	return render_template('search.html', output_message=output_message, data=data)
 
 
 

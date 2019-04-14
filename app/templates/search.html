@@ -15,16 +15,15 @@
 		</div>
 
 		<div id = "Output">
-			<h2>OUTPUT HERE</h2>
-			<form id="outForm">
-	        	{% if data %}
-		            <p>{{output_message}}</p>
-		            {% for d in data %}  
-		                <br>
-		                <p>{{d}}</p>
-		            {% endfor %}
-	        	{% endif %}
-       		</form>
+        	{% if data %}
+	            <h2>{{output_message}}</h2>
+	            {% for d in data[0] %}
+	                <br>
+	                <p>{{d}}</p>
+	            {% endfor %}
+	        {% else %}
+	        	<h2>OUTPUT HERE</h2>
+        	{% endif %}
 		</div>
 	</body>
 </html>
