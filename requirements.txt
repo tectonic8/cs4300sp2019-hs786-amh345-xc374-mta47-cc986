@@ -59,6 +59,7 @@ bleach==2.1.2
 bs4==0.0.1
 cycler==0.10.0
 decorator==4.2.1
+editdistance==0.5.3
 entrypoints==0.2.3
 html5lib==1.0.1
 ipykernel==4.8.0
