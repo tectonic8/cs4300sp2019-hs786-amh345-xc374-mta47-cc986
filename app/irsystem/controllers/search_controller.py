@@ -5,6 +5,11 @@ from app.irsystem.models.helpers import NumpyEncoder as NumpyEncoder
 
 @irsystem.route('/', methods=['GET'])
 def search():
+	with open('app/irsystem/controllers/DatasetInfo/tbwb_book_dataset.json') as json_file:
+	    booksJSON = json.load(json_file)
+	with open('app/irsystem/controllers/DatasetInfo/tbwb_movie_dataset.json') as json_file:
+	    movieJSON = json.load(json_file)
+
 	queryType = request.args.get('searchType')
 	query = request.args.get('search')
 	data = []
