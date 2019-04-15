@@ -137,4 +137,4 @@ def find_relevant(datasets: List[Dict],
 
     doc_scores = filter_with_num_tropes(doc_scores, trope_contributions, num_tropes=5)
 
-    return doc_scores[:10], trope_contributions
+    return doc_scores[:5], trope_contributions
