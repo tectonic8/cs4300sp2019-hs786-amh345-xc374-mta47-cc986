@@ -19,6 +19,9 @@
 		</div>
 
 		<div id = "Output">
+        	{% if invalidQuery == True %}
+        		<p>Sorry, This was an invalid query</p>
+        	{% endif %}
         	{% if data %}
 	            <h2>{{output_message}}</h2>
 	            {% for d in data %}
