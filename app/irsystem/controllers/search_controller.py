@@ -33,9 +33,9 @@ def search():
 	                                      normalize=True,
 	                                      idf="log"
 	                                     )
+			
 		# data[i][0] = Title, data[i][1] = SimScore, data[i][2] = (Trope, RelScore)
 		i = 0
-		
 		for entry in retrieval[0]:
 			data.append([])
 			data[i].append(entry[0])
