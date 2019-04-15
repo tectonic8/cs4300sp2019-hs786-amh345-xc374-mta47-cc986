@@ -7,14 +7,13 @@ from app.irsystem.models.helpers import NumpyEncoder as NumpyEncoder
 def search():
 	queryType = request.args.get('searchType')
 	query = request.args.get('search')
+	data = []
+	output_message = ''
 
-	if not query:
-		data = []
-		output_message = ''
-	else:
+	if query:
 		output_message = "Your search: " + query
 		if(queryType == "MB"):
-			data = find_relevant(datasets=datasets,
+			retrieval = find_relevant(datasets=datasets,
 	                                      inverted_indices=inverted_indices,
 	                                      query=query, 
 	                                      input_category="movie",
@@ -25,7 +24,7 @@ def search():
 	                                     )
 
 		if(queryType == "BM"):
-			data = find_relevant(datasets=datasets,
+			retrieval = find_relevant(datasets=datasets,
 	                                      inverted_indices=inverted_indices,
 	                                      query=query, 
 	                                      input_category="book",
@@ -34,7 +33,17 @@ def search():
 	                                      normalize=True,
 	                                      idf="log"
 	                                     )
-
+		# data[i][0] = Title, data[i][1] = SimScore, data[i][2] = (Trope, RelScore)
+		i = 0
+		
+		for entry in retrieval[0]:
+			data.append([])
+			data[i].append(entry[0])
+			data[i].append(entry[1])
+			data[i].append(retrieval[1][entry[0]])
+			i += 1
+		print(data)
+		
 	return render_template('search.html', output_message=output_message, data=data)
 
 

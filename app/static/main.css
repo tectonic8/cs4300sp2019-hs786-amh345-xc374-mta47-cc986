@@ -1,5 +1,5 @@
 /* All Text */
-h1, h2, p{
+h1, h2, p, #inForm{
 	font-family : courier;
 	text-align : center;
 	color : #16264C;
@@ -14,15 +14,12 @@ h2 {
 	font-size : 20px;
 }
 
-#inForm {
-    text-align : center;
-}
-
 #Output{
 	text-align: center
 }
+
 .outputCard{
-	display : inline;
+	/*display : inline;*/
 	border : 2px solid #16264C;
 	border-radius : 10px;
 	padding: 2px;
