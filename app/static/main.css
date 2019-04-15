@@ -1,7 +1,7 @@
 /* All Text */
-h1, h2, p, {
-	font-family: Courier;
-	text-align: center;
+h1, h2, p{
+	font-family : courier;
+	text-align : center;
 	color : #16264C;
 }
 
@@ -15,5 +15,15 @@ h2 {
 }
 
 #inForm {
-    text-align: center;
+    text-align : center;
+}
+
+#Output{
+	text-align: center
+}
+.outputCard{
+	display : inline;
+	border : 2px solid #16264C;
+	border-radius : 10px;
+	padding: 2px;
 }

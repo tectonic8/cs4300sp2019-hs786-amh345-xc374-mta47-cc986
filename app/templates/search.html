@@ -1,8 +1,8 @@
 <html>
 	<head>
 		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"> </script>
-		<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="/static/main.css">
+<!-- 		<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+ -->		<link rel="stylesheet" type="text/css" href="/static/main.css">
 	</head>
 
 	<body style="background-color: #FFF7DF;">
@@ -22,11 +22,11 @@
         	{% if data %}
 	            <h2>{{output_message}}</h2>
 	            {% for d in data[0] %}
+	            	<div>
+	                	<h2 class = "outputCard">{{d[0]}} ({{d[1]}})</h2>
+	                </div>
 	                <br>
-	                <p>{{d}}</p>
 	            {% endfor %}
-	        {% else %}
-	        	<h2>OUTPUT HERE</h2>
         	{% endif %}
 		</div>
 	</body>
