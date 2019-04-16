@@ -10,6 +10,12 @@ def search():
 	with open('app/irsystem/controllers/DatasetInfo/tbwb_movie_dataset.json') as json_file:
 	    moviesJSON = json.load(json_file)
 
+	with open('app/irsystem/controllers/options_books.txt') as file:
+	    valid_input_books = file.read().replace('\n', '')
+
+	with open('app/irsystem/controllers/options_movies.txt') as file:
+	    valid_input_movies = file.read().replace('\n', '')
+
 	for book in books:
 		if(book.lower() in booksJSON):
 			booksJSON[book] = booksJSON.pop(book.lower())
@@ -73,4 +79,4 @@ def search():
 		elif(queryType):
 			invQ = True
 			output_message = "Sorry, \'" + query + "\' is an invalid query."
-	return render_template('search.html', insp = r, output_message = output_message, data = data, invalidQuery = invQ)
+	return render_template('search.html', insp = r, valids = (valid_input_books, valid_input_movies) , output_message = output_message, data = data, invalidQuery = invQ)

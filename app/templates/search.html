@@ -9,7 +9,6 @@
 		function useInspiration(insp){
 			link = "/?searchType=MB&search=" + insp
 			window.location.href = link;
-			console.log("CLICKED!")
 		}
 	</script>
 
@@ -22,9 +21,11 @@
 				<input type="radio" name="searchType" value="MB" checked> Movie --> Book <br>
   				<input type="radio" name="searchType" value="BM"> Book --> Movie <br><br>
   				<div id = "inFormSearch">
-  					<input type="text" id = "inFormSearchBar" name="search" placeholder="Input">
-  				</div>
-  				<!-- <input class="awesomplete" data-list="Ada, Java, JavaScript, Brainfuck, LOLCODE, Node.js, Ruby on Rails"> </form> -->
+  					<input class="awesomplete" list="valid" id = "inFormSearchBar" name="search" placeholder="Input" />
+					<datalist id="valid">
+						{{valids[1]}}
+					</datalist>
+  				</div>  				
         	</form>
 		</div>
 
