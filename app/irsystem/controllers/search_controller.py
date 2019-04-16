@@ -61,7 +61,6 @@ def search():
 			i = 0
 			for entry in retrieval[0]:
 				data.append([])
-				print(entry[0])
 				data[i].append(entry[0])
 				if queryType == "MB" and "author" in booksJSON[entry[0]]:
 					data[i].append(booksJSON[entry[0]]["author"])
