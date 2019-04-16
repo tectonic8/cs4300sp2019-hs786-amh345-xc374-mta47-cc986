@@ -4,6 +4,7 @@ import base64
 import json
 import operator
 import re
+from random import shuffle
 import numpy as np 
 
 def http_json(result, bool):
@@ -59,29 +60,27 @@ def topNTropes(d, n):
         v=list(d.values())
         k=list(d.keys())
         m = k[v.index(max(v))]
-        if(i == n-1):
-            top.append(re.sub(r"(\w)([A-Z])", r"\1 \2", m))
-        else:
-            top.append(re.sub(r"(\w)([A-Z])", r"\1 \2", m) + ", ")
         d.pop(m)
+
+        if(i == n-1):
+            m = re.sub(r"(\w)([A-Z])", r"\1 \2", m)
+            m = re.sub(r"([A-Z])([A-Z])", r"\1 \2", m)
+
+        else:
+            m = re.sub(r"(\w)([A-Z])", r"\1 \2", m) + ", "
+            m = re.sub(r"([A-Z])([A-Z])", r"\1 \2", m)
+        top.append(m)
 
         i += 1
 
     return top
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def randomNInsp(d, n):
+    a = []
+    for item in d.items():
+        if("rating" in item[1] and item[1]["rating"] >= 4.5):
+            a.append(item[0])
+    shuffle(a)
+    while (len(a) > n):
+        a.pop()
+    return a

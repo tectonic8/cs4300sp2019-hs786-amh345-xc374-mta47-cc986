@@ -1,3 +1,8 @@
+/* Background */
+body {
+	background-color: #FFF7DF;
+}
+
 /* All Text */
 h1, h2, p, #inForm{
 	font-family : courier;
@@ -8,6 +13,7 @@ h1, h2, p, #inForm{
 /* Element Specific */
 h1 {
 	font-size : 50px;
+	font-weight: bold;
 }
 
 h2 {
@@ -21,5 +27,14 @@ h2 {
 .outputCard{
 	border : 2px solid #16264C;
 	border-radius : 10px;
-	padding: 2px;
+}
+
+.title{
+	font-size: 30px;
+	margin: 0px;
+}
+
+.author{
+	font-size: 20px;
+	margin: 0px;
 }

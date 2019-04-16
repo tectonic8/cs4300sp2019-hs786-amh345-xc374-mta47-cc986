@@ -1,11 +1,17 @@
 <html>
 	<head>
 		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"> </script>
-<!-- 		<link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
- -->		<link rel="stylesheet" type="text/css" href="/static/main.css">
+		<link rel="stylesheet" type="text/css" href="/static/main.css">
 	</head>
+	<script type="text/javascript">
+		function useInspiration(insp){
+			link = "/?searchType=MB&search=" + insp
+			window.location.href = link;
+			console.log("CLICKED!")
+		}
+	</script>
 
-	<body style="background-color: #FFF7DF;">
+	<body>
 		<div id = "Header">
 			<h1>The Book Was Better.</h1>
 			<h2>Literature recommendations for the age of film.</h2>
@@ -19,18 +25,22 @@
 		</div>
 
 		<div id = "Output">
-        	{% if invalidQuery == True %}
-        		<p>Sorry, This was an invalid query</p>
+        	{% if invalidQuery == "FirstLoad" %}
+        		<p>Not much of a movie buff?<br>Here's some inspiration!</p>
+        		{% for i in insp %}
+        			<button type = "button" onclick="useInspiration('{{i}}'.replace('%20','+'))" class = "inspiration">{{i}}</button><br>
+        		{% endfor %}
         	{% endif %}
+        	
+        	<h2>{{output_message}}</h2>
+
         	{% if data %}
-	            <h2>{{output_message}}</h2>
 	            {% for d in data %}
 	            	<div class = "outputCard">
-	                	<h2>{{d[0]}}</h2>
-	                	<p>{{d[1]}}</p>
-	                	<p>Similarity: {{d[2]}}</p>
+	                	<p class = "title">{{d[0]}}</p>
+	                	<p class = "author">{{d[1]}}</p>
+	                	<p><i>Similarity Score</i>: {{d[2]}}</p>
 	                	<p>
-	                		Tropes: 
 	                		{% for trope in d[3] %}
 	                			{{trope}}
 	                		{% endfor %}
