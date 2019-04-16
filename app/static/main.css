@@ -20,13 +20,49 @@ h2 {
 	font-size : 20px;
 }
 
-#Output{
-	text-align: center
+#inFormSearch {
+	background-color : #616684;
+	color : #FFF7DF;
+	border: none;
+	border-radius: 30px;
+	font-size : 16px;
+	padding : 15px;
+	width : 50%;
+	height: 25px;
+	display: inline-block;
+}
+
+#inFormSearchBar {
+	width : 80%;
+	background: none;
+	color : #FFF7DF;
+	font-size: 16;
+	text-align: center;
+	border: none;
+	height: 100%;
+	outline: none;
+}
+
+.inspiration{
+	background-color : #616684;
+	color : #FFF7DF;
+	border : none;
+	border-radius : 20px;
+	font-size : 16px;
+	padding : 10px;
+}
+
+#Output {
+	text-align: center;
 }
 
 .outputCard{
 	border : 2px solid #16264C;
 	border-radius : 10px;
+	width: 40%;
+	text-align: center;
+	display: inline-block;
+	margin: 5px;
 }
 
 .title{

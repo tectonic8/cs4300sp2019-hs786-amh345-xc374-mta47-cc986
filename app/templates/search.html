@@ -2,6 +2,8 @@
 	<head>
 		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"> </script>
 		<link rel="stylesheet" type="text/css" href="/static/main.css">
+		<link rel="stylesheet" type="text/css" href="/static/awesomplete/awesomplete.css">
+		<script src="/static/awesomplete/awesomplete.js" async></script>
 	</head>
 	<script type="text/javascript">
 		function useInspiration(insp){
@@ -18,9 +20,11 @@
 
 			<form id="inForm">
 				<input type="radio" name="searchType" value="MB" checked> Movie --> Book <br>
-  				<input type="radio" name="searchType" value="BM"> Book --> Movie <br>
-	            <input type="text" name="search" placeholder="Input">
-            	<button type="submit"> Go! </button>
+  				<input type="radio" name="searchType" value="BM"> Book --> Movie <br><br>
+  				<div id = "inFormSearch">
+  					<input type="text" id = "inFormSearchBar" name="search" placeholder="Input">
+  				</div>
+  				<!-- <input class="awesomplete" data-list="Ada, Java, JavaScript, Brainfuck, LOLCODE, Node.js, Ruby on Rails"> </form> -->
         	</form>
 		</div>
 
@@ -28,10 +32,10 @@
         	{% if invalidQuery == "FirstLoad" %}
         		<p>Not much of a movie buff?<br>Here's some inspiration!</p>
         		{% for i in insp %}
-        			<button type = "button" onclick="useInspiration('{{i}}'.replace('%20','+'))" class = "inspiration">{{i}}</button><br>
+        			<button type = "button" class = "inspiration" onclick="useInspiration('{{i}}'.replace('%20','+'))">{{i}}</button><br>
         		{% endfor %}
         	{% endif %}
-        	
+
         	<h2>{{output_message}}</h2>
 
         	{% if data %}

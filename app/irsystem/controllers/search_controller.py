@@ -10,6 +10,15 @@ def search():
 	with open('app/irsystem/controllers/DatasetInfo/tbwb_movie_dataset.json') as json_file:
 	    moviesJSON = json.load(json_file)
 
+	for book in books:
+		if(book.lower() in booksJSON):
+			booksJSON[book] = booksJSON.pop(book.lower())
+
+	for movie in movies:
+		if(movie.lower() in moviesJSON):
+			moviesJSON[movie] = moviesJSON.pop(movie.lower())
+			print("changing " + movie.lower() +"to"+ movie)
+
 	queryType = request.args.get('searchType')
 	query = request.args.get('search')
 	data = []
@@ -54,8 +63,8 @@ def search():
 				data.append([])
 				print(entry[0])
 				data[i].append(entry[0])
-				if queryType == "MB" and "author" in booksJSON[entry[0].lower()]:
-					data[i].append(booksJSON[entry[0].lower()]["author"])
+				if queryType == "MB" and "author" in booksJSON[entry[0]]:
+					data[i].append(booksJSON[entry[0]]["author"])
 				else:
 					data[i].append("Author Not Listed")
 				data[i].append(entry[1])
