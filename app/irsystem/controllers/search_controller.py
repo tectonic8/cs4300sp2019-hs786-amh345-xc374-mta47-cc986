@@ -51,9 +51,10 @@ def search():
 				if "author" in booksJSON[entry[0].lower()]:
 					data[i].append(booksJSON[entry[0].lower()]["author"])
 				else:
-					data[i].append("Not Listed")
+					data[i].append("Author Not Listed")
 				data[i].append(entry[1])
-				data[i].append(retrieval[1][entry[0]])
+				data[i].append(topNTropes(retrieval[1][entry[0]], 5))
+
 				i += 1
 		
 	return render_template('search.html', output_message = output_message, data = data, invalidQuery = invQ)

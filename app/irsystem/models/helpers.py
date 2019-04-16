@@ -2,7 +2,10 @@
 from flask import jsonify
 import base64
 import json
+import operator
+import re
 import numpy as np 
+
 def http_json(result, bool):
 	result.update({ "success": bool })
 	return jsonify(result)
@@ -46,3 +49,39 @@ def json_numpy_obj_hook(dct):
         data = base64.b64decode(dct['__ndarray__'])
         return np.frombuffer(data, dct['dtype']).reshape(dct['shape'])
     return dct
+
+def topNTropes(d, n):
+    top = []
+
+    i = 0
+    print(d.get)
+    while(i < n):
+        v=list(d.values())
+        k=list(d.keys())
+        m = k[v.index(max(v))]
+        if(i == n-1):
+            top.append(re.sub(r"(\w)([A-Z])", r"\1 \2", m))
+        else:
+            top.append(re.sub(r"(\w)([A-Z])", r"\1 \2", m) + ", ")
+        d.pop(m)
+
+        i += 1
+
+    return top
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

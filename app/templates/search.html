@@ -8,7 +8,7 @@
 	<body style="background-color: #FFF7DF;">
 		<div id = "Header">
 			<h1>The Book Was Better.</h1>
-			<h2>Literature recomendations for the age of film.</h2>
+			<h2>Literature recommendations for the age of film.</h2>
 
 			<form id="inForm">
 				<input type="radio" name="searchType" value="MB" checked> Movie --> Book <br>
@@ -29,7 +29,12 @@
 	                	<h2>{{d[0]}}</h2>
 	                	<p>{{d[1]}}</p>
 	                	<p>Similarity: {{d[2]}}</p>
-	                	<p>Tropes: {{d[3]}}</p>
+	                	<p>
+	                		Tropes: 
+	                		{% for trope in d[3] %}
+	                			{{trope}}
+	                		{% endfor %}
+	                	</p>
 	                </div>
 	                <br>
 	            {% endfor %}
