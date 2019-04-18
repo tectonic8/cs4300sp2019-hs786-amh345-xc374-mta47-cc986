@@ -71,6 +71,8 @@ def search():
 				output[i]["title"] = entry[0]
 				if "author" in booksJSON[entry[0]]:
 					output[i]["author"] = booksJSON[entry[0]]["author"]
+				else:
+					output[i]["author"] = "Author Not Listed"
 				output[i]["simScore"] = entry[1]
 				output[i]["tropes"] = "".join(elem for elem in topNTropes(retrieval[1][entry[0]], 5))
 			if(queryType == "book"):

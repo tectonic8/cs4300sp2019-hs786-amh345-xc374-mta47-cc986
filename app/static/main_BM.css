@@ -1,0 +1,75 @@
+/* Background */
+body {
+	background-color: #1e1e1e;
+}
+
+/* All Text */
+h1, h2, p, #inForm{
+	font-family : courier;
+	text-align : center;
+	color : #e1e1e1;
+}
+
+/* Element Specific */
+h1 {
+	font-size : 50px;
+	font-weight: bold;
+}
+
+h2 {
+	font-size : 20px;
+}
+
+#inFormSearch {
+	background-color : #b4b4b4;
+	border: none;
+	border-radius: 30px;
+	font-size : 16px;
+	padding : 15px;
+	width : 50%;
+	height: 25px;
+	display: inline-block;
+}
+
+#inFormSearchBar {
+	width : 100%;
+	background: none;
+	color : #FFF7DF;
+	font-size: 16;
+	text-align: center;
+	border: none;
+	height: 100%;
+	outline: none;
+}
+
+.inspiration{
+	background-color : #b4b4b4;
+	color : #1e1e1e;
+	border : none;
+	border-radius : 20px;
+	font-size : 16px;
+	padding : 10px;
+}
+
+#Output {
+	text-align: center;
+}
+
+.outputCard{
+	border : 2px solid #e1e1e1;
+	border-radius : 10px;
+	width: 40%;
+	text-align: center;
+	display: inline-block;
+	margin: 5px;
+}
+
+.title{
+	font-size: 30px;
+	margin: 0px;
+}
+
+.author{
+	font-size: 20px;
+	margin: 0px;
+}

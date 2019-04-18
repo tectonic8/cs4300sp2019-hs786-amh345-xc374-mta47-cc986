@@ -1,8 +1,15 @@
 <html>
 	<head>
-		<title>The Book Was Better.</title>
 		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"> </script>
-		<link rel="stylesheet" type="text/css" href="/static/main.css">
+
+		{% if queryType == "movie" %}
+			<link rel="stylesheet" type="text/css" href="/static/main_MB.css">
+			<title>The Book Was Better.</title>
+		{% else %}
+			<link rel="stylesheet" type="text/css" href="/static/main_BM.css">
+			<title>The Movie Was Better?</title>
+		{% endif %}
+
 		<link rel="stylesheet" type="text/css" href="/static/awesomplete/awesomplete.css">
 		<script src="/static/awesomplete/awesomplete.js" async></script>
 	</head>
@@ -26,8 +33,15 @@
 
 	<body>
 		<div id = "Header">
-			<h1>The Book Was Better.</h1>
-			<h2>Literature recommendations for the age of film.</h2>
+			{% if queryType == "movie" %}
+				<h1>The Book Was Better.</h1>
+				<h2>Literature recommendations for the age of film.</h2>
+			{% else %}
+				<h1>The Movie Was Better?</h1>
+				<h2>Film recommendations for the post-literature age.</h2>
+			{% endif %}
+			
+			
 			<form id="inForm">
   				<h2>
 	  				Input: {{queryType}}
