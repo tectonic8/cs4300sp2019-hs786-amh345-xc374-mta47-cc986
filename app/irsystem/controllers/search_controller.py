@@ -5,6 +5,27 @@ from app.irsystem.models.helpers import NumpyEncoder as NumpyEncoder
 
 @irsystem.route('/', methods=['GET'])
 def search():
+	# initialize export vars
+	if(not request.args.get('queryType')):
+		queryType = "movie"
+	else:
+		queryType = request.args.get('queryType')
+	
+	if(queryType == "movie"):
+		outputType = "book"
+	else:
+		outputType = "movie"
+
+	query = None
+	if(request.args.get('query')):
+		query = request.args.get('query')
+
+	outputMessage = None
+	output = []
+
+	inspiration = None
+
+	# initialize internal vars
 	with open('app/irsystem/controllers/DatasetInfo/tbwb_book_dataset.json') as json_file:
 	    booksJSON = json.load(json_file)
 	with open('app/irsystem/controllers/DatasetInfo/tbwb_movie_dataset.json') as json_file:
@@ -13,62 +34,52 @@ def search():
 	for book in books:
 		if(book.lower() in booksJSON):
 			booksJSON[book] = booksJSON.pop(book.lower())
-
 	for movie in movies:
 		if(movie.lower() in moviesJSON):
 			moviesJSON[movie] = moviesJSON.pop(movie.lower())
 
-	queryType = request.args.get('searchType')
-	query = request.args.get('search')
-	data = []
-	output_message = ''
-	invQ = "FirstLoad"
-	r = None
-	if(queryType == "MB"  or r is None):
-		r = randomNInsp(moviesJSON, 10)
-	if(queryType == "BM"):
-		r = randomNInsp(booksJSON, 10)
+	retrieval = None
 
-	if query:
-		output_message = "Your Search: " + query
-		if(queryType == "MB"):
-			retrieval = find_relevant(datasets=datasets,
-                                      inverted_indices=inverted_indices,
-                                      query=query, 
-                                      input_category="movie",
-                                      result_category="book",
-                                      min_df=3,
-                                      normalize=True,
-                                      idf="log"
-                                     )
+	# run query
+	if(query):
+		outputMessage = "Your Search: " + query
+		retrieval = find_relevant(datasets = datasets,
+                                  inverted_indices = inverted_indices,
+                                  query = query, 
+                                  input_category = queryType,
+                                  result_category = outputType,
+                                  min_df = 3,
+                                  normalize = True,
+                                  idf = "log")
 
-		if(queryType == "BM"):
-			retrieval = find_relevant(datasets=datasets,
-	                                      inverted_indices=inverted_indices,
-	                                      query=query, 
-	                                      input_category="book",
-	                                      result_category="movie",
-	                                      min_df=3,
-	                                      normalize=True,
-	                                      idf="log"
-	                                     )
-			
-		# data[i][0] = Title, data[i][1] = Author, data[i][2] = SimScore, data[i][3] = (Trope, RelScore)
-		if retrieval:
-			invQ = False
-			i = 0
-			for entry in retrieval[0]:
-				data.append([])
-				data[i].append(entry[0])
-				if queryType == "MB" and "author" in booksJSON[entry[0]]:
-					data[i].append(booksJSON[entry[0]]["author"])
-				else:
-					data[i].append("Author Not Listed")
-				data[i].append(entry[1])
-				data[i].append(topNTropes(retrieval[1][entry[0]], 5))
+	# set export vars
+	if(not request.args.get('query')):
+		isHomeScreen = True
+	else:
+		isHomeScreen = False
 
-				i += 1
-		elif(queryType):
-			invQ = True
-			output_message = "Sorry, \'" + query + "\' is an invalid query."
-	return render_template('search.html', insp = r , output_message = output_message, data = data, invalidQuery = invQ)
+	if(queryType == "movie"):
+		inspiration = randomNInsp(moviesJSON, 10)
+	if(queryType == "book"):
+		inspiration = randomNInsp(booksJSON, 10)
+
+	if retrieval:
+		i = 0
+		for entry in retrieval[0]:
+			output.append(dict())
+			if(queryType == "movie"):
+				output[i]["title"] = entry[0]
+				if "author" in booksJSON[entry[0]]:
+					output[i]["author"] = booksJSON[entry[0]]["author"]
+				output[i]["simScore"] = entry[1]
+				output[i]["tropes"] = "".join(elem for elem in topNTropes(retrieval[1][entry[0]], 5))
+			if(queryType == "book"):
+				output[i]["title"] = entry[0]
+				output[i]["simScore"] = entry[1]
+				output[i]["tropes"] = "".join(elem for elem in topNTropes(retrieval[1][entry[0]], 5))
+			i += 1
+	elif(query):
+		outputMessage = "Sorry, \'" + query + "\' is an invalid query."
+
+	# export
+	return render_template('search.html', isHomeScreen = isHomeScreen, inspiration = inspiration, queryType = queryType, query = query, outputMessage = outputMessage, outputType = outputType , output = output)
