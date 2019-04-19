@@ -34,9 +34,10 @@ h2 {
 #inFormSearchBar {
 	width : 100%;
 	background: none;
-	color : #FFF7DF;
+	color : #1e1e1e;
 	font-size: 16;
 	text-align: center;
+	font-family : courier;
 	border: none;
 	height: 100%;
 	outline: none;
@@ -45,6 +46,7 @@ h2 {
 .inspiration{
 	background-color : #b4b4b4;
 	color : #1e1e1e;
+	font-family : courier;
 	border : none;
 	border-radius : 20px;
 	font-size : 16px;
