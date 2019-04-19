@@ -36,6 +36,7 @@ h2 {
 	background: none;
 	color : #FFF7DF;
 	font-size: 16;
+	font-family : courier;
 	text-align: center;
 	border: none;
 	height: 100%;
@@ -46,6 +47,7 @@ h2 {
 	background-color : #616684;
 	color : #FFF7DF;
 	border : none;
+	font-family : courier;
 	border-radius : 20px;
 	font-size : 16px;
 	padding : 10px;
