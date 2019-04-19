@@ -60,7 +60,7 @@
         	{% if isHomeScreen == True %}
         		<p>Not much of a movie buff?<br>Here's some inspiration!</p>
         		{% for i in inspiration %}
-        			<button type = "button" class = "inspiration" onclick="useInspiration('{{queryType}}', '{{i}}'.replace('%20','+'))">{{i}}</button><br>
+        			<button type = "button" class = "inspiration" onclick="useInspiration('{{queryType}}', '{{i[1]}}'.replace('%20','+'))">{{i[0]}}</button><br>
         		{% endfor %}
         	{% else %}
         		<h2>{{outputMessage}}</h2>
