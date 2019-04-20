@@ -44,16 +44,13 @@
 			
 			<form id="inForm">
   				<h2>
-	  				Input: {{queryType}}
-	  				<button type = "button" class = "inspiration" onclick="invertQueryType('{{queryType}}', '{{query}}')">Invert</button> 
-	  				Output: {{outputType}}
+	  				Input: {% if queryType == "movie" %} Movie {% else %} Book {% endif %}
+	  				<button type = "button" class = "inspiration" style="font-size: 20px;" onclick="invertQueryType('{{queryType}}', '{{query}}')">⇆</button> 
+	  				Output: {% if outputType == "movie" %} Movie {% else %} Book {% endif %}
 	  			</h2>
 
   				<div id = "inFormSearch">
-  					<input class="awesomplete" list="valid" id = "inFormSearchBar" name="query" placeholder="Input" />
-					<datalist id="valid">
-						<option>Temptemptemp</option>
-					</datalist>
+  					<input class="awesomplete" id = "inFormSearchBar" name="query" data-list="{{validQueries}}" />
 					<input type="hidden" id="queryType" name="queryType" value={{queryType}}>
   				</div>  				
         	</form>
@@ -63,7 +60,7 @@
         	{% if isHomeScreen == True %}
         		<p>Not much of a movie buff?<br>Here's some inspiration!</p>
         		{% for i in inspiration %}
-        			<button type = "button" class = "inspiration" onclick="useInspiration('{{queryType}}', '{{i}}'.replace('%20','+'))">{{i}}</button><br>
+        			<button type = "button" class = "inspiration" onclick="useInspiration('{{queryType}}', '{{i[1]}}'.replace('%20','+'))">{{i[0]}}</button><br>
         		{% endfor %}
         	{% else %}
         		<h2>{{outputMessage}}</h2>

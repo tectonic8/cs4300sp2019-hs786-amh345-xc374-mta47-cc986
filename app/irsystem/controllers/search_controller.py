@@ -53,6 +53,15 @@ def search():
                                   idf = "log")
 
 	# set export vars
+	validQueries = ""
+	if(queryType == "movie"):
+		for query in movies:
+			validQueries += query + ", "
+	else:
+		for query in books:
+			validQueries += query + ", "
+	validQueries = validQueries[:-2]
+
 	if(not request.args.get('query')):
 		isHomeScreen = True
 	else:
@@ -84,4 +93,4 @@ def search():
 		outputMessage = "Sorry, \'" + query + "\' is an invalid query."
 
 	# export
-	return render_template('search.html', isHomeScreen = isHomeScreen, inspiration = inspiration, queryType = queryType, query = query, outputMessage = outputMessage, outputType = outputType , output = output)
+	return render_template('search.html', isHomeScreen = isHomeScreen, inspiration = inspiration, validQueries = validQueries, queryType = queryType, query = query, outputMessage = outputMessage, outputType = outputType , output = output)
