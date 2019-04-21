@@ -10,3 +10,6 @@ MovieSummaries.tar.gz
 MyProject.komodoproject
 reviews_Movies_and_TV_5.json.gz
 .komodotools
+.DS_Store
+app/irsystem/.DS_Store
+app/irsystem/.DS_Store
