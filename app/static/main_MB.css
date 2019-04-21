@@ -20,15 +20,20 @@ h2 {
 	font-size : 20px;
 }
 
-#inFormSearch {
+.inFormSearch {
 	background-color : #616684;
 	border: none;
 	border-radius: 30px;
 	font-size : 16px;
 	padding : 15px;
+	margin-bottom: 10px;
 	width : 50%;
 	height: 25px;
 	display: inline-block;
+}
+
+::placeholder {
+  color: #f7f4e8;
 }
 
 #inFormSearchBar {
@@ -41,6 +46,15 @@ h2 {
 	border: none;
 	height: 100%;
 	outline: none;
+}
+
+#slider {
+  -webkit-appearance: none;
+  width: 50%;
+  height: 25px;
+  background: #616684;
+  border-radius: 30px;
+  outline: none;
 }
 
 #awesomplete_list_1 {

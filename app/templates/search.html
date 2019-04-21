@@ -16,6 +16,7 @@
 
 	<script type="text/javascript">
 		function useSpec(queryType, query){
+			console.log(query)
 			window.location.href = "/?queryType=" + queryType + "&query=" + query + "&spec=True";
 		}
 		function useInspiration(queryType, insp){
@@ -52,10 +53,16 @@
 	  				Output: {% if outputType == "movie" %} Movie {% else %} Book {% endif %}
 	  			</h2>
 
-  				<div id = "inFormSearch">
-  					<input class="awesomplete" id = "inFormSearchBar" name="query" data-list="{{validQueries}}" />
-					<input type="hidden" id="queryType" name="queryType" value={{queryType}}>
-  				</div>  				
+  				<div class = "inFormSearch">
+  					<input class="awesomplete" id = "inFormSearchBar" name="query" placeholder="Query" data-list="{{validQueries}}" />
+					<input type="hidden" id="queryType" name="queryType" value={{queryType}}/>
+  				</div>
+  				<div class = "inFormSearch">
+  					<input type="text" id = "inFormSearchBar" name="keyword" placeholder="Keywords"/>	
+  				</div>
+  				<div>
+  					<input type="range" min="1" max="100" value="50" id="slider">
+  				</div>
         	</form>
 		</div>
 
@@ -70,7 +77,7 @@
         		{% if output %}
 		            {% for o in output %}
 		            	{% if queryType == "movie" %}
-			            	<div class = "outputCard" onclick="useSpec('{{queryType}}', '{{o.title}}')">
+		            		<div class = "outputCard" onclick="useSpec('{{queryType}}','{{o.title}}'.replace(',', '\,'))">
 			            		{% if o["img"]%}
 				            		<div class = "outputCardImg">
 				            			<img src="{{o['img']}}" width="100%" height="100%" style="border-radius:10px;">
