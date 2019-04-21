@@ -43,6 +43,12 @@ h2 {
 	outline: none;
 }
 
+#awesomplete_list_1 {
+	font-family : courier;
+	text-align : center;
+	color : #16264C;
+}
+
 .inspiration{
 	background-color : #616684;
 	color : #FFF7DF;
@@ -60,11 +66,37 @@ h2 {
 .outputCard{
 	border : 2px solid #16264C;
 	border-radius : 10px;
-	width: 40%;
+	width: 70%;
+	text-align: center;
+	display: inline-flex;
+	margin: 5px;
+}
+
+.specCard{
+	border : 2px solid #16264C;
+	border-radius : 10px;
+	width: 70%;
 	text-align: center;
 	display: inline-block;
 	margin: 5px;
 }
+
+.outputCardText{
+	display: inline-block;
+	margin: 5px;
+	text-align: center;
+}
+
+.outputCardImg{
+	border : 2px solid #16264C;
+	border-radius : 10px;
+	width: 15%;
+	height: 20%;
+	display: inline-block;
+	margin: 5px;
+	text-align: center;
+}
+
 
 .title{
 	font-size: 30px;

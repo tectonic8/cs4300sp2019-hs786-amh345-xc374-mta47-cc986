@@ -51,6 +51,15 @@ def json_numpy_obj_hook(dct):
         return np.frombuffer(data, dct['dtype']).reshape(dct['shape'])
     return dct
 
+def allTropes(l):
+    s = ""
+    for trope in l:
+        trope = re.sub(r"([A-Z])([A-Z])", r"\1 \2", trope)
+        trope = re.sub(r"(\w)([A-Z])", r"\1 \2", trope)
+        s += trope + ", "
+
+    return s[:-2]
+
 def topNTropes(d, n):
     top = []
 
