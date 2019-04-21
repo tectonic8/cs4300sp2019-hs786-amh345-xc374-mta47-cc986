@@ -114,7 +114,7 @@ def search():
 			if "summary" in booksJSON[q]:
 				spec["summary"] = booksJSON[q]["summary"]
 			if "reviews" in booksJSON[q]:
-				spec["reviews"] = booksJSON[q]["reviews"]
+				spec["reviews"] = reversed(booksJSON[q]["reviews"])
 			spec["tropes"] = allTropes(book_tropes_data[q])
 		else:
 			spec["title"] = q
@@ -126,9 +126,8 @@ def search():
 				if "summary" in moviesJSON[q]:
 					spec["summary"] = moviesJSON[q]["summary"]
 				if "reviews" in moviesJSON[q]:
-					spec["reviews"] = "THIS IS TEMPORARY"
+					spec["reviews"] = reversed(moviesJSON[q]["reviews"])
 			spec["tropes"] = allTropes(movie_tropes_data[q])
-			
 
 	# export
 	return render_template('search.html', isHomeScreen = isHomeScreen, inspiration = inspiration, validQueries = validQueries, queryType = queryType, query = q, outputMessage = outputMessage, outputType = outputType , output = output, spec = spec)

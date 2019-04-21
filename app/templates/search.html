@@ -122,21 +122,29 @@
 		        		{% if spec["rating"]%} <p><i>Rating</i><br>{{spec["rating"]}}</p> {% endif %}
 		        		{% if spec["summary"]%} <p><i>Summary</i><br>{{spec["summary"]}}</p> {% endif %}
 		        		<p><i>Tropes</i><br>{{spec["tropes"]}}</p>
-		        		<p><i>Reviews</i><br>{{spec["reviews"]}}</p>
+		        		{% if spec["reviews"]%}
+			        		<p><i>Reviews</i><br>
+			        			{% for review in spec["reviews"] %}
+			        				{{review[1] | safe}}<br>({{review[0]}})<br><br>
+			        			{% endfor %}
+			        		</p> 
+		        		{% endif %}
 		        	{% else %}
 		        		<p class = "title">{{spec["title"]}}</p>
 		        		{% if spec["year"]%} <p class = "author">({{spec["year"]}})</p> {% endif %}
 		        		{% if spec["rating"]%} <p><i>Rating</i><br>{{spec["rating"]}}</p> {% endif %}
 		        		{% if spec["summary"]%} <p><i>Summary</i><br>{{spec["summary"]}}</p> {% endif %}
 		        		<p><i>Tropes</i><br>{{spec["tropes"]}}</p>
-		        		{% if spec["reviews"]%}<p><i>Reviews</i><br>{{spec["reviews"]}}</p> {% endif %}
+		        		{% if spec["reviews"]%}
+			        		<p><i>Reviews</i><br>
+			        			{% for review in spec["reviews"] %}
+			        				{{review[1] | safe}}<br>({{review[0]}})<br><br>
+			        			{% endfor %}
+			        		</p> 
+		        		{% endif %}
 	        		{% endif %}
 	        	</div>
         	{% endif %}
-
-
-
-        	
 		</div>
 	</body>
 </html>
