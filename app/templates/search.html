@@ -15,6 +15,9 @@
 	</head>
 
 	<script type="text/javascript">
+		function useSpec(queryType, query){
+			window.location.href = "/?queryType=" + queryType + "&query=" + query + "&spec=True";
+		}
 		function useInspiration(queryType, insp){
 			window.location.href = "/?queryType=" + queryType + "&query=" + insp;
 		}
@@ -62,31 +65,78 @@
         		{% for i in inspiration %}
         			<button type = "button" class = "inspiration" onclick="useInspiration('{{queryType}}', '{{i[1]}}'.replace('%20','+'))">{{i[0]}}</button><br>
         		{% endfor %}
-        	{% else %}
+        	{% elif spec == "False" %}
         		<h2>{{outputMessage}}</h2>
+        		{% if output %}
+		            {% for o in output %}
+		            	{% if queryType == "movie" %}
+			            	<div class = "outputCard" onclick="useSpec('{{queryType}}', '{{o.title}}')">
+			            		{% if o["img"]%}
+				            		<div class = "outputCardImg">
+				            			<img src="{{o['img']}}" width="100%" height="100%" style="border-radius:10px;">
+				            		</div>
+
+				            		<div class = "outputCardText" style= "width:80%;">
+				            	{% else %}
+				            		<div class = "outputCardText" style= "width:100%;">
+			            		{% endif %}
+				                	<p class = "title">{{o["title"]}}</p>
+				                	<p class = "author">{{o["author"]}}</p>
+				                	<p><i>Similarity Score</i>: {{o["simScore"]}}</p>
+				                	<p> {{o["tropes"]}} </p>
+				                	<!-- <p> 
+				                		{% if o["reviews"]%}
+					                		{% for review in o["reviews"] %}
+					                			{{review[1]}}<br>(<i>{{review[0]}}</i>) <br><br>
+					                		{% endfor %}
+				                		{% endif %}
+				                	</p> -->
+			                	</div>
+			                </div> <br>
+		                {% endif %}
+		                {% if queryType == "book" %}
+			            	<div class = "outputCard" onclick="useSpec('{{queryType}}', '{{o.title}}')">
+			         			{% if o["img"]%}
+				            		<div class = "outputCardImg">
+				            			<img src="{{o['img']}}" width="100%" height="100%" style="border-radius:10px;">
+				            		</div>
+
+				            		<div class = "outputCardText" style= "width:80%;">
+				            	{% else %}
+				            		<div class = "outputCardText" style= "width:100%;">
+			            		{% endif %}
+				                	<p class = "title">{{o["title"]}}</p>
+				                	<p><i>Similarity Score</i>: {{o["simScore"]}}</p>
+				                	<p> 
+				                	{{o["tropes"]}}</p>
+				                </div>
+			                </div> <br>
+		                {% endif %}
+		            {% endfor %}
+	        	{% endif %}
+	        {% else %}
+	        	<div class = "specCard">
+	        		{% if queryType == "movie" %}
+		        		<p class = "title">{{spec["title"]}}</p>
+		        		{% if spec["author"] or spec["year"]%} <p class = "author">{% if spec["author"]%} {{spec["author"]}} {% endif %} {% if spec["year"]%}({{spec["year"]}}) {% endif %} </p> {% endif %}
+		        		{% if spec["rating"]%} <p><i>Rating</i><br>{{spec["rating"]}}</p> {% endif %}
+		        		{% if spec["summary"]%} <p><i>Summary</i><br>{{spec["summary"]}}</p> {% endif %}
+		        		<p><i>Tropes</i><br>{{spec["tropes"]}}</p>
+		        		<p><i>Reviews</i><br>{{spec["reviews"]}}</p>
+		        	{% else %}
+		        		<p class = "title">{{spec["title"]}}</p>
+		        		{% if spec["year"]%} <p class = "author">({{spec["year"]}})</p> {% endif %}
+		        		{% if spec["rating"]%} <p><i>Rating</i><br>{{spec["rating"]}}</p> {% endif %}
+		        		{% if spec["summary"]%} <p><i>Summary</i><br>{{spec["summary"]}}</p> {% endif %}
+		        		<p><i>Tropes</i><br>{{spec["tropes"]}}</p>
+		        		{% if spec["reviews"]%}<p><i>Reviews</i><br>{{spec["reviews"]}}</p> {% endif %}
+	        		{% endif %}
+	        	</div>
         	{% endif %}
 
-        	{% if output %}
-	            {% for o in output %}
-	            	{% if queryType == "movie" %}
-		            	<div class = "outputCard">
-		                	<p class = "title">{{o["title"]}}</p>
-		                	<p class = "author">{{o["author"]}}</p>
-		                	<p><i>Similarity Score</i>: {{o["simScore"]}}</p>
-		                	<p> 
-		                	{{o["tropes"]}}</p>
-		                </div> <br>
-	                {% endif %}
-	                {% if queryType == "book" %}
-		            	<div class = "outputCard">
-		                	<p class = "title">{{o["title"]}}</p>
-		                	<p><i>Similarity Score</i>: {{o["simScore"]}}</p>
-		                	<p> 
-		                	{{o["tropes"]}}</p>
-		                </div> <br>
-	                {% endif %}
-	            {% endfor %}
-        	{% endif %}
+
+
+        	
 		</div>
 	</body>
 </html>
