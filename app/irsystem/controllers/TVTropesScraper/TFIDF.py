@@ -3,6 +3,7 @@ import json
 import math
 from collections import defaultdict
 from typing import Dict, List, Tuple
+import pickle
 
 
 with open("app/irsystem/controllers/TVTropesScraper/Film/Film_tropes_dataset3.json", 'r') as f:
