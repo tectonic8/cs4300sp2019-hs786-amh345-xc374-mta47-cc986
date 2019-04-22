@@ -82,7 +82,7 @@ def find_relevant(datasets: List[Dict],
                   normalize: bool=True,
                   idf:str=None,
                   min_df:int=0,
-                  popularity_weight = 0
+                  popularity_weight:float = 0
                 ):
     """
     THE main TF-IDF function
@@ -138,6 +138,8 @@ def find_relevant(datasets: List[Dict],
         z = max(z, 2)
         return math.log(z/2.0)+1
     
+    popularity_weight = float(popularity_weight)
+
     if result_category == 'book':
         for doc in doc_scores.keys():
             doc_ = doc.lower()
