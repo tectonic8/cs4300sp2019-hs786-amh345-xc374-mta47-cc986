@@ -21,13 +21,25 @@ h2 {
 }
 
 .inFormSearch {
-	background-color : #616684;
+	background-color : #7e83a0;
 	border: none;
 	border-radius: 30px;
 	font-size : 16px;
 	padding : 15px;
 	margin-bottom: 10px;
 	width : 50%;
+	height: 25px;
+	display: inline-block;
+}
+
+.inFormKeyword {
+	background-color : #7e83a0;
+	border: none;
+	border-radius: 30px;
+	font-size : 16px;
+	padding : 15px;
+	margin-bottom: 10px;
+	width : 25%;
 	height: 25px;
 	display: inline-block;
 }
@@ -50,9 +62,9 @@ h2 {
 
 #slider {
   -webkit-appearance: none;
-  width: 50%;
+  width: 25%;
   height: 25px;
-  background: #616684;
+  background: #7e83a0;
   border-radius: 30px;
   outline: none;
 }
