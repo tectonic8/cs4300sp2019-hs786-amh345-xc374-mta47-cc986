@@ -9,8 +9,11 @@ def search():
 	if(not request.args.get('queryType')):
 		queryType = "movie"
 	else:
-		queryType = request.args.get('queryType')
-	
+		if "/" in request.args.get('queryType'):
+			queryType = request.args.get('queryType')[:-1]
+		else:
+			queryType = request.args.get('queryType')
+			
 	if(queryType == "movie"):
 		outputType = "book"
 	else:
