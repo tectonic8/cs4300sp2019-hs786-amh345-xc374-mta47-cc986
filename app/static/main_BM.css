@@ -32,17 +32,6 @@ h2 {
 	display: inline-block;
 }
 
-.inFormKeyword {
-	background-color : #909090;
-	border: none;
-	border-radius: 30px;
-	font-size : 16px;
-	padding : 15px;
-	margin-bottom: 10px;
-	width : 25%;
-	height: 25px;
-	display: inline-block;
-}
 
 ::placeholder {
   color: #262626;
