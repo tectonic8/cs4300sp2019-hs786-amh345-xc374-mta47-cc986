@@ -10,6 +10,11 @@ with open("app/irsystem/controllers/TVTropesScraper/Film/Film_tropes_dataset3.js
 with open("app/irsystem/controllers/TVTropesScraper/Literature/Literature_tropes_dataset3.json", 'r') as f:
     book_tropes_data = json.load(f)
 
+with open("./app/irsystem/controllers/DatasetInfo/book_dataset.json", 'r', encoding='utf-8') as json_file:  
+    alena_books = json.loads(json_file.read())
+with open("./app/irsystem/controllers/DatasetInfo/movie_dataset.json", 'r', encoding='utf-8') as json_file:  
+    alena_movies = json.loads(json_file.read())
+movielens_reviews = pickle.load(open("./app/irsystem/controllers/DatasetInfo/movielens_reviews.p", "rb" ))
 
 books = list(book_tropes_data.keys())
 movies = list(movie_tropes_data.keys())
@@ -75,8 +80,9 @@ def find_relevant(datasets: List[Dict],
                   result_category: str,
                   normalize: bool=True,
                   idf:str=None,
-                  min_df:int=0
-                 ):
+                  min_df:int=0,
+                  popularity_weight = 0
+                ):
     """
     THE main TF-IDF function
     """
@@ -122,6 +128,36 @@ def find_relevant(datasets: List[Dict],
         for d in doc_scores:
             if norms[d] != 0:
                 doc_scores[d] /= norms[d]
+                
+    ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! WEIGHT BY POPULARITY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ##
+    def popularity_multiplier(z): 
+        """A multiplier between 1 to ~1.6 based on a z-score."""
+        z += 4.5
+        z = min(z, 7)
+        z = max(z, 2)
+        return math.log(z/2.0)+1
+    
+    if result_category == 'book':
+        for doc in doc_scores.keys():
+            doc_ = doc.lower()
+            if doc_ in alena_books:
+                popularity_boost = 0
+                if 'num_reviews' in alena_books[doc_]:
+                    z = (alena_books[doc_]['num_reviews']-54)/364
+                    popularity_boost = doc_scores[doc] * popularity_multiplier(z) * popularity_weight
+                if 'rating' in alena_books[doc_]:
+                    z = (alena_books[doc_]['rating']-3)/0.5  # z-score of 5-star rating
+                    popularity_boost += popularity_multiplier(z) * popularity_weight
+                doc_scores[doc] += popularity_boost
+    else:
+        for doc in doc_scores.keys():
+            if doc in movielens_reviews:
+                z = (movielens_reviews[doc][0]-2000)/8000 # z-score of number of reviews
+                popularity_boost = doc_scores[doc] * popularity_multiplier(z) * popularity_weight/2
+                z = (movielens_reviews[doc][1]-3)/0.5  # z-score of 5-star rating
+                popularity_boost += popularity_multiplier(z) * popularity_weight
+                doc_scores[doc] += popularity_boost
+    ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! WEIGHT BY POPULARITY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ##  
 
     doc_idx_scores = sorted(doc_scores.items(), key=lambda x:x[1], reverse=True)
     doc_scores = [(doc, score) for doc, score in doc_idx_scores if score > 0]

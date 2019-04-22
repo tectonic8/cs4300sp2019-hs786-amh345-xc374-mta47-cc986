@@ -59,7 +59,8 @@ def search():
                                   result_category = outputType,
                                   min_df = 3,
                                   normalize = True,
-                                  idf = "log")
+                                  idf = "log",
+								  popularity_weight = popularity)
 
 	# set export vars
 	validQueries = ""
