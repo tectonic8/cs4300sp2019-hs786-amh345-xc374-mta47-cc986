@@ -63,12 +63,13 @@ h2 {
 	color : #16264C;
 }
 
-.inspiration{
+.styleButton{
 	background-color : #616684;
 	color : #FFF7DF;
 	border : none;
 	font-family : courier;
 	border-radius : 20px;
+	margin-top: 10px;
 	font-size : 16px;
 	padding : 10px;
 }

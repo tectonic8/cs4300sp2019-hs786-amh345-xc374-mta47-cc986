@@ -49,7 +49,7 @@
 			<form id="inForm">
   				<h2>
 	  				Input: {% if queryType == "movie" %} Movie {% else %} Book {% endif %}
-	  				<button type = "button" class = "inspiration" style="font-size: 20px;" onclick="invertQueryType('{{queryType}}', '{{query}}')">⇆</button> 
+	  				<button type = "button" class = "styleButton" style="font-size: 20px;" onclick="invertQueryType('{{queryType}}', '{{query}}')">⇆</button> 
 	  				Output: {% if outputType == "movie" %} Movie {% else %} Book {% endif %}
 	  			</h2>
 
@@ -64,7 +64,7 @@
   					<input type="range" name="popSlide" id="slider" min="1" max="100" value="50" step="1">
   				</div>
   				<div>
-  					<input type="submit" class = "inspiration" value="Search!">
+  					<input type="submit" class = "styleButton" value="Search!">
   				</div>
         	</form>
 		</div>
@@ -73,7 +73,7 @@
         	{% if isHomeScreen == True %}
         		<p>Not much of a movie buff?<br>Here's some inspiration!</p>
         		{% for i in inspiration %}
-        			<button type = "button" class = "inspiration" onclick="useInspiration('{{queryType}}', '{{i[1]}}'.replace('%20','+'))">{{i[0]}}</button><br>
+        			<button type = "button" class = "styleButton" onclick="useInspiration('{{queryType}}', '{{i[1]}}'.replace('%20','+'))">{{i[0]}}</button><br>
         		{% endfor %}
         	{% elif spec == "False" %}
         		<h2>{{outputMessage}}</h2>
