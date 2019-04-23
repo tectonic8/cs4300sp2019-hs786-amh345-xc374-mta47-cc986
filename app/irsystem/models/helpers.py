@@ -85,6 +85,8 @@ def topNTropes(d, n):
     return top
 
 def randomNInsp(d, n):
-    valid = [(item[0], item[0].replace("'", "%27")) for item in d.items() if item[1].get("rating", 0) >= 4.5]
+    valid = [(item[0], item[0].replace("'", "%27"))
+             for item in d.items()
+             if item[1].get("rating", 0) >= 4.5]
     shuffle(valid)
     return valid[:n]

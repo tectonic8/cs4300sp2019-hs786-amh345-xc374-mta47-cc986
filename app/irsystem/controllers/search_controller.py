@@ -36,21 +36,24 @@ def search():
 	inspiration = None
 
 	# initialize internal vars
-	with open('app/irsystem/controllers/DatasetInfo/book_dataset.json') as json_file:
-	    booksJSON = json.load(json_file)
+    with open('app/irsystem/controllers/DatasetInfo/book_dataset.json') as json_file:
+        booksJSON = json.load(json_file)
 	with open('app/irsystem/controllers/DatasetInfo/movie_dataset.json') as json_file:
-	    moviesJSON = json.load(json_file)
+        moviesJSON = json.load(json_file)
 
-	for book in books:
-		if(book.lower() in booksJSON):
-			booksJSON[book] = booksJSON.pop(book.lower())
-	for movie in movies:
-		if(movie.lower() in moviesJSON):
-			moviesJSON[movie] = moviesJSON.pop(movie.lower())
+	books_lower_to_proper = {title.lower(): title for title in books}
+    movies_lower_to_proper = {title.lower(): title for title in movies}
+
+    for book in booksJSON.keys():
+        booksJSON[books_lower_to_proper.get(book, book)] = booksJSON.pop(book)
+
+    for movie in moviesJSON.keys():
+        moviesJSON[movies_lower_to_proper.get(movie, movie)] = moviesJSON.pop(movie)
+
 	retrieval = None
 
 	# run query
-	if(q):
+	if q:
 		outputMessage = "Your Search: " + q
 		retrieval = find_relevant(datasets = datasets,
                                   inverted_indices = inverted_indices,

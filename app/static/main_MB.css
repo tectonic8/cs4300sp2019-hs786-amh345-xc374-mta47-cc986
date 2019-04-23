@@ -52,7 +52,7 @@ h2 {
 	width : 100%;
 	background: none;
 	color : #FFF7DF;
-	font-size: 16;
+	font-size: 16px;
 	font-family : courier;
 	text-align: center;
 	border: none;
@@ -133,4 +133,8 @@ h2 {
 .author{
 	font-size: 20px;
 	margin: 0px;
+}
+
+p.summaryText{
+	text-align: justify;
 }
