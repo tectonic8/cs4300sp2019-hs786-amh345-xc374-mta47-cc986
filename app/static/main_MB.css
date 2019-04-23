@@ -105,6 +105,7 @@ h2 {
 	text-align: center;
 	display: inline-flex;
 	margin: 5px;
+	padding: 10px;
 }
 
 .specCard{
@@ -114,6 +115,7 @@ h2 {
 	text-align: center;
 	display: inline-block;
 	margin: 5px;
+	padding: 20px;
 }
 
 .outputCardText{
