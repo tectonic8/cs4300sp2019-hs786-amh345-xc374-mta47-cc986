@@ -32,6 +32,17 @@ h2 {
 	display: inline-block;
 }
 
+.inFormKeyword {
+	background-color : #909090;
+	border: none;
+	border-radius: 30px;
+	font-size : 16px;
+	padding : 15px;
+	margin-bottom: 10px;
+	width : 10%;
+	height: 25px;
+	display: inline-block;
+}
 
 ::placeholder {
   color: #262626;
@@ -50,7 +61,7 @@ h2 {
 	width : 100%;
 	background: none;
 	color : #1e1e1e;
-	font-size: 16;
+	font-size: 16px;
 	text-align: center;
 	font-family : courier;
 	border: none;
