@@ -137,8 +137,6 @@ def find_relevant(datasets: List[Dict],
         z = min(z, 7)
         z = max(z, 2)
         return math.log(z/2.0)+1
-    
-    popularity_weight = float(popularity_weight)
 
     if result_category == 'book':
         for doc in doc_scores.keys():
