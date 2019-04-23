@@ -138,6 +138,8 @@ def find_relevant(datasets: List[Dict],
         z = max(z, 2)
         return math.log(z/2.0)+1
 
+    if popularity_weight is None: popularity_weight = 0
+
     popularity_weight = float(popularity_weight)
 
     if result_category == 'book':
