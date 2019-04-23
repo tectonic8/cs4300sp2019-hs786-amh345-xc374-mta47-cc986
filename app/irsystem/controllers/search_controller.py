@@ -19,7 +19,7 @@ def search():
 	else:
 		outputType = "movie"
 
-	popularity = float(request.args.get('popSlide'))
+	popularity = request.args.get('popSlide')
 
 	q = None
 	if(request.args.get('query')):
