@@ -50,8 +50,8 @@ h2 {
 
 #slider {
   -webkit-appearance: none;
-  width: 10%;
-  height: 25px;
+  width: 20%;
+  height: 15px;
   background: #909090;
   border-radius: 30px;
   outline: none;
@@ -141,4 +141,12 @@ p.summaryText{
 a.linkNoStyle{
 	color: inherit;
 	text-decoration: inherit;
+}
+
+#searchButton {
+	background-color: #b4b4b4;
+}
+
+#searchButton:hover {
+	background: #909090;
 }
