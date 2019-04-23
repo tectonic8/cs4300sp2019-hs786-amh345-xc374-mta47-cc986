@@ -90,6 +90,10 @@ h2 {
 	background-color: #7e83a0;
 }
 
+.styleButton:focus{
+	outline: none;
+}
+
 #Output {
 	text-align: center;
 }
@@ -154,4 +158,8 @@ a.linkNoStyle{
 
 #searchButton:hover {
 	background: #7e83a0;
+}
+
+#searchButton:focus {
+	outline: none;
 }
