@@ -139,5 +139,6 @@ p.summaryText{
 }
 
 a.linkNoStyle{
-	text-decoration: None;
+	color: inherit;
+	text-decoration: inherit;
 }

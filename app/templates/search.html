@@ -135,7 +135,7 @@
 		        		<p class = "title">{{spec["title"]}}</p>
 		        		{% if spec["author"] or spec["year"]%} <p class = "author">{% if spec["author"]%} {{spec["author"]}} {% endif %} {% if spec["year"]%}({{spec["year"]}}) {% endif %} </p> {% endif %}
 		        		{% if spec["rating"]%} <p><i>Rating</i><br>{{spec["rating"]}}</p> {% endif %}
-		        		{% if spec["summary"]%} <br><i>Summary</i><br><p class="summaryText">{{spec["summary"]}}</p> {% endif %}
+		        		{% if spec["summary"]%} <p><br><i>Summary</i><br></p><p class="summaryText">{{spec["summary"]}}</p> {% endif %}
 		        		<p><i>Tropes</i><br>{{spec["tropes"]}}</p>
 		        		{% if spec["reviews"]%}
 			        		<p><i>Reviews</i><br>
@@ -148,7 +148,7 @@
 		        		<p class = "title">{{spec["title"]}}</p>
 		        		{% if spec["year"]%} <p class = "author">({{spec["year"]}})</p> {% endif %}
 		        		{% if spec["rating"]%} <p><i>Rating</i><br>{{spec["rating"]}}</p> {% endif %}
-		        		{% if spec["summary"]%} <br><i>Summary</i><br><p class="summaryText">{{spec["summary"]}}</p> {% endif %}
+		        		{% if spec["summary"]%} <p><br><i>Summary</i></p><br><p class="summaryText">{{spec["summary"]}}</p> {% endif %}
 		        		<p><i>Tropes</i><br>{{spec["tropes"]}}</p>
 		        		{% if spec["reviews"]%}
 			        		<p><i>Reviews</i><br>
