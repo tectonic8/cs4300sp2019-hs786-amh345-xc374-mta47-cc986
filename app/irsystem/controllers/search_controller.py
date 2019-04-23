@@ -38,7 +38,7 @@ def search():
 	# initialize internal vars
     with open('app/irsystem/controllers/DatasetInfo/book_dataset.json') as json_file:
         booksJSON = json.load(json_file)
-	with open('app/irsystem/controllers/DatasetInfo/movie_dataset.json') as json_file:
+    with open('app/irsystem/controllers/DatasetInfo/movie_dataset.json') as json_file:
         moviesJSON = json.load(json_file)
 
 	books_lower_to_proper = {title.lower(): title for title in books}
