@@ -68,9 +68,9 @@ def search():
     # set export vars
     validQueries = ""
     if(queryType == "movie"):
-        validQueries = ", ".join(movies)
+        validQueries = list(movies)
     else:
-        validQueries = ", ".join(books)
+        validQueries = list(books)
 
     if(not request.args.get('query')):
         isHomeScreen = True

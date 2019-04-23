@@ -44,7 +44,7 @@
                 <h1><a class="linkNoStyle" href="/">The Book Was Better.</a></h1>
                 <h2>Literature recommendations for the age of film.</h2>
 			{% else %}
-				<h1><a class="linkNoStyle" href="/">The Movie Was Better?</a></h1>
+				<h1><a class="linkNoStyle" href="/?queryType=book&query=">The Movie Was Better?</a></h1>
 				<h2>Film recommendations for the post-literature age.</h2>
 			{% endif %}
 			
@@ -57,7 +57,12 @@
 	  			</h2>
 
   				<div class = "inFormSearch">
-  					<input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a book or movie title!" data-list="{{validQueries}}" />
+  					<input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a book or movie title!" list="validInputList" />
+                    <datalist id="validInputList">
+                        {% for query in validQueries %}
+                            <option>{{query}}</option>
+                        {% endfor %}
+                    </datalist>
 					<input type="hidden" id="queryType" name="queryType" value={{queryType}}/>
   				</div>
 
