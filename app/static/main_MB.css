@@ -86,6 +86,10 @@ h2 {
 	padding : 10px;
 }
 
+.styleButton:hover{
+	background-color: #7e83a0;
+}
+
 #Output {
 	text-align: center;
 }
@@ -145,9 +149,9 @@ a.linkNoStyle{
 }
 
 #searchButton {
-	background: #7e83a0;
+	background: #616684;
 }
 
 #searchButton:hover {
-	background: #616684;
+	background: #7e83a0;
 }

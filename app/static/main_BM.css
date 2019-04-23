@@ -86,6 +86,10 @@ h2 {
 	padding : 10px;
 }
 
+.styleButton:hover{
+	background-color: #909090;
+}
+
 #Output {
 	text-align: center;
 }
