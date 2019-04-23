@@ -54,7 +54,7 @@
 	  			</h2>
 
   				<div class = "inFormSearch">
-  					<input class="awesomplete" id = "inFormSearchBar" name="query" placeholder="Query" data-list="{{validQueries}}" />
+  					<input class="awesomplete" id = "inFormSearchBar" name="query" placeholder="Input a book or movie title!" data-list="{{validQueries}}" />
 					<input type="hidden" id="queryType" name="queryType" value={{queryType}}/>
   				</div>
                 <br>
@@ -62,7 +62,8 @@
   					<input type="text" id = "inFormSearchBar" name="keyword" placeholder="Keyword"/>
   				</div>
   				<div>
-  					<input type="range" style="width: 50%;" name="popSlide" id="slider" min="0" max="2" value="1" step=".01">
+                    <p>Popularity modifier (0-100)</p>
+  					<input type="range" name="popSlide" id="slider" min="0" max="1" value="0" step=".01">
   				</div>
   				<div>
   					<input type="submit" class = "styleButton" value="Search!">

@@ -62,7 +62,7 @@ h2 {
 
 #slider {
   -webkit-appearance: none;
-  width: 25%;
+  width: 10%;
   height: 25px;
   background: #7e83a0;
   border-radius: 30px;
@@ -133,4 +133,8 @@ h2 {
 .author{
 	font-size: 20px;
 	margin: 0px;
+}
+
+.popularitySlider{
+	width: 20%;
 }
