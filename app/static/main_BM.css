@@ -137,3 +137,7 @@ h2 {
 p.summaryText{
 	text-align: justify;
 }
+
+a.linkNoStyle{
+	text-decoration: None;
+}

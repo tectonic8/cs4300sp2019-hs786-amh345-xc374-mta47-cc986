@@ -45,10 +45,10 @@ def search():
 	movies_lower_to_proper = {title.lower(): title for title in movies}
 
 	for book in booksJSON.keys():
-		booksJSON[books_lower_to_proper.get(book, book)] = booksJSON.pop(book)
+		booksJSON[books_lower_to_proper.get(book.lower(), book)] = booksJSON.pop(book)
 
 	for movie in moviesJSON.keys():
-		moviesJSON[movies_lower_to_proper.get(movie, movie)] = moviesJSON.pop(movie)
+		moviesJSON[movies_lower_to_proper.get(movie.lower(), movie)] = moviesJSON.pop(movie)
 
 	retrieval = None
 
@@ -68,12 +68,9 @@ def search():
 	# set export vars
 	validQueries = ""
 	if(queryType == "movie"):
-		for m in movies:
-			validQueries += m + ", "
+        validQueries = ", ".join(movies)
 	else:
-		for b in books:
-			validQueries += b + ", "
-	validQueries = validQueries[:-2]
+        validQueries = ", ".join(books)
 
 	if(not request.args.get('query')):
 		isHomeScreen = True
@@ -84,6 +81,7 @@ def search():
 		inspiration = randomNInsp(moviesJSON, 10)
 	if(queryType == "book"):
 		inspiration = randomNInsp(booksJSON, 10)
+
 	if spec == "False":
 		if retrieval:
 			i = 0
