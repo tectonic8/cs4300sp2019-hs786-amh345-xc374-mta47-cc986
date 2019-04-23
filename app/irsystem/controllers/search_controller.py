@@ -87,21 +87,20 @@ def search():
             i = 0
             for entry in retrieval[0]:
                 output.append(dict())
-                entry[0] = books_lower_to_proper.get(entry[0].lower(), entry[0])
-                if(queryType == "movie"):
+                if queryType == "movie":
                     output[i]["title"] = entry[0]
-                    if "author" in booksJSON[entry[0]]:
+                    if "author" in booksJSON.get(entry[0], ""):
                         output[i]["author"] = booksJSON[entry[0]]["author"]
                     output[i]["simScore"] = round(entry[1], 3)
                     output[i]["tropes"] = "".join(elem for elem in topNTropes(retrieval[1][entry[0]], 5))
-                    if "reviews" in booksJSON[entry[0]]:
+                    if "reviews" in booksJSON.get(entry[0], ""):
                         output[i]["reviews"] = list()
                         for review in booksJSON[entry[0]]["reviews"]:
                             output[i]["reviews"].append(review)
-                    if "img" in booksJSON[entry[0]]:
+                    if "img" in booksJSON.get(entry[0], ""):
                         output[i]["img"] = booksJSON[entry[0]]["img"]
-                if(queryType == "book"):
-                    entry[0] = movies_lower_to_proper.get(entry[0].lower(), entry[0])
+
+                if queryType == "book":
                     output[i]["title"] = entry[0]
                     output[i]["simScore"] = round(entry[1], 3)
                     output[i]["tropes"] = "".join(elem for elem in topNTropes(retrieval[1][entry[0]], 5))

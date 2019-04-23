@@ -132,11 +132,6 @@
 	        {% else %}
 	        	<div class = "specCard">
 	        		{% if queryType == "movie" %}
-                        {% if spec["img"]%}
-                            <div class = "outputCardImg">
-                                <img src="{{spec['img']}}" width="100%" height="100%" style="border-radius:10px;">
-                            </div>
-                        {% endif %}
 		        		<p class = "title">{{spec["title"]}}</p>
 		        		{% if spec["author"] or spec["year"]%} <p class = "author">{% if spec["author"]%} {{spec["author"]}} {% endif %} {% if spec["year"]%}({{spec["year"]}}) {% endif %} </p> {% endif %}
 		        		{% if spec["rating"]%} <p><i>Rating</i><br>{{spec["rating"]}}</p> {% endif %}
@@ -150,11 +145,6 @@
 			        		</p> 
 		        		{% endif %}
 		        	{% else %}
-                        {% if spec["img"]%}
-                            <div class = "outputCardImg">
-                                <img src="{{spec['img']}}" width="100%" height="100%" style="border-radius:10px;">
-                            </div>
-                        {% endif %}
 		        		<p class = "title">{{spec["title"]}}</p>
 		        		{% if spec["year"]%} <p class = "author">({{spec["year"]}})</p> {% endif %}
 		        		{% if spec["rating"]%} <p><i>Rating</i><br>{{spec["rating"]}}</p> {% endif %}
