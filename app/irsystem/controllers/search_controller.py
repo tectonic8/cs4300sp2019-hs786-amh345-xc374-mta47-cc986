@@ -123,6 +123,9 @@ def search():
                 spec["summary"] = booksJSON[q]["summary"]
             if "reviews" in booksJSON[q]:
                 spec["reviews"] = reversed(booksJSON[q]["reviews"])
+            if "img" in booksJSON.get(q, ""):
+                spec["img"] = booksJSON[q]["img"]
+
             spec["tropes"] = allTropes(book_tropes_data[q])
         else:
             spec["title"] = q.replace('\'', '%27')
@@ -135,6 +138,8 @@ def search():
                     spec["summary"] = moviesJSON[q]["summary"]
                 if "reviews" in moviesJSON[q]:
                     spec["reviews"] = reversed(moviesJSON[q]["reviews"])
+                if "img" in moviesJSON[q]:
+                    spec["img"] = moviesJSON[q]["img"]
             spec["tropes"] = allTropes(movie_tropes_data[q])
 
     # export
