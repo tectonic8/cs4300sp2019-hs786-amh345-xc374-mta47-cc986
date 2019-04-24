@@ -36,6 +36,10 @@
         {#function twoDPvalues(value_string){#}
         {#    return parseFloat(value_string).toFixed(2).toString()#}
         {##}
+
+        function escapeString(string){
+            return string.replace(",", "\,").replace("'", "\'");
+        }
 	</script>
 
 	<body>
@@ -92,7 +96,7 @@
         		{% if output %}
 		            {% for o in output %}
 		            	{% if queryType == "movie" %}
-		            		<div class = "outputCard" onclick="useSpec('{{queryType}}','{{o.title}}'.replace(',', '\,'))">
+		            		<div class = "outputCard" onclick='useSpec("{{queryType}}",escapeString("{{o.title}}"))'>
 			            		{% if o["img"]%}
 				            		<div class = "outputCardImg">
 				            			<img src="{{o['img']}}" width="100%" height="100%" style="border-radius:10px;">

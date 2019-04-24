@@ -64,7 +64,6 @@ def topNTropes(d, n):
     top = []
 
     i = 0
-    print(d.get)
     while(i < n):
         v=list(d.values())
         k=list(d.keys())
