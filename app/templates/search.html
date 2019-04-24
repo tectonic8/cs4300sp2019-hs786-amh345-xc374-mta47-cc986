@@ -147,7 +147,6 @@
 	        	{% endif %}
 	        {% else %}
 	        	<div class = "specCard">
-                    <script>console.log("{{ spec["img"] }}")</script>
                     {% if spec["img"]%}
                         <div class = "outputCardImg">
                             <img src="{{spec['img']}}" width="100%" height="100%" style="border-radius:10px;">
@@ -180,6 +179,9 @@
 			        		</p> 
 		        		{% endif %}
 	        		{% endif %}
+                    <form>
+                        <input type="button" class="styleButton" value="Go back!" onclick="history.back()">
+                    </form>
 	        	</div>
         	{% endif %}
 		</div>
