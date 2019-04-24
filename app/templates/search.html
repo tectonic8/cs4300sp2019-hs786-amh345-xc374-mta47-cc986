@@ -127,7 +127,7 @@
 			                </div> <br>
 		                {% endif %}
 		                {% if queryType == "book" %}
-			            	<div class = "outputCard" onclick="useSpec('{{queryType}}', '{{o.title}}')">
+			            	<div class = "outputCard" onclick='useSpec("{{queryType}}",escapeString("{{o.title}}"))'>
 
 			         			{% if o["img"]%}
 				            		<div class = "outputCardImg">
