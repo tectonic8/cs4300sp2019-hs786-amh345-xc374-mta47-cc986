@@ -128,7 +128,7 @@ def search():
 
             spec["tropes"] = allTropes(book_tropes_data[q])
         else:
-            spec["title"] = q.replace('\'', '%27')
+            spec["title"] = q
             if q in moviesJSON:
                 if "rating" in moviesJSON[q]:
                     spec["rating"] = str(round(float(moviesJSON[q]["rating"]), 2))
