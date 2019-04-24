@@ -61,7 +61,11 @@
 	  			</h2>
 
   				<div class = "inFormSearch">
-  					<input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a book or movie title!" list="validInputList" />
+                    {% if pastSearch %}
+                        <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="{{ pastSearch }}" list="validInputList" />
+                    {% else %}
+  					    <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a book or movie title!" list="validInputList" />
+                    {% endif %}
                     <datalist id="validInputList">
                         {% for query in validQueries %}
                             <option>{{query}}</option>
@@ -92,7 +96,7 @@
         			<button type = "button" class = "styleButton" onclick="useInspiration('{{queryType}}', '{{i[1]}}'.replace('%20','+'))">{{i[0]}}</button><br>
         		{% endfor %}
         	{% elif spec == "False" %}
-        		<h2>{{outputMessage}}</h2>
+{#        		<h2>{{outputMessage}}</h2>#}
         		{% if output %}
 		            {% for o in output %}
 		            	{% if queryType == "movie" %}

@@ -30,7 +30,7 @@ def search():
     else:
         spec = dict()
 
-    outputMessage = None
+    pastSearch = None
     output = []
 
     inspiration = None
@@ -54,7 +54,7 @@ def search():
 
     # run query
     if q:
-        outputMessage = "Your Search: " + q
+        pastSearch = q
         retrieval = find_relevant(datasets = datasets,
                                   inverted_indices = inverted_indices,
                                   query = q,
@@ -109,7 +109,7 @@ def search():
 
                 i += 1
         elif(q):
-            outputMessage = "Sorry, \'" + q + "\' is an invalid query."
+            pastSearch = "Sorry, \'" + q + "\' is an invalid query."
     else:
         if(queryType == "movie"):
             spec["title"] = q
@@ -143,4 +143,12 @@ def search():
             spec["tropes"] = allTropes(movie_tropes_data[q])
 
     # export
-    return render_template('search.html', isHomeScreen = isHomeScreen, inspiration = inspiration, validQueries = validQueries, queryType = queryType, query = q, outputMessage = outputMessage, outputType = outputType , output = output, spec = spec)
+    return render_template('search.html', isHomeScreen = isHomeScreen, 
+                           inspiration = inspiration, 
+                           validQueries = validQueries, 
+                           queryType = queryType, 
+                           query = q, 
+                           pastSearch = pastSearch, 
+                           outputType = outputType , 
+                           output = output, 
+                           spec = spec)
