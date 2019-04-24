@@ -34,9 +34,6 @@
 				window.location.href = "/?queryType=book&query=";
 			}
 		}
-        {#function twoDPvalues(value_string){#}
-        {#    return parseFloat(value_string).toFixed(2).toString()#}
-        {##}
 
         function escapeString(string){
             return string.replace(",", "\,").replace("'", "\'");
@@ -156,7 +153,12 @@
 	        		{% if queryType == "movie" %}
 		        		<p class = "title">{{spec["title"]}}</p>
 		        		{% if spec["author"] or spec["year"]%} <p class = "author">{% if spec["author"]%} {{spec["author"]}} {% endif %} {% if spec["year"]%}({{spec["year"]}}) {% endif %} </p> {% endif %}
-		        		{% if spec["rating"]%} <p><i>Rating</i><br>{{spec["rating"]}}</p> {% endif %}
+		        		{% if spec["rating"]%}
+                            <p>
+                                <i>Rating</i>
+                                <br>
+                                {{ spec["rating"] }}
+                            </p> {% endif %}
 		        		{% if spec["summary"]%} <p><br><i>Summary</i></p><p class="summaryText">{{spec["summary"]}}</p> {% endif %}
 		        		<p><i>Tropes</i><br>{{spec["tropes"]}}</p>
 		        		{% if spec["reviews"]%}

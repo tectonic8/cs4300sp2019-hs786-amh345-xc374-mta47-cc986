@@ -116,7 +116,7 @@ def search():
             if "author" in booksJSON[q]:
                 spec["author"] = booksJSON[q]["author"]
             if "rating" in booksJSON[q]:
-                spec["rating"] = booksJSON[q]["rating"]
+                spec["rating"] = str(round(float(booksJSON[q]["rating"]),2))
             if "published" in booksJSON[q]:
                 spec["year"] = booksJSON[q]["published"]
             if "summary" in booksJSON[q]:
@@ -131,7 +131,7 @@ def search():
             spec["title"] = q.replace('\'', '%27')
             if q in moviesJSON:
                 if "rating" in moviesJSON[q]:
-                    spec["rating"] = moviesJSON[q]["rating"]
+                    spec["rating"] = str(round(float(moviesJSON[q]["rating"]), 2))
                 if "published" in moviesJSON[q]:
                     spec["year"] = moviesJSON[q]["published"]
                 if "summary" in moviesJSON[q]:
