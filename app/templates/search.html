@@ -1,5 +1,6 @@
 <html>
-	<head>
+
+    <head>
 		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"> </script>
 
 		{% if queryType == "movie" %}
@@ -43,7 +44,9 @@
 	</script>
 
 	<body>
-		<div id = "Header">
+        <button type = "button" id="invertButton" class = "styleButton" style="font-size: 20px;" onclick="invertQueryType('{{queryType}}', '{{query}}')">⇆</button>
+
+        <div id = "Header">
 			{% if queryType == "movie" %}
                 <h1><a class="linkNoStyle" href="/">The Book Was Better.</a></h1>
                 <h2>Literature recommendations for the age of film.</h2>
@@ -54,17 +57,15 @@
 			
 			
 			<form id="inForm">
-  				<h2>
-	  				Input: {% if queryType == "movie" %} Movie {% else %} Book {% endif %}
-	  				<button type = "button" class = "styleButton" style="font-size: 20px;" onclick="invertQueryType('{{queryType}}', '{{query}}')">⇆</button> 
-	  				Output: {% if outputType == "movie" %} Movie {% else %} Book {% endif %}
-	  			</h2>
-
   				<div class = "inFormSearch">
                     {% if pastSearch and spec == "False" %}
                         <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="{{ pastSearch }}" list="validInputList" />
                     {% else %}
-  					    <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a book or movie title!" list="validInputList" />
+                        {% if queryType == "movie" %}
+  					        <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a movie title!" list="validInputList" />
+                        {% else %}
+                            <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a book title!" list="validInputList" />
+                        {% endif %}
                     {% endif %}
                     <datalist id="validInputList">
                         {% for query in validQueries %}

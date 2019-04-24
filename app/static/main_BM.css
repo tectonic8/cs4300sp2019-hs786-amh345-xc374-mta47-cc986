@@ -164,3 +164,9 @@ a.linkNoStyle{
 #searchButton:focus {
 	outline: none;
 }
+
+#invertButton {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
