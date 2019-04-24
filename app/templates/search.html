@@ -89,7 +89,11 @@
 
 		<div id = "Output">
         	{% if isHomeScreen == True %}
-        		<p>Not much of a movie buff?<br>Here's some inspiration!</p>
+                {% if queryType == "movie" %}
+        		    <p>Not much of a movie buff?<br>Here's some inspiration!</p>
+                {% else %}
+                    <p>Not much of a bookworm?<br>Here's some inspiration!</p>
+                {% endif %}
         		{% for i in inspiration %}
         			<button type = "button" class = "styleButton" onclick="useInspiration('{{queryType}}', '{{i[1]}}'.replace('%20','+'))">{{i[0]}}</button><br>
         		{% endfor %}
