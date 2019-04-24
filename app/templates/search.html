@@ -61,7 +61,7 @@
 	  			</h2>
 
   				<div class = "inFormSearch">
-                    {% if pastSearch %}
+                    {% if pastSearch and spec == "False" %}
                         <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="{{ pastSearch }}" list="validInputList" />
                     {% else %}
   					    <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a book or movie title!" list="validInputList" />
