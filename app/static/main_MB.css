@@ -62,8 +62,8 @@ h2 {
 
 #slider {
   -webkit-appearance: none;
-  width: 10%;
-  height: 25px;
+  width: 20%;
+  height: 15px;
   background: #7e83a0;
   border-radius: 30px;
   outline: none;
@@ -86,6 +86,14 @@ h2 {
 	padding : 10px;
 }
 
+.styleButton:hover{
+	background-color: #7e83a0;
+}
+
+.styleButton:focus{
+	outline: none;
+}
+
 #Output {
 	text-align: center;
 }
@@ -97,6 +105,7 @@ h2 {
 	text-align: center;
 	display: inline-flex;
 	margin: 5px;
+	padding: 10px;
 }
 
 .specCard{
@@ -106,6 +115,7 @@ h2 {
 	text-align: center;
 	display: inline-block;
 	margin: 5px;
+	padding: 20px;
 }
 
 .outputCardText{
@@ -140,5 +150,24 @@ p.summaryText{
 }
 
 a.linkNoStyle{
-	text-decoration: None;
+	color: inherit;
+	text-decoration: inherit;
+}
+
+#searchButton {
+	background: #616684;
+}
+
+#searchButton:hover {
+	background: #7e83a0;
+}
+
+#searchButton:focus {
+	outline: none;
+}
+
+#invertButton {
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }

@@ -1,5 +1,6 @@
 <html>
-	<head>
+
+    <head>
 		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"> </script>
 
 		{% if queryType == "movie" %}
@@ -33,59 +34,75 @@
 				window.location.href = "/?queryType=book&query=";
 			}
 		}
-        {#function twoDPvalues(value_string){#}
-        {#    return parseFloat(value_string).toFixed(2).toString()#}
-        {##}
+
+        function escapeString(string){
+            return string.replace(",", "\,").replace("'", "\'");
+        }
 	</script>
 
 	<body>
-		<div id = "Header">
+        <button type = "button" id="invertButton" class = "styleButton" style="font-size: 20px;" onclick='invertQueryType("{{queryType}}", "{{query}}")'>⇆</button>
+
+        <div id = "Header">
 			{% if queryType == "movie" %}
                 <h1><a class="linkNoStyle" href="/">The Book Was Better.</a></h1>
                 <h2>Literature recommendations for the age of film.</h2>
 			{% else %}
-				<h1><a class="linkNoStyle" href="/">The Movie Was Better?</a></h1>
+				<h1><a class="linkNoStyle" href="/?queryType=book&query=">The Movie Was Better?</a></h1>
 				<h2>Film recommendations for the post-literature age.</h2>
 			{% endif %}
 			
 			
 			<form id="inForm">
-  				<h2>
-	  				Input: {% if queryType == "movie" %} Movie {% else %} Book {% endif %}
-	  				<button type = "button" class = "styleButton" style="font-size: 20px;" onclick="invertQueryType('{{queryType}}', '{{query}}')">⇆</button> 
-	  				Output: {% if outputType == "movie" %} Movie {% else %} Book {% endif %}
-	  			</h2>
-
   				<div class = "inFormSearch">
-  					<input class="awesomplete" id = "inFormSearchBar" name="query" size="50" placeholder="Input a book or movie title!" data-list="{{validQueries}}" />
+                    {% if pastSearch and spec == "False" %}
+                        <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="{{ pastSearch }}" list="validInputList" />
+                    {% else %}
+                        {% if queryType == "movie" %}
+  					        <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a movie title!" list="validInputList" />
+                        {% else %}
+                            <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a book title!" list="validInputList" />
+                        {% endif %}
+                    {% endif %}
+                    <datalist id="validInputList">
+                        {% for query in validQueries %}
+                            <option>{{query}}</option>
+                        {% endfor %}
+                    </datalist>
 					<input type="hidden" id="queryType" name="queryType" value={{queryType}}/>
   				</div>
-                <br>
+
   				<div class = "inFormKeyword">
   					<input type="text" id = "inFormSearchBar" name="keyword" placeholder="Keyword"/>
   				</div>
   				<div>
-                    <p>Popularity modifier (0-100)</p>
+                    <br>
+                    Relevance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popularity<br>
   					<input type="range" name="popSlide" id="slider" min="0" max="1" value="0" step=".01">
   				</div>
   				<div>
-  					<input type="submit" class = "styleButton" value="Search!">
+                    <br>
+  					<input type="submit" id = "searchButton" class = "styleButton" value="Search!">
   				</div>
         	</form>
 		</div>
 
 		<div id = "Output">
         	{% if isHomeScreen == True %}
-        		<p>Not much of a movie buff?<br>Here's some inspiration!</p>
+                {% if queryType == "movie" %}
+        		    <p>Not much of a movie buff?<br>Here's some inspiration!</p>
+                {% else %}
+                    <p>Not much of a bookworm?<br>Here's some inspiration!</p>
+                {% endif %}
         		{% for i in inspiration %}
         			<button type = "button" class = "styleButton" onclick="useInspiration('{{queryType}}', '{{i[1]}}'.replace('%20','+'))">{{i[0]}}</button><br>
         		{% endfor %}
         	{% elif spec == "False" %}
-        		<h2>{{outputMessage}}</h2>
+{#        		<h2>{{outputMessage}}</h2>#}
         		{% if output %}
 		            {% for o in output %}
 		            	{% if queryType == "movie" %}
-		            		<div class = "outputCard" onclick="useSpec('{{queryType}}','{{o.title}}'.replace(',', '\,'))">
+		            		<div class = "outputCard" onclick='useSpec("{{queryType}}",escapeString("{{o.title}}"))'>
 			            		{% if o["img"]%}
 				            		<div class = "outputCardImg">
 				            			<img src="{{o['img']}}" width="100%" height="100%" style="border-radius:10px;">
@@ -103,7 +120,8 @@
 			                </div> <br>
 		                {% endif %}
 		                {% if queryType == "book" %}
-			            	<div class = "outputCard" onclick="useSpec('{{queryType}}', '{{o.title}}')">
+			            	<div class = "outputCard" onclick='useSpec("{{queryType}}",escapeString("{{o.title}}"))'>
+
 			         			{% if o["img"]%}
 				            		<div class = "outputCardImg">
 				            			<img src="{{o['img']}}" width="100%" height="100%" style="border-radius:10px;">
@@ -124,11 +142,21 @@
 	        	{% endif %}
 	        {% else %}
 	        	<div class = "specCard">
+                    {% if spec["img"]%}
+                        <div class = "outputCardImg">
+                            <img src="{{spec['img']}}" width="100%" height="100%" style="border-radius:10px;">
+                        </div>
+                    {% endif %}
 	        		{% if queryType == "movie" %}
 		        		<p class = "title">{{spec["title"]}}</p>
 		        		{% if spec["author"] or spec["year"]%} <p class = "author">{% if spec["author"]%} {{spec["author"]}} {% endif %} {% if spec["year"]%}({{spec["year"]}}) {% endif %} </p> {% endif %}
-		        		{% if spec["rating"]%} <p><i>Rating</i><br>{{spec["rating"]}}</p> {% endif %}
-		        		{% if spec["summary"]%} <br><i>Summary</i><br><p class="summaryText">{{spec["summary"]}}</p> {% endif %}
+		        		{% if spec["rating"]%}
+                            <p>
+                                <i>Rating</i>
+                                <br>
+                                {{ spec["rating"] }}
+                            </p> {% endif %}
+		        		{% if spec["summary"]%} <p><br><i>Summary</i></p><p class="summaryText">{{spec["summary"]}}</p> {% endif %}
 		        		<p><i>Tropes</i><br>{{spec["tropes"]}}</p>
 		        		{% if spec["reviews"]%}
 			        		<p><i>Reviews</i><br>
@@ -141,7 +169,7 @@
 		        		<p class = "title">{{spec["title"]}}</p>
 		        		{% if spec["year"]%} <p class = "author">({{spec["year"]}})</p> {% endif %}
 		        		{% if spec["rating"]%} <p><i>Rating</i><br>{{spec["rating"]}}</p> {% endif %}
-		        		{% if spec["summary"]%} <br><i>Summary</i><br><p class="summaryText">{{spec["summary"]}}</p> {% endif %}
+		        		{% if spec["summary"]%} <p><br><i>Summary</i></p><br><p class="summaryText">{{spec["summary"]}}</p> {% endif %}
 		        		<p><i>Tropes</i><br>{{spec["tropes"]}}</p>
 		        		{% if spec["reviews"]%}
 			        		<p><i>Reviews</i><br>
@@ -151,6 +179,9 @@
 			        		</p> 
 		        		{% endif %}
 	        		{% endif %}
+                    <form>
+                        <input type="button" class="styleButton" value="Go back!" onclick="history.back()">
+                    </form>
 	        	</div>
         	{% endif %}
 		</div>

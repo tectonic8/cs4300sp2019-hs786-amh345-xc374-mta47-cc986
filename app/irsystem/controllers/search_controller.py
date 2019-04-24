@@ -30,7 +30,7 @@ def search():
     else:
         spec = dict()
 
-    outputMessage = None
+    pastSearch = None
     output = []
 
     inspiration = None
@@ -54,7 +54,7 @@ def search():
 
     # run query
     if q:
-        outputMessage = "Your Search: " + q
+        pastSearch = q
         retrieval = find_relevant(datasets = datasets,
                                   inverted_indices = inverted_indices,
                                   query = q,
@@ -68,9 +68,9 @@ def search():
     # set export vars
     validQueries = ""
     if(queryType == "movie"):
-        validQueries = ", ".join(movies)
+        validQueries = list(movies)
     else:
-        validQueries = ", ".join(books)
+        validQueries = list(books)
 
     if(not request.args.get('query')):
         isHomeScreen = True
@@ -109,33 +109,46 @@ def search():
 
                 i += 1
         elif(q):
-            outputMessage = "Sorry, \'" + q + "\' is an invalid query."
+            pastSearch = "Sorry, \'" + q + "\' is an invalid query."
     else:
         if(queryType == "movie"):
             spec["title"] = q
             if "author" in booksJSON[q]:
                 spec["author"] = booksJSON[q]["author"]
             if "rating" in booksJSON[q]:
-                spec["rating"] = booksJSON[q]["rating"]
+                spec["rating"] = str(round(float(booksJSON[q]["rating"]),2))
             if "published" in booksJSON[q]:
                 spec["year"] = booksJSON[q]["published"]
             if "summary" in booksJSON[q]:
                 spec["summary"] = booksJSON[q]["summary"]
             if "reviews" in booksJSON[q]:
                 spec["reviews"] = reversed(booksJSON[q]["reviews"])
+            if "img" in booksJSON.get(q, ""):
+                spec["img"] = booksJSON[q]["img"]
+
             spec["tropes"] = allTropes(book_tropes_data[q])
         else:
-            spec["title"] = q.replace('\'', '%27')
+            spec["title"] = q
             if q in moviesJSON:
                 if "rating" in moviesJSON[q]:
-                    spec["rating"] = moviesJSON[q]["rating"]
+                    spec["rating"] = str(round(float(moviesJSON[q]["rating"]), 2))
                 if "published" in moviesJSON[q]:
                     spec["year"] = moviesJSON[q]["published"]
                 if "summary" in moviesJSON[q]:
                     spec["summary"] = moviesJSON[q]["summary"]
                 if "reviews" in moviesJSON[q]:
                     spec["reviews"] = reversed(moviesJSON[q]["reviews"])
+                if "img" in moviesJSON[q]:
+                    spec["img"] = moviesJSON[q]["img"]
             spec["tropes"] = allTropes(movie_tropes_data[q])
 
     # export
-    return render_template('search.html', isHomeScreen = isHomeScreen, inspiration = inspiration, validQueries = validQueries, queryType = queryType, query = q, outputMessage = outputMessage, outputType = outputType , output = output, spec = spec)
+    return render_template('search.html', isHomeScreen = isHomeScreen, 
+                           inspiration = inspiration, 
+                           validQueries = validQueries, 
+                           queryType = queryType, 
+                           query = q, 
+                           pastSearch = pastSearch, 
+                           outputType = outputType , 
+                           output = output, 
+                           spec = spec)
