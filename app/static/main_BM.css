@@ -7,7 +7,7 @@ body {
 h1, h2, p, #inForm{
 	font-family : courier;
 	text-align : center;
-	color : #e1e1e1;
+	color : #fdeb8c;
 }
 
 /* Element Specific */
@@ -21,7 +21,7 @@ h2 {
 }
 
 .inFormSearch {
-	background-color : #909090;
+	background-color : #cdbb60;
 	border: none;
 	border-radius: 30px;
 	font-size : 16px;
@@ -33,7 +33,7 @@ h2 {
 }
 
 .inFormKeyword {
-	background-color : #909090;
+	background-color : #cdbb60;
 	border: none;
 	border-radius: 30px;
 	font-size : 16px;
@@ -52,7 +52,7 @@ h2 {
   -webkit-appearance: none;
   width: 20%;
   height: 15px;
-  background: #909090;
+  background: #cdbb60;
   border-radius: 30px;
   outline: none;
 }
@@ -76,7 +76,7 @@ h2 {
 }
 
 .styleButton{
-	background-color : #b4b4b4;
+	background-color : #eedd82;
 	color : #1e1e1e;
 	font-family : courier;
 	border : none;
@@ -91,7 +91,7 @@ h2 {
 }
 
 .styleButton:hover{
-	background-color: #909090;
+	background-color: #cdbb60;
 }
 
 #Output {
@@ -99,7 +99,7 @@ h2 {
 }
 
 .outputCard{
-	border : 2px solid #e1e1e1;
+	border : 2px solid #fdeb8c;
 	border-radius : 10px;
 	width: 70%;
 	text-align: center;
@@ -109,7 +109,7 @@ h2 {
 }
 
 .specCard{
-	border : 2px solid #e1e1e1;
+	border : 2px solid #fdeb8c;
 	border-radius : 10px;
 	width: 70%;
 	text-align: center;
@@ -125,7 +125,7 @@ h2 {
 }
 
 .outputCardImg{
-	border : 2px solid #e1e1e1;
+	border : 2px solid #fdeb8c;
 	border-radius : 10px;
 	width: 15%;
 	height: 20%;
@@ -154,11 +154,11 @@ a.linkNoStyle{
 }
 
 #searchButton {
-	background-color: #b4b4b4;
+	background-color: #eedd82;
 }
 
 #searchButton:hover {
-	background: #909090;
+	background: #cdbb60;
 }
 
 #searchButton:focus {
