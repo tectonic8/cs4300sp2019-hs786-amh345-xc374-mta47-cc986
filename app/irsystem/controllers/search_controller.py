@@ -19,11 +19,14 @@ def search():
     else:
         outputType = "movie"
 
-    popularity = request.args.get('popSlide')
-
     q = None
     if(request.args.get('query')):
         q = request.args.get('query')
+    k = None
+    if(request.args.get('keyword')):
+        k = request.args.get('keyword')
+
+    popularity = request.args.get('popSlide')
 
     if(not request.args.get('spec')):
         spec = "False"
@@ -31,6 +34,8 @@ def search():
         spec = dict()
 
     pastSearch = None
+    pastKeyword = None
+    pastPop = None
     output = []
 
     inspiration = None
@@ -55,6 +60,10 @@ def search():
     # run query
     if q:
         pastSearch = q
+        if k:
+            pastKeyword = k
+        if popularity:
+            pastPop = popularity
         retrieval = find_relevant(datasets = datasets,
                                   inverted_indices = inverted_indices,
                                   query = q,
@@ -143,12 +152,15 @@ def search():
             spec["tropes"] = allTropes(movie_tropes_data[q])
 
     # export
-    return render_template('search.html', isHomeScreen = isHomeScreen, 
-                           inspiration = inspiration, 
-                           validQueries = validQueries, 
-                           queryType = queryType, 
-                           query = q, 
-                           pastSearch = pastSearch, 
-                           outputType = outputType , 
-                           output = output, 
-                           spec = spec)
+    return render_template('search.html', 
+                            isHomeScreen = isHomeScreen, 
+                            inspiration = inspiration, 
+                            validQueries = validQueries, 
+                            queryType = queryType, 
+                            query = q, 
+                            pastSearch = pastSearch, 
+                            pastKeyword = pastKeyword,
+                            pastPop = pastPop,
+                            outputType = outputType , 
+                            output = output, 
+                            spec = spec)

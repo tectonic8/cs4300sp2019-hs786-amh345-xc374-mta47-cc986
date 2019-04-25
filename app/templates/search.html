@@ -55,7 +55,7 @@
 			<form id="inForm">
   				<div class = "inFormSearch">
                     {% if pastSearch and spec == "False" %}
-                        <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="{{ pastSearch }}" list="validInputList" />
+                        <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" value="{{ pastSearch }}" list="validInputList" />
                     {% else %}
                         {% if queryType == "movie" %}
   					        <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a movie title!" list="validInputList" />
@@ -72,12 +72,20 @@
   				</div>
 
   				<div class = "inFormKeyword">
-  					<input type="text" id = "inFormSearchBar" name="keyword" placeholder="Keyword"/>
+  					{% if pastKeyword and spec == "False" %}
+                        <input type="text" id = "inFormSearchBar" name="keyword" value="{{pastKeyword}}"/>
+                    {% else %}
+  						<input type="text" id = "inFormSearchBar" name="keyword" placeholder="Keyword"/>
+  					{% endif %}
   				</div>
   				<div>
                     <br>
                     Relevance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Popularity<br>
-  					<input type="range" name="popSlide" id="slider" min="0" max="1" value="0" step=".01">
+  					{% if pastPop and spec == "False" %}
+                        <input type="range" name="popSlide" id="slider" min="0" max="1" value="{{pastPop}}" step=".01">
+                    {% else %}
+  						<input type="range" name="popSlide" id="slider" min="0" max="1" value=".5" step=".01">
+  					{% endif %}
   				</div>
   				<div>
                     <br>
