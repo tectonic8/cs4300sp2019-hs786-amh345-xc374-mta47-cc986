@@ -7,7 +7,7 @@ import re
 from random import shuffle
 import numpy as np 
 
-with open('app/irsystem/controllers/TVTropesScraper/main/tropes_description_dataset.json') as json_file:
+with open('app/irsystem/controllers/TVTropesScraper/Main/tropes_description_dataset.json') as json_file:
         tropeDescriptions = json.load(json_file)
 
 def http_json(result, bool):
