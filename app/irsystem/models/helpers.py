@@ -7,6 +7,9 @@ import re
 from random import shuffle
 import numpy as np 
 
+with open('app/irsystem/controllers/TVTropesScraper/main/tropes_description_dataset.json') as json_file:
+        tropeDescriptions = json.load(json_file)
+
 def http_json(result, bool):
 	result.update({ "success": bool })
 	return jsonify(result)
@@ -52,13 +55,18 @@ def json_numpy_obj_hook(dct):
     return dct
 
 def allTropes(l):
-    s = ""
+    out = []
+    i = 0
     for trope in l:
         trope = re.sub(r"([A-Z])([A-Z])", r"\1 \2", trope)
         trope = re.sub(r"(\w)([A-Z])", r"\1 \2", trope)
-        s += trope + ", "
+        if (i == len(l)-1):
+            out.append((trope, tropeDescriptions[trope.replace(" ", "")]))
+        else:
+            out.append((trope + ", ", tropeDescriptions[trope.replace(" ", "")]))
+        i += 1
 
-    return s[:-2]
+    return out
 
 def topNTropes(d, n):
     top = []
@@ -73,11 +81,12 @@ def topNTropes(d, n):
         if(i == n-1):
             m = re.sub(r"(\w)([A-Z])", r"\1 \2", m)
             m = re.sub(r"([A-Z])([A-Z])", r"\1 \2", m)
+            top.append((m, tropeDescriptions[m.replace(" ", "")]))
 
         else:
             m = re.sub(r"(\w)([A-Z])", r"\1 \2", m) + ", "
             m = re.sub(r"([A-Z])([A-Z])", r"\1 \2", m)
-        top.append(m)
+            top.append((m, tropeDescriptions[m[:-2].replace(" ", "")]))
 
         i += 1
 

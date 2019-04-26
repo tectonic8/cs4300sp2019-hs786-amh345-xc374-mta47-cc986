@@ -8,8 +8,12 @@
 }
 
 .awesomplete {
-    display: inline-block;
-    position: relative;
+    text-align: center;
+}
+
+#awesomplete_list_1 {
+	font-family : courier;
+	text-align : center;
 }
 
 .awesomplete > input {
@@ -17,15 +21,14 @@
 }
 
 .awesomplete > ul {
-    position: absolute;
     left: 0;
     z-index: 1;
-    min-width: 100%;
+    min-width: 20%;
     box-sizing: border-box;
     list-style: none;
     padding: 0;
     margin: 0;
-    background: #fff;
+    opacity: 1;
 }
 
 .awesomplete > ul:empty {
@@ -35,11 +38,10 @@
 .awesomplete > ul {
 	border-radius: .3em;
 	margin: .2em 0 0;
-	background: hsla(0,0%,100%,.9);
-	background: linear-gradient(to bottom right, white, hsla(0,0%,100%,.8));
 	border: 1px solid rgba(0,0,0,.3);
 	box-shadow: .05em .2em .6em rgba(0,0,0,.2);
 	text-shadow: none;
+	opacity: 1;
 }
 
 @supports (transform: scale(0)) {
@@ -50,7 +52,7 @@
 	
 	.awesomplete > ul[hidden],
 	.awesomplete > ul:empty {
-		opacity: 0;
+		opacity: 1;
 		transform: scale(0);
 		display: block;
 		transition-timing-function: ease;

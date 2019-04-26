@@ -25,23 +25,10 @@ h2 {
 	border: none;
 	border-radius: 30px;
 	font-size : 16px;
-	padding : 15px;
 	margin-bottom: 10px;
 	width : 50%;
-	height: 25px;
-	display: inline-block;
-}
-
-.inFormKeyword {
-	background-color : #7e83a0;
-	border: none;
-	border-radius: 30px;
-	font-size : 16px;
-	padding : 15px;
-	margin-bottom: 10px;
-	width : 10%;
-	height: 25px;
-	display: inline-block;
+	height: 40px;
+	display: inline-flex;
 }
 
 ::placeholder {
@@ -60,6 +47,28 @@ h2 {
 	outline: none;
 }
 
+#inFormKeyBar {
+	width : 30%;
+	background: none;
+	color : #FFF7DF;
+	font-size: 16px;
+	font-family : courier;
+	text-align: center;
+	border: none;
+	height: 100%;
+	outline: none;
+}
+
+#tinyLine {
+	background-color: #FFF7DF;
+	width : 0.5%;
+	height: 70%;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	border: none;
+	border-radius: 30px;
+}
+
 #slider {
   -webkit-appearance: none;
   width: 20%;
@@ -69,9 +78,7 @@ h2 {
   outline: none;
 }
 
-#awesomplete_list_1 {
-	font-family : courier;
-	text-align : center;
+.awesomplete > ul {
 	color : #16264C;
 }
 
@@ -84,6 +91,10 @@ h2 {
 	margin-top: 10px;
 	font-size : 16px;
 	padding : 10px;
+}
+
+#searchButton{
+	width : 5%;
 }
 
 .styleButton:hover{
@@ -134,6 +145,28 @@ h2 {
 	text-align: center;
 }
 
+.trope {
+  display: inline;
+}
+
+.trope .tropeText {
+  visibility: hidden;
+  width: 500px;
+  background-color: #FFF7DF;
+  color: #16264C;
+  text-align: center;
+  border : 2px solid #16264C;
+  border-radius : 10px;
+  padding: 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.trope:hover .tropeText {
+  visibility: visible;
+}
 
 .title{
 	font-size: 30px;

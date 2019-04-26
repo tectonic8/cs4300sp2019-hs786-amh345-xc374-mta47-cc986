@@ -45,7 +45,7 @@ def search():
         booksJSON = json.load(json_file)
     with open('app/irsystem/controllers/DatasetInfo/movie_dataset.json') as json_file:
         moviesJSON = json.load(json_file)
-
+    
     # books_lower_to_proper = {title.lower(): title for title in books}
     # movies_lower_to_proper = {title.lower(): title for title in movies}
     #
@@ -101,7 +101,7 @@ def search():
                     if "author" in booksJSON.get(entry[0], ""):
                         output[i]["author"] = booksJSON[entry[0]]["author"]
                     output[i]["simScore"] = round(entry[1], 3)
-                    output[i]["tropes"] = "".join(elem for elem in topNTropes(retrieval[1][entry[0]], 5))
+                    output[i]["tropes"] = topNTropes(retrieval[1][entry[0]], 5)
                     if "reviews" in booksJSON.get(entry[0], ""):
                         output[i]["reviews"] = list()
                         for review in booksJSON[entry[0]]["reviews"]:
@@ -112,7 +112,7 @@ def search():
                 if queryType == "book":
                     output[i]["title"] = entry[0]
                     output[i]["simScore"] = round(entry[1], 3)
-                    output[i]["tropes"] = "".join(elem for elem in topNTropes(retrieval[1][entry[0]], 5))
+                    output[i]["tropes"] = topNTropes(retrieval[1][entry[0]], 5)
                     if entry[0] in moviesJSON and "img" in moviesJSON[entry[0]]:
                         output[i]["img"] = moviesJSON[entry[0]]["img"]
 
@@ -125,7 +125,7 @@ def search():
             if "author" in booksJSON[q]:
                 spec["author"] = booksJSON[q]["author"]
             if "rating" in booksJSON[q]:
-                spec["rating"] = str(round(float(booksJSON[q]["rating"]),2))
+                spec["rating"] = str(round(float(booksJSON[q]["rating"])*4)/4)
             if "published" in booksJSON[q]:
                 spec["year"] = booksJSON[q]["published"]
             if "summary" in booksJSON[q]:
@@ -140,7 +140,7 @@ def search():
             spec["title"] = q
             if q in moviesJSON:
                 if "rating" in moviesJSON[q]:
-                    spec["rating"] = str(round(float(moviesJSON[q]["rating"]), 2))
+                    spec["rating"] = str(round(float(moviesJSON[q]["rating"])*4)/4)
                 if "published" in moviesJSON[q]:
                     spec["year"] = moviesJSON[q]["published"]
                 if "summary" in moviesJSON[q]:
