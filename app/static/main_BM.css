@@ -1,13 +1,20 @@
+:root {
+  --back: #1e1e1e;
+  --highContrast: #fdeb8c;
+  --mid: #eedd82;
+  --lowContrast: #cdbb60;
+}
+
 /* Background */
 body {
-	background-color: #1e1e1e;
+	background-color: var(--back);
 }
 
 /* All Text */
 h1, h2, p, #inForm{
 	font-family : courier;
 	text-align : center;
-	color : #fdeb8c;
+	color : var(--highContrast);
 }
 
 /* Element Specific */
@@ -21,33 +28,23 @@ h2 {
 }
 
 .inFormSearch {
-	background-color : #cdbb60;
+	background-color : var(--lowContrast);
 	border: none;
 	border-radius: 30px;
 	font-size : 16px;
 	margin-bottom: 10px;
-	width : 50%;
 	height: 40px;
 	display: inline-flex;
 }
 
 ::placeholder {
-  color: #262626;
-}
-
-#slider {
-  -webkit-appearance: none;
-  width: 20%;
-  height: 15px;
-  background: #cdbb60;
-  border-radius: 30px;
-  outline: none;
+  color: var(--back);
 }
 
 #inFormSearchBar {
 	width : 100%;
 	background: none;
-	color : #1e1e1e;
+	color : var(--back);
 	font-size: 16px;
 	font-family : courier;
 	text-align: center;
@@ -59,7 +56,7 @@ h2 {
 #inFormKeyBar {
 	width : 30%;
 	background: none;
-	color : #1e1e1e;
+	color : var(--back);
 	font-size: 16px;
 	font-family : courier;
 	text-align: center;
@@ -69,26 +66,35 @@ h2 {
 }
 
 #tinyLine {
-	background-color: #1e1e1e;
+	background-color: var(--back);
 	width : 0.5%;
 	height: 70%;
 	margin-bottom: 5px;
-	margin-top: 7px;
+	margin-top: 5px;
 	border: none;
 	border-radius: 30px;
 }
 
+#slider {
+  -webkit-appearance: none;
+  width: 20%;
+  height: 15px;
+  background: var(--lowContrast);
+  border-radius: 30px;
+  outline: none;
+}
+
 .awesomplete > ul {
-	color : #fdeb8c;
+	color : var(--highContrast);
 }
 
 .styleButton{
-	background-color : #eedd82;
-	color : #1e1e1e;
-	font-family : courier;
+	background-color : var(--mid);
+	color : var(--back);
 	border : none;
-	margin-top: 10px;
+	font-family : courier;
 	border-radius : 20px;
+	margin-top: 10px;
 	font-size : 16px;
 	padding : 10px;
 }
@@ -97,12 +103,12 @@ h2 {
 	width : 5%;
 }
 
-.styleButton:focus{
-	outline: none;
+.styleButton:hover{
+	background-color: var(--lowContrast);
 }
 
-.styleButton:hover{
-	background-color: #cdbb60;
+.styleButton:focus{
+	outline: none;
 }
 
 #Output {
@@ -110,7 +116,7 @@ h2 {
 }
 
 .outputCard{
-	border : 2px solid #fdeb8c;
+	border : 2px solid var(--highContrast);
 	border-radius : 10px;
 	width: 70%;
 	text-align: center;
@@ -120,7 +126,7 @@ h2 {
 }
 
 .specCard{
-	border : 2px solid #fdeb8c;
+	border : 2px solid var(--highContrast);
 	border-radius : 10px;
 	width: 70%;
 	text-align: center;
@@ -136,7 +142,7 @@ h2 {
 }
 
 .outputCardImg{
-	border : 2px solid #fdeb8c;
+	border : 2px solid var(--highContrast);
 	border-radius : 10px;
 	width: 15%;
 	height: 20%;
@@ -152,10 +158,10 @@ h2 {
 .trope .tropeText {
   visibility: hidden;
   width: 500px;
-  background-color: #1e1e1e;
-  color: #eedd82;
+  background-color: var(--back);
+  color: var(--mid);
   text-align: center;
-  border : 2px solid #eedd82;
+  border : 2px solid var(--mid);
   border-radius : 10px;
   padding: 5px;
 
@@ -166,6 +172,11 @@ h2 {
 
 .trope:hover .tropeText {
   visibility: visible;
+  font-style: normal;
+}
+
+.trope:hover {
+	font-style: italic;
 }
 
 .title{
@@ -188,11 +199,11 @@ a.linkNoStyle{
 }
 
 #searchButton {
-	background-color: #eedd82;
+	background: var(--mid);
 }
 
 #searchButton:hover {
-	background: #cdbb60;
+	background: var(--lowContrast);
 }
 
 #searchButton:focus {
