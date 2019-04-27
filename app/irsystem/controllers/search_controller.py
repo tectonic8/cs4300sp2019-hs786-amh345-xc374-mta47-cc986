@@ -34,6 +34,7 @@ def search():
         spec = dict()
 
     pastSearch = None
+    failedSearch = None
     pastKeyword = None
     pastPop = None
     output = []
@@ -46,14 +47,14 @@ def search():
     with open('app/irsystem/controllers/DatasetInfo/movie_dataset.json') as json_file:
         moviesJSON = json.load(json_file)
     
-    books_lower_to_proper = {title.lower(): title for title in books}
-    movies_lower_to_proper = {title.lower(): title for title in movies}
-
-    for book in booksJSON.keys():
-        booksJSON[books_lower_to_proper.get(book.lower(), book)] = booksJSON.pop(book)
-    
-    for movie in moviesJSON.keys():
-        moviesJSON[movies_lower_to_proper.get(movie.lower(), movie)] = moviesJSON.pop(movie)
+    # books_lower_to_proper = {title.lower(): title for title in books}
+    # movies_lower_to_proper = {title.lower(): title for title in movies}
+    #
+    # for book in booksJSON.keys():
+    #     booksJSON[books_lower_to_proper.get(book.lower(), book)] = booksJSON.pop(book)
+    #
+    # for movie in moviesJSON.keys():
+    #     moviesJSON[movies_lower_to_proper.get(movie.lower(), movie)] = moviesJSON.pop(movie)
 
     retrieval = None
 
@@ -117,8 +118,8 @@ def search():
                         output[i]["img"] = moviesJSON[entry[0]]["img"]
 
                 i += 1
-        elif(q):
-            pastSearch = "Sorry, \'" + q + "\' is an invalid query."
+        elif (q):
+            failedSearch = "Sorry, \'" + q + "\' is an invalid query."
     else:
         if(queryType == "movie"):
             spec["title"] = q
@@ -158,7 +159,8 @@ def search():
                             validQueries = validQueries, 
                             queryType = queryType, 
                             query = q, 
-                            pastSearch = pastSearch, 
+                            pastSearch = pastSearch,
+                            failedSearch = failedSearch,
                             pastKeyword = pastKeyword,
                             pastPop = pastPop,
                             outputType = outputType , 

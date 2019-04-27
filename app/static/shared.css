@@ -1,0 +1,217 @@
+:root {
+    --back: #1e1e1e;
+    --highContrast: #fdeb8c;
+    --mid: #eedd82;
+    --lowContrast: #cdbb60;
+}
+
+/* Background */
+body {
+    background-color: var(--back);
+}
+
+/* All Text */
+h1, h2, p, #inForm{
+    font-family : courier;
+    text-align : center;
+    color : var(--highContrast);
+}
+
+/* Element Specific */
+h1 {
+    font-size : 50px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size : 20px;
+}
+
+.inFormSearch {
+    background-color : var(--lowContrast);
+    border: none;
+    border-radius: 30px;
+    font-size : 16px;
+    margin-bottom: 10px;
+    height: 40px;
+    display: inline-flex;
+}
+
+::placeholder {
+    color: var(--back);
+}
+
+#inFormSearchBar {
+    width : 100%;
+    background: none;
+    color : var(--back);
+    font-size: 16px;
+    font-family : courier;
+    text-align: center;
+    border: none;
+    height: 100%;
+    outline: none;
+}
+
+#inFormKeyBar {
+    width : 30%;
+    background: none;
+    color : var(--back);
+    font-size: 16px;
+    font-family : courier;
+    text-align: center;
+    border: none;
+    height: 100%;
+    outline: none;
+}
+
+#tinyLine {
+    background-color: var(--back);
+    width : 0.5%;
+    height: 70%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 30px;
+}
+
+#slider {
+    -webkit-appearance: none;
+    width: 20%;
+    height: 15px;
+    background: var(--lowContrast);
+    border-radius: 30px;
+    outline: none;
+}
+
+.awesomplete > ul {
+    color : var(--highContrast);
+}
+
+.styleButton{
+    background-color : var(--mid);
+    color : var(--back);
+    border : none;
+    font-family : courier;
+    border-radius : 20px;
+    margin-top: 10px;
+    font-size : 16px;
+    padding : 10px;
+}
+
+#searchButton{
+    width : 5%;
+}
+
+.styleButton:hover{
+    background-color: var(--lowContrast);
+}
+
+.styleButton:focus{
+    outline: none;
+}
+
+#Output {
+    text-align: center;
+}
+
+.outputCard{
+    border : 2px solid var(--highContrast);
+    border-radius : 10px;
+    width: 70%;
+    text-align: center;
+    display: inline-flex;
+    margin: 5px;
+    padding: 10px;
+}
+
+.specCard{
+    border : 2px solid var(--highContrast);
+    border-radius : 10px;
+    width: 70%;
+    text-align: center;
+    display: inline-block;
+    margin: 5px;
+    padding: 20px;
+}
+
+.outputCardText{
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+}
+
+.outputCardImg{
+    border : 2px solid var(--highContrast);
+    border-radius : 10px;
+    width: 15%;
+    height: 20%;
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+}
+
+.trope {
+    display: inline;
+}
+
+.trope .tropeText {
+    visibility: hidden;
+    width: 500px;
+    background-color: var(--back);
+    color: var(--mid);
+    text-align: center;
+    border : 2px solid var(--mid);
+    border-radius : 10px;
+    padding: 5px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.trope:hover .tropeText {
+    visibility: visible;
+    font-style: normal;
+}
+
+.trope:hover {
+    font-style: italic;
+}
+
+.title{
+    font-size: 30px;
+    margin: 0px;
+}
+
+.author{
+    font-size: 20px;
+    margin: 0px;
+}
+
+p.summaryText{
+    text-align: justify;
+}
+
+a.linkNoStyle{
+    color: inherit;
+    text-decoration: inherit;
+}
+
+#searchButton {
+    background: var(--mid);
+}
+
+#searchButton:hover {
+    background: var(--lowContrast);
+}
+
+#searchButton:focus {
+    outline: none;
+}
+
+#invertButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

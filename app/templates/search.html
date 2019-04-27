@@ -107,7 +107,9 @@
         			<button type = "button" class = "styleButton" onclick="useInspiration('{{queryType}}', '{{i[1]}}'.replace('%20','+'))">{{i[0]}}</button><br>
         		{% endfor %}
         	{% elif spec == "False" %}
-				{#<h2>{{outputMessage}}</h2>#}
+                {% if failedSearch %}
+                    <h2>{{ failedSearch }}</h2>
+                {% endif %}
         		{% if output %}
 		            {% for o in output %}
 		            	{% if queryType == "movie" %}
@@ -163,7 +165,7 @@
 	                        </div><br><br>
                    		{% endif %}
 		        		{% if spec["rating"]%}
-		        			<img src="/static/rating_icons/{{spec['rating']}}B.png" width="{{spec['rating'] * 5}}" height="50">
+		        			<img src="/static/rating_icons/{{spec['rating']}}B.png" width="{{spec['rating'] * 5}}" height="20">
                         {% endif %}
 		        		{% if spec["summary"]%} <p><br><i>Summary</i></p><p class="summaryText">{{spec["summary"]}}</p> {% endif %}
 		        		<p><i>Tropes</i></p>
