@@ -200,7 +200,12 @@
 
                     <!-- Summary -->
 
-                    {% if spec["summary"]%} <p><br><i>Summary</i></p><p class="summaryText">{{spec["summary"]}}</p> {% endif %}
+                    {% if spec["summary"]%}
+                        <p><br><i>Summary</i></p>
+                        {% for para in spec["summary"] %}
+                            <p class="summaryText">{{ para }}</p>
+                        {% endfor %}
+                    {% endif %}
 
                     <!-- Tropes -->
                     <p><i>Tropes</i></p>

@@ -98,3 +98,26 @@ def randomNInsp(d, n):
              if item[1].get("rating", 0) >= 4.5]
     shuffle(valid)
     return valid[:n]
+
+def auto_paragraph(text):
+    """
+    Autoparagraphs the given text by separating the text into a series of paragraphs.
+    Returns a list of paragraphs.
+    :param text:
+    :return:
+    """
+    paras = []
+    lines = text.split(". ")
+
+    para_len = 0
+    para = ""
+    while len(lines) > 0:
+        para += lines.pop(0) + ". "
+        para_len += 1
+        if para_len > 1 and para_len % 4 == 0:
+            paras.append(para)
+            para = ""
+    if len(para) > 0:
+        paras.append(para)
+    return paras
+
