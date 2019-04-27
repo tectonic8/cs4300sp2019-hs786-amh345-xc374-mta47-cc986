@@ -88,9 +88,9 @@ def search():
         isHomeScreen = False
 
     if(queryType == "movie"):
-        inspiration = randomNInsp(moviesJSON, 10)
+        inspiration = randomNInsp(moviesJSON, 3)
     if(queryType == "book"):
-        inspiration = randomNInsp(booksJSON, 10)
+        inspiration = randomNInsp(booksJSON, 3)
 
     if spec == "False":
         if retrieval:
