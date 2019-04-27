@@ -46,14 +46,14 @@ def search():
     with open('app/irsystem/controllers/DatasetInfo/movie_dataset.json') as json_file:
         moviesJSON = json.load(json_file)
     
-    # books_lower_to_proper = {title.lower(): title for title in books}
-    # movies_lower_to_proper = {title.lower(): title for title in movies}
-    #
-    # for book in booksJSON.keys():
-    #     booksJSON[books_lower_to_proper.get(book.lower(), book)] = booksJSON.pop(book)
-    #
-    # for movie in moviesJSON.keys():
-    #     moviesJSON[movies_lower_to_proper.get(movie.lower(), movie)] = moviesJSON.pop(movie)
+    books_lower_to_proper = {title.lower(): title for title in books}
+    movies_lower_to_proper = {title.lower(): title for title in movies}
+
+    for book in booksJSON.keys():
+        booksJSON[books_lower_to_proper.get(book.lower(), book)] = booksJSON.pop(book)
+    
+    for movie in moviesJSON.keys():
+        moviesJSON[movies_lower_to_proper.get(movie.lower(), movie)] = moviesJSON.pop(movie)
 
     retrieval = None
 

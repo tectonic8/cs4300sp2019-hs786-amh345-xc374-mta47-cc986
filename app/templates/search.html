@@ -173,7 +173,7 @@
 		        		{% if spec["reviews"]%}
 			        		<p><i>Reviews</i><br>
 			        			{% for review in spec["reviews"] %}
-			        				{{review[1] | safe}}<br>({{review[0]}})<br><br>
+			        				{{review['text'] | safe}} (<img src="/static/rating_icons/{{review['rating']}}B.png" width="{{review['rating'] * 10}}" height="12">)<br><br>
 			        			{% endfor %}
 			        		</p> 
 		        		{% endif %}
@@ -196,7 +196,7 @@
 		        		{% if spec["reviews"]%}
 			        		<p><i>Reviews</i><br>
 			        			{% for review in spec["reviews"] %}
-			        				{{review[1] | safe}}<br>({{review[0]}})<br><br>
+			        				{{review['text'] | safe}} (<img src="/static/rating_icons/{{review['rating']}}Y.png" width="{{review['rating'] * 10}}" height="12">)<br><br>
 			        			{% endfor %}
 			        		</p> 
 		        		{% endif %}
