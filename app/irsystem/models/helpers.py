@@ -59,40 +59,25 @@ def shorten_trope_desc(text):
     paras = [p for p in paras if len(p) >= 60]
     return paras[:3]
 
+def cleanTropeName(title):
+    title = re.sub(r"([A-Z])([A-Z])", r"\1 \2", title)
+    title = re.sub(r"(\w)([A-Z])", r"\1 \2", title)
+    return title
+
 def trope_with_descriptions(tropes_of_title):
     retval = []
     for trope in tropes_of_title:
-        cleaned_trope_name = re.sub(r"([A-Z])([A-Z])", r"\1 \2", trope)
-        cleaned_trope_name = re.sub(r"(\w)([A-Z])", r"\1 \2", cleaned_trope_name)
-
-        retval.append((cleaned_trope_name, shorten_trope_desc(tropeDescriptions[trope])))
-            # out.append((trope + ", ", tropeDescriptions[trope.replace(" ", "")]))
+        retval.append((cleanTropeName(trope), shorten_trope_desc(tropeDescriptions.get(trope, "No trope description found."))))
 
     return retval
 
-def topNTropes(d, n):
-    top = []
+def topNTropes(trope_scores, n):
+    trope_scores = sorted(trope_scores.items(), key=lambda x: x[1], reverse=True)
 
-    i = 0
-    while(i < n):
-        v=list(d.values())
-        k=list(d.keys())
-        m = k[v.index(max(v))]
-        d.pop(m)
+    topN = [trope for trope, score in trope_scores[:n]]
+    topN = trope_with_descriptions(topN)
 
-        if(i == n-1):
-            m = re.sub(r"(\w)([A-Z])", r"\1 \2", m)
-            m = re.sub(r"([A-Z])([A-Z])", r"\1 \2", m)
-            top.append((m, tropeDescriptions[m.replace(" ", "")]))
-
-        else:
-            m = re.sub(r"(\w)([A-Z])", r"\1 \2", m) + ", "
-            m = re.sub(r"([A-Z])([A-Z])", r"\1 \2", m)
-            top.append((m, tropeDescriptions[m[:-2].replace(" ", "")]))
-
-        i += 1
-
-    return top
+    return topN
 
 def randomNInsp(d, n):
     valid = [(item[0], item[0].replace("'", "%27"))
