@@ -54,7 +54,16 @@
 
         function getTropeDescription(tropeId) {
             var popup = document.getElementById(tropeId);
-            popup.classList.toggle("show");
+            var wasOn = popup.classList.contains("show");
+            var tropeClass = popup.className;
+            var trope_list = document.getElementsByClassName(tropeClass);
+            for (var i = 0; i < trope_list.length; i++) {
+                var trope = trope_list[i];
+                trope.classList.remove("show");
+            }
+            if (!(wasOn)) {
+                popup.classList.toggle("show");
+            }
         }
 
 	</script>
@@ -277,26 +286,26 @@
                         </div>
                             {% endfor %}
                         </span>
-                        <br>
+                        <br><br>
                         <button class='readMoreButton' onclick="readMore('tropes', 'See more', 'See less')" id='tropesReadMoreBtn'>See more</button>
                     {% endif %}
 
                     <!-- Reviews -->
                     {% if spec["reviews"]%}
-                        <p><i><h3>Reviews</h3></i><br></p>
+                        <p><i><h3>Reviews</h3></i></p>
                         {% if queryType == "movie" %}
-                            <p>{{spec['reviews'][0]['text'] | safe}} <br>(<img src="/static/rating_icons/{{spec['reviews'][0]['rating']}}B.png" height="12">)</p>
+                            <p class="reviewText">{{spec['reviews'][0]['text'] | safe}} (<img src="/static/rating_icons/{{spec['reviews'][0]['rating']}}B.png" height="12">)</p>
                         {% else %}
-                            <p>{{spec['reviews'][0]['text'] | safe}} <br>(<img src="/static/rating_icons/{{spec['reviews'][0]['rating']}}Y.png" height="12">)</p>
+                            <p class="reviewText">{{spec['reviews'][0]['text'] | safe}} (<img src="/static/rating_icons/{{spec['reviews'][0]['rating']}}Y.png" height="12">)</p>
                         {% endif %}
 
                         {% if spec["reviews"][1:]|length > 0 %}
                             <span id="more_reviews">
                             {% for review in spec["reviews"][1:] %}
                                 {% if queryType == "movie" %}
-                                    <p>{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}B.png" height="12">)</p>
+                                    <p class="reviewText">{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}B.png" height="12">)</p>
                                 {% else %}
-                                    <p>{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}Y.png" height="12">)</p>
+                                    <p class="reviewText">{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}Y.png" height="12">)</p>
                                 {% endif %}
                             {% endfor %}
                             </span>

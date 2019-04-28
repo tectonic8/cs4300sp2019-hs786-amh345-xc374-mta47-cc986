@@ -3,9 +3,13 @@ body {
     background-color: var(--back);
 }
 
+:root {
+    --titleTextFont: courier;
+    --denseTextFont: Helvetica;
+}
 /* All Text */
 h1, h2, h3, p, #inForm{
-    font-family : courier;
+    font-family : var(--titleTextFont);
     text-align : center;
     color : var(--highContrast);
 }
@@ -42,7 +46,7 @@ h2 {
     background: none;
     color : var(--back);
     font-size: 16px;
-    font-family : courier;
+    font-family : var(--titleTextFont);
     text-align: center;
     border: none;
     height: 100%;
@@ -54,7 +58,7 @@ h2 {
     background: none;
     color : var(--back);
     font-size: 16px;
-    font-family : courier;
+    font-family : var(--titleTextFont);
     text-align: center;
     border: none;
     height: 100%;
@@ -88,7 +92,7 @@ h2 {
     background-color : var(--mid);
     color : var(--back);
     border : none;
-    font-family : courier;
+    font-family : var(--titleTextFont);
     border-radius : 20px;
     margin-top: 10px;
     font-size : 16px;
@@ -164,6 +168,7 @@ h2 {
 }
 
 p.summaryText{
+    font-family: var(--denseTextFont);
     text-align: justify;
 }
 
@@ -207,7 +212,7 @@ a.linkNoStyle{
     background-color : var(--mid);
     color : var(--back);
     border : none;
-    font-family : courier;
+    font-family : var(--titleTextFont);
     /*border-radius : 20px;*/
     font-size : 16px;
     padding : 6px;
@@ -224,7 +229,7 @@ a.linkNoStyle{
 
 .tropeButton {
     color : var(--highContrast);
-    font-family : Helvetica;
+    font-family : var(--denseTextFont);
     font-size: 14px;
     /*color: var(--highContrast);*/
     position: relative;
@@ -237,7 +242,7 @@ a.linkNoStyle{
 
 .tropeButton:hover{
     cursor: pointer;
-    font-weight: bold;
+    font-style: italic;
 }
 
 .tropeButton:focus{
@@ -247,7 +252,7 @@ a.linkNoStyle{
 /* The actual popup (appears on top) */
 .tropeButton .popuptext {
     visibility: hidden;
-    width: 400px;
+    width: 500px;
     background-color: var(--lowContrast);
     /*color: var(--back);*/
     text-align: justify;
@@ -257,13 +262,15 @@ a.linkNoStyle{
     z-index: 1;
     bottom: 125%;
     left: 50%;
-    margin-left: -200px;
+    margin-left: -250px;
 }
 
 .tropePara {
     color: var(--back);
     text-align: justify;
     font-weight: normal;
+    font-style: normal;
+    font-family: var(--denseTextFont);
     font-size: 14px;
 }
 
@@ -295,4 +302,9 @@ a.linkNoStyle{
 @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity:1 ;}
+}
+
+.reviewText {
+    font-family: var(--denseTextFont);
+    font-size: 14px;
 }
