@@ -4,3 +4,7 @@
   --mid: #eedd82;
   --lowContrast: #cdbb60;
 }
+
+body {
+    background-image: url(/static/BM_Back.png);
+}
