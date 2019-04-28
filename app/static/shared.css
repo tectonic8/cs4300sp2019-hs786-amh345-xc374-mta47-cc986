@@ -1,6 +1,7 @@
 /* Background */
 body {
-    background-color: var(--back);
+    background-image: url(/static/MB_Back.png);
+    background-size: 100% 100%;
 }
 
 :root {
@@ -36,7 +37,9 @@ h2 {
     height: 40px;
     display: inline-flex;
 }
-
+#header{
+    padding-top: .5%;
+}
 ::placeholder {
     color: var(--back);
 }
@@ -114,12 +117,14 @@ h2 {
 
 #Output {
     text-align: center;
+    overflow-y: scroll;
+    height: 50%;
 }
 
 .outputCard {
     border : 2px solid var(--highContrast);
     border-radius : 10px;
-    width: 70%;
+    width: 50%;
     text-align: center;
     display: inline-flex;
     margin: 5px;
@@ -135,7 +140,7 @@ h2 {
 .specCard{
     border : 2px solid var(--highContrast);
     border-radius : 10px;
-    width: 70%;
+    width: 50%;
     text-align: center;
     display: inline-block;
     margin: 5px;
@@ -151,8 +156,8 @@ h2 {
 .outputCardImg{
     border : 2px solid var(--highContrast);
     border-radius : 10px;
-    width: 150px;
-    height: 200px;
+    width: 15%;
+    height: 40%;
     display: inline-block;
     margin: 5px;
     text-align: center;
@@ -195,6 +200,7 @@ a.linkNoStyle{
     position: absolute;
     top: 10px;
     right: 10px;
+    font-size: 16px;
 }
 
 #more_summary {

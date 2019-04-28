@@ -14,6 +14,7 @@
 #awesomplete_list_1 {
 	font-family : courier;
 	text-align : center;
+
 }
 
 .awesomplete > input {
@@ -29,6 +30,7 @@
     padding: 0;
     margin: 0;
     opacity: 1;
+
 }
 
 .awesomplete > ul:empty {
@@ -79,6 +81,7 @@
 		position: relative;
 		padding: .2em .5em;
 		cursor: pointer;
+		background-color: var(--back);
 	}
 	
 	.awesomplete > ul > li:hover {

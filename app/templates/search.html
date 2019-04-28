@@ -65,17 +65,15 @@
                 popup.classList.toggle("show");
             }
         }
-
 	</script>
 
 	<body>
-
         {% if queryType == "movie" %}
-            <button type = "button" id="invertButton" class = "styleButton" style="font-size: 20px;" onclick='invertQueryType("{{queryType}}", "{{query}}")'>The Movie Was Better?</button>
+            <button type = "button" id="invertButton" class = "styleButton" onclick='invertQueryType("{{queryType}}", "{{query}}")'>The Movie Was Better?</button>
         {% else %}
-            <button type = "button" id="invertButton" class = "styleButton" style="font-size: 20px;" onclick='invertQueryType("{{queryType}}", "{{query}}")'>The Book Was Better.</button>
+            <button type = "button" id="invertButton" class = "styleButton" onclick='invertQueryType("{{queryType}}", "{{query}}")'>The Book Was Better.</button>
         {% endif %}
-        <div id = "Header" style="padding-top: 50px">
+        <div id = "Header">
 			{% if queryType == "movie" %}
                 <h1><a class="linkNoStyle" href="/">The Book Was Better.</a></h1>
                 <h2>Literature recommendations for the age of film.</h2>

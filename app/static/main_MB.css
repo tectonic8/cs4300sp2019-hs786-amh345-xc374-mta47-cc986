@@ -4,3 +4,7 @@
   --mid: #616684;
   --lowContrast: #7e83a0;
 }
+
+body {
+    background-image: url(./MB_Back.png);
+}
