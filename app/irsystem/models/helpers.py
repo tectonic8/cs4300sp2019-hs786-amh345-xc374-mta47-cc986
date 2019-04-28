@@ -103,7 +103,7 @@ def auto_paragraph(text):
     while len(lines) > 0:
         line = lines.pop(0)
         if len(line.strip()) == 0: continue
-        para.append(line)
+        para.append(line.replace('&nbsp;', ' '))
         if len(para) > 1 and len(para) % 4 == 0:
             para_text = ". ".join(para)
             if not para_text.endswith("."): para_text += "."
