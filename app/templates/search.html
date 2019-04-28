@@ -27,7 +27,7 @@
 		function invertQueryType(queryType, query){
 			if(query === 'None'){
 				query = "";
-			}	
+			}
 			if(queryType === 'book'){
 				window.location.href = "/?queryType=movie&query=";
 			}
@@ -81,8 +81,8 @@
 				<h1><a class="linkNoStyle" href="/?queryType=book&query=">The Movie Was Better?</a></h1>
 				<h2>Film recommendations for the post-literature age.</h2>
 			{% endif %}
-			
-			
+
+
 			<form id="inForm">
   				<div class = "inFormSearch">
                     {% if pastSearch and spec == "False" %}
@@ -99,7 +99,7 @@
                             <option>{{query}}</option>
                         {% endfor %}
                     </datalist>
-  					
+
   					<div id = "tinyLine"></div>
 
   					{% if pastKeyword and spec == "False" %}
