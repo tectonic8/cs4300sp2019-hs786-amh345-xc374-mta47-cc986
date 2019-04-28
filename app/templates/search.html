@@ -53,6 +53,10 @@
             }
         }
 
+        function removeSpaces(string){
+		    return string.replace(" ", "");
+        }
+
         function getTropeDescription(tropeId) {
             var popup = document.getElementById(tropeId);
             var wasOn = popup.classList.contains("show");
@@ -164,8 +168,8 @@
                         {% endif %}
                             <p><i>Ranking Score</i>: {{o["simScore"]}}</p><br>
                             {% for trope in o["tropes"] %}
-                                <div class='tropeButton' onclick="getTropeDescription('{{ trope[0] }}')">{{trope[0]}}
-                                    <span class="popuptext" id='{{ trope[0] }}'>
+                                <div class='tropeButton' onclick="getTropeDescription('{{ trope[2] }}')">{{trope[0]}}
+                                    <span class="popuptext" id='{{ trope[2] }}'>
                                             {% if trope[1] %}
                                                 {% for para in trope[1] %}
                                                     <p class="tropePara">{{ para }}</p>

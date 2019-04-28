@@ -71,11 +71,12 @@ def trope_with_descriptions(tropes_of_title):
     shuffle(retval)
     return retval
 
-def topNTropes(trope_scores, n):
+def topNTropes(trope_scores, n, title):
     trope_scores = sorted(trope_scores.items(), key=lambda x: x[1], reverse=True)
 
     topN = [trope for trope, score in trope_scores[:n]]
     topN = trope_with_descriptions(topN)
+    topN = [(trope, desc, trope+title.replace("'", "").replace('"', '')) for trope, desc in topN]
 
     return topN
 

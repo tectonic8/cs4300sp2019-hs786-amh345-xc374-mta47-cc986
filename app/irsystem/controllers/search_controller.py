@@ -102,14 +102,14 @@ def search():
                     if "author" in booksJSON.get(title, ""):
                         output[i]["author"] = booksJSON[title]["author"]
                     output[i]["simScore"] = round(score, 3)
-                    output[i]["tropes"] = topNTropes(retrieval[1][title], 5)
+                    output[i]["tropes"] = topNTropes(retrieval[1][title], 5, title)
                     if "img" in booksJSON.get(title, ""):
                         output[i]["img"] = booksJSON[title]["img"]
 
                 if queryType == "book":
                     output[i]["title"] = title
                     output[i]["simScore"] = round(score, 3)
-                    output[i]["tropes"] = topNTropes(retrieval[1][title], 5)
+                    output[i]["tropes"] = topNTropes(retrieval[1][title], 5, title)
                     if title in moviesJSON and "img" in moviesJSON[title]:
                         output[i]["img"] = moviesJSON[title]["img"]
 
