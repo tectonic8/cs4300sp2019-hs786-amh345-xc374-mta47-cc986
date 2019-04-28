@@ -59,9 +59,9 @@
                         <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" value="{{ pastSearch }}" list="validInputList" />
                     {% else %}
                         {% if queryType == "movie" %}
-  					        <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a movie title!" list="validInputList" />
+  					        <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Find book recommendations based on a movie you like" list="validInputList" />
                         {% else %}
-                            <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Input a book title!" list="validInputList" />
+                            <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Find movie recommendations based on a book you like" list="validInputList" />
                         {% endif %}
                     {% endif %}
                     <datalist id="validInputList">
@@ -201,34 +201,30 @@
                     <!-- Summary -->
 
                     {% if spec["summary"]%}
-                        <p><br><i>Summary</i></p>
+                        <br>
+                        <h3><p><i>Summary</i></p></h3>
                         {% for para in spec["summary"] %}
                             <p class="summaryText">{{ para }}</p>
                         {% endfor %}
                     {% endif %}
 
                     <!-- Tropes -->
-                    <p><i>Tropes</i></p>
+                    <h3><p><i>Tropes</i></p></h3>
                     {% for trope in spec["tropes"] %}
                         <p class="trope">{{trope[0]}}<span class="tropeText">{{trope[1]}}</span></p>
                     {% endfor %}
 
                     <!-- Reviews -->
-                    {% if queryType == "movie" %}
-                        {% if spec["reviews"]%}
-                            <p><i>Reviews</i><br>
-                                {% for review in spec["reviews"] %}
-                                    {{review['text'] | safe}} (<img src="/static/rating_icons/{{review['rating']}}B.png" height="12">)<br><br>
-                                {% endfor %}
-                            </p>
-                        {% endif %}
-                    {% else %}
-                        {% if spec["reviews"]%}
-                            <p><i>Reviews</i><br>
-                                {% for review in spec["reviews"] %}
-                                    {{review['text'] | safe}} (<img src="/static/rating_icons/{{review['rating']}}Y.png" height="12">)<br><br>
-                                {% endfor %}
-                            </p>
+                    {% if spec["reviews"]%}
+                        <h3><p><i>Reviews</i><br></p></h3>
+                        {% if queryType == "movie" %}
+                            {% for review in spec["reviews"] %}
+                                <p>{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}B.png" height="12">)</p>
+                            {% endfor %}
+                        {% else %}
+                            {% for review in spec["reviews"] %}
+                                <p>{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}Y.png" height="12">)</p>
+                            {% endfor %}
                         {% endif %}
                     {% endif %}
 

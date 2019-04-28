@@ -4,7 +4,7 @@ body {
 }
 
 /* All Text */
-h1, h2, p, #inForm{
+h1, h2, h3 p, #inForm{
     font-family : courier;
     text-align : center;
     color : var(--highContrast);

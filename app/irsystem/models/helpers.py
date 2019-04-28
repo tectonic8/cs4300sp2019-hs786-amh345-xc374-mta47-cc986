@@ -118,6 +118,6 @@ def auto_paragraph(text):
             paras.append(para)
             para = ""
     if len(para) > 0:
-        paras.append(para)
+        paras.append(para[:-1])
     return paras
 

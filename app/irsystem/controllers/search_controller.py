@@ -103,10 +103,6 @@ def search():
                         output[i]["author"] = booksJSON[entry[0]]["author"]
                     output[i]["simScore"] = round(entry[1], 3)
                     output[i]["tropes"] = topNTropes(retrieval[1][entry[0]], 5)
-                    if "reviews" in booksJSON.get(entry[0], ""):
-                        output[i]["reviews"] = list()
-                        for review in booksJSON[entry[0]]["reviews"]:
-                            output[i]["reviews"].append(review)
                     if "img" in booksJSON.get(entry[0], ""):
                         output[i]["img"] = booksJSON[entry[0]]["img"]
 

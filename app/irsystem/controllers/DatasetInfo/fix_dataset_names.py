@@ -25,7 +25,7 @@ if dataset_type == "movie":
         idx += 1
     print(idx)
 
-    with open("movie_dataset2.json", 'w') as f:
+    with open("movie_dataset.json", 'w') as f:
         json.dump(movie_dataset2, f)
 else:
     with open("book_dataset.json", 'r') as f:
