@@ -213,13 +213,14 @@
 
                     <!-- Rating -->
                     {% if queryType == "movie" %}
-                        <br><br>
+
 		        		{% if spec["rating"]%}
+                            <br><br>
 		        			<img src="/static/rating_icons/{{spec['rating']}}B.png" height="20">
                         {% endif %}
                     {% else %}
-                        <br><br>
                         {% if spec["rating"]%}
+                            <br><br>
                             <img src="/static/rating_icons/{{spec['rating']}}Y.png" height="20">
                         {% endif %}
                     {% endif %}
@@ -239,7 +240,7 @@
                             <button class='readMoreButton' onclick="readMore('summary', 'Read more', 'Read less')" id='summaryReadMoreBtn'>Read more</button>
                         {% endif %}
                     {% else %}
-                        <p class="summaryText"><i>No summary information available.</i></p>
+                        <p class="noSummary summaryText">No summary information available.</p>
                     {% endif %}
 
                     <!-- Tropes -->
@@ -298,9 +299,9 @@
                             <button class=readMoreButton onclick="readMore('reviews', 'Read more', 'Read less')" id="reviewsReadMoreBtn">Read more</button>
                         {% endif %}
                     {% else %}
-                        <p class="reviewText">No reviews found.</p>
+                        <p class="reviewText"><i>No reviews found.</i></p>
                     {% endif %}
-                    <br><br>
+                    <br>
                     <form>
                         <input type="button" class="styleButton" value="Go back" onclick="history.back()">
                     </form>

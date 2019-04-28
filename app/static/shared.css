@@ -168,9 +168,10 @@ h2 {
     margin: 0px;
 }
 
-p.summaryText{
+.summaryText{
     font-family: var(--denseTextFont);
     text-align: justify;
+    font-size: 16px;
 }
 
 a.linkNoStyle{
@@ -231,7 +232,7 @@ a.linkNoStyle{
 .tropeButton {
     color : var(--highContrast);
     font-family : var(--denseTextFont);
-    font-size: 14px;
+    font-size: 16px;
     /*color: var(--highContrast);*/
     position: relative;
     display: inline-block;
@@ -312,7 +313,7 @@ a.linkNoStyle{
 
 .reviewText {
     font-family: var(--denseTextFont);
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .switch {
@@ -375,4 +376,9 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+.noSummary {
+    font-style: italic;
+    text-align: center;
 }
