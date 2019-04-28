@@ -1,6 +1,7 @@
 <html>
 
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"> </script>
         <link rel="stylesheet" type="text/css" href="/static/shared.css">
 
@@ -161,7 +162,7 @@
                         {% if queryType == "movie" %}
                             <p class = "author">{{o["author"]}}</p>
                         {% endif %}
-                            <p><i>Similarity Score</i>: {{o["simScore"]}}</p><br>
+                            <p><i>Ranking Score</i>: {{o["simScore"]}}</p><br>
                             {% for trope in o["tropes"] %}
                                 <div class='tropeButton' onclick="getTropeDescription('{{ trope[0] }}')">{{trope[0]}}
                                     <span class="popuptext" id='{{ trope[0] }}'>

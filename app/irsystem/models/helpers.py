@@ -68,7 +68,7 @@ def trope_with_descriptions(tropes_of_title):
     retval = []
     for trope in tropes_of_title:
         retval.append((cleanTropeName(trope), shorten_trope_desc(tropeDescriptions.get(trope, "No trope description found."))))
-
+    shuffle(retval)
     return retval
 
 def topNTropes(trope_scores, n):
