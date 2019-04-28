@@ -95,7 +95,6 @@ def search():
     if spec == "False":
         if retrieval:
             i = 0
-            print(retrieval)
             for title, score in retrieval[0]:
                 output.append(dict())
                 if queryType == "movie":
@@ -115,6 +114,8 @@ def search():
                         output[i]["img"] = moviesJSON[title]["img"]
 
                 i += 1
+            if len(retrieval[0]) == 0:
+                failedSearch = "Sorry, '{}' has too few tropes for recommendations to be made.".format(q)
         elif (q):
             failedSearch = "Sorry, \'" + q + "\' is an invalid query."
     else:

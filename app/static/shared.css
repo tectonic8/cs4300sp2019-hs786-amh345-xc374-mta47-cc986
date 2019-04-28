@@ -239,7 +239,7 @@ a.linkNoStyle{
     margin: 2px;
     margin-left: 3px;
     margin-right: 3px;
-    z-index: 10;
+    /*z-index: 100; will not work as long as it is within the div */
 }
 
 .tropeButton:hover{
@@ -291,8 +291,8 @@ a.linkNoStyle{
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .tropeButton .show {
     visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
+    -webkit-animation: fadeIn 0.5s;
+    animation: fadeIn 0.5s
 }
 
 /* Add animation (fade in the popup) */
