@@ -41,8 +41,11 @@
 	</script>
 
 	<body>
-        <button type = "button" id="invertButton" class = "styleButton" style="font-size: 20px;" onclick='invertQueryType("{{queryType}}", "{{query}}")'>⇆</button>
-
+        {% if queryType == "movie" %}
+            <button type = "button" id="invertButton" class = "styleButton" style="font-size: 20px;" onclick='invertQueryType("{{queryType}}", "{{query}}")'>The Movie Was Better?</button>
+        {% else %}
+            <button type = "button" id="invertButton" class = "styleButton" style="font-size: 20px;" onclick='invertQueryType("{{queryType}}", "{{query}}")'>The Book Was Better.</button>
+        {% endif %}
         <div id = "Header" style="padding-top: 50px">
 			{% if queryType == "movie" %}
                 <h1><a class="linkNoStyle" href="/">The Book Was Better.</a></h1>
