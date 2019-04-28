@@ -59,9 +59,9 @@
                         <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" value="{{ pastSearch }}" list="validInputList" />
                     {% else %}
                         {% if queryType == "movie" %}
-  					        <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Find book recommendations based on a movie you like" list="validInputList" />
+  					        <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Find books based on movies you like!" list="validInputList" />
                         {% else %}
-                            <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Find movie recommendations based on a book you like" list="validInputList" />
+                            <input class="awesomplete" autofocus id = "inFormSearchBar" name="query" size="50" placeholder="Find movies based on books you like!" list="validInputList" />
                         {% endif %}
                     {% endif %}
                     <datalist id="validInputList">
@@ -86,7 +86,7 @@
   					{% if pastPop and spec == "False" %}
                         <input type="range" name="popSlide" id="slider" min="0" max="1" value="{{pastPop}}" step=".01">
                     {% else %}
-  						<input type="range" name="popSlide" id="slider" min="0" max="1" value=".5" step=".01">
+  						<input type="range" name="popSlide" id="slider" min="0" max="1" value="0" step=".01">
   					{% endif %}
   				</div>
   				<div>

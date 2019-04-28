@@ -106,18 +106,22 @@ def auto_paragraph(text):
     :param text:
     :return:
     """
-    paras = []
-    lines = text.split(". ")
 
-    para_len = 0
-    para = ""
+    paras = []
+
+    lines = text.strip().split(". ")
+    para = []
+
     while len(lines) > 0:
-        para += lines.pop(0) + ". "
-        para_len += 1
-        if para_len > 1 and para_len % 4 == 0:
-            paras.append(para)
-            para = ""
+        line = lines.pop(0)
+        if len(line.strip()) == 0: continue
+        para.append(line)
+        if len(para) > 1 and len(para) % 4 == 0:
+            paras.append(". ".join(para))
+            para = []
+
     if len(para) > 0:
-        paras.append(para[:-1])
+        paras.append(". ".join(para))
+
     return paras
 
