@@ -1,6 +1,6 @@
 /* Background */
 body {
-    background-image: url(/static/MB_Back.png);
+    background-color: var(--back);
     background-size: 100% 100%;
 }
 
