@@ -156,13 +156,8 @@ h2 {
 .outputCardImg{
     border : 2px solid var(--highContrast);
     border-radius : 10px;
-<<<<<<< HEAD
     width: 15%;
     height: 40%;
-=======
-    width: 150px;
-    height: 200px;
->>>>>>> 12f6541bb2f5f2d0ef5f4ac7023819dedd6206a1
     display: inline-block;
     margin: 5px;
     text-align: center;
