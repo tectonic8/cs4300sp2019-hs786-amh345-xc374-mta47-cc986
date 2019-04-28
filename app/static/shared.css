@@ -108,7 +108,7 @@ h2 {
     text-align: center;
 }
 
-.outputCard{
+.outputCard {
     border : 2px solid var(--highContrast);
     border-radius : 10px;
     width: 70%;
@@ -116,6 +116,11 @@ h2 {
     display: inline-flex;
     margin: 5px;
     padding: 10px;
+}
+
+.outputCard:hover {
+    cursor: pointer;
+    box-shadow:inset 0px 0px 0px 3px var(--highContrast);
 }
 
 .specCard{
@@ -135,8 +140,8 @@ h2 {
 }
 
 .outputCardImg{
-    border : 2px solid var(--highContrast);
-    border-radius : 10px;
+    /*border : 2px solid var(--highContrast);*/
+    /*border-radius : 10px;*/
     width: 15%;
     height: 20%;
     display: inline-block;
@@ -207,4 +212,22 @@ a.linkNoStyle{
     position: absolute;
     top: 10px;
     right: 10px;
+}
+
+#more_summary {
+    display: none;
+}
+
+#more_reviews {
+    display: none;
+}
+
+.readMoreButton{
+    background-color : var(--mid);
+    color : var(--back);
+    border : none;
+    font-family : courier;
+    /*border-radius : 20px;*/
+    font-size : 16px;
+    padding : 6px;
 }

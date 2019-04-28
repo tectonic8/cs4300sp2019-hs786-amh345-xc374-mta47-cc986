@@ -99,6 +99,7 @@ def randomNInsp(d, n):
     shuffle(valid)
     return valid[:n]
 
+
 def auto_paragraph(text):
     """
     Autoparagraphs the given text by separating the text into a series of paragraphs.
@@ -117,11 +118,15 @@ def auto_paragraph(text):
         if len(line.strip()) == 0: continue
         para.append(line)
         if len(para) > 1 and len(para) % 4 == 0:
-            paras.append(". ".join(para))
+            para_text = ". ".join(para)
+            if not para_text.endswith("."): para_text += "."
+            paras.append(para_text)
             para = []
 
     if len(para) > 0:
-        paras.append(". ".join(para))
+        final_para = ". ".join(para)
+        if not final_para.endswith("."): final_para += "."
+        paras.append(final_para)
 
     return paras
 

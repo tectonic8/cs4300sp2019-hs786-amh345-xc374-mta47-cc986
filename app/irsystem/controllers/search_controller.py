@@ -128,7 +128,7 @@ def search():
             if "summary" in booksJSON[q]:
                 spec["summary"] = auto_paragraph(booksJSON[q]["summary"])
             if "reviews" in booksJSON[q]:
-                spec["reviews"] = reversed(booksJSON[q]["reviews"])
+                spec["reviews"] = booksJSON[q]["reviews"][::-1]
             if "img" in booksJSON.get(q, ""):
                 spec["img"] = booksJSON[q]["img"]
 
@@ -143,7 +143,7 @@ def search():
                 if "summary" in moviesJSON[q]:
                     spec["summary"] = auto_paragraph(moviesJSON[q]["summary"])
                 if "reviews" in moviesJSON[q]:
-                    spec["reviews"] = reversed(moviesJSON[q]["reviews"])
+                    spec["reviews"] = moviesJSON[q]["reviews"][::-1]
                 if "img" in moviesJSON[q]:
                     spec["img"] = moviesJSON[q]["img"]
             spec["tropes"] = allTropes(movie_tropes_data[q])

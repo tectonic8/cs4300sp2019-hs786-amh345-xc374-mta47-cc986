@@ -38,6 +38,20 @@
         function escapeString(string){
             return string.replace(",", "\,").replace("'", "\'");
         }
+
+        function readMore(type) {
+            var moreText = document.getElementById("more_" + type);
+            var btnText = document.getElementById(type + "ReadMoreBtn");
+
+            if (btnText.innerHTML === "Read less") {
+                btnText.innerHTML = "Read more";
+                moreText.style.display = "none";
+            } else {
+                btnText.innerHTML = "Read less";
+                moreText.style.display = "inline";
+            }
+        }
+
 	</script>
 
 	<body>
@@ -119,9 +133,8 @@
 		            		<div class = "outputCard" onclick='useSpec("{{queryType}}",escapeString("{{o.title}}"))'>
 			            		{% if o["img"]%}
 				            		<div class = "outputCardImg">
-				            			<img src="{{o['img']}}" width="100%" height="100%" style="border-radius:10px;">
+				            			<img src="{{o['img']}}" width="100%" height="100%">
 				            		</div>
-
 				            		<div class = "outputCardText" style= "width:80%;">
 				            	{% else %}
 				            		<div class = "outputCardText" style= "width:100%;">
@@ -158,6 +171,8 @@
 		            {% endfor %}
 	        	{% endif %}
 	        {% else %}
+
+                <!-- SPEC CARD PAGE -->
 	        	<div class = "specCard">
                     <!-- Title -->
                     <p class = "title">{{spec["title"]}}</p>
@@ -206,9 +221,17 @@
                     {% if spec["summary"]%}
                         <br>
                         <h3><p><i>Summary</i></p></h3>
-                        {% for para in spec["summary"] %}
-                            <p class="summaryText">{{ para }}</p>
-                        {% endfor %}
+                        <p class="summaryText">{{ spec["summary"][0] }}</p>
+
+                        {% if spec["summary"][1:]|length > 0 %}
+                            <span id="more_summary">
+                            {% for para in spec["summary"][1:] %}
+                                <p class="summaryText">{{ para }}</p>
+                            {% endfor %}
+                            </span>
+                            <button class='readMoreButton' onclick="readMore('summary')" id='summaryReadMoreBtn'>Read more</button>
+                        {% endif %}
+
                     {% endif %}
 
                     <!-- Tropes -->
@@ -221,13 +244,22 @@
                     {% if spec["reviews"]%}
                         <h3><p><i>Reviews</i><br></p></h3>
                         {% if queryType == "movie" %}
-                            {% for review in spec["reviews"] %}
-                                <p>{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}B.png" height="12">)</p>
-                            {% endfor %}
+                            <p>{{spec['reviews'][0]['text'] | safe}} <br>(<img src="/static/rating_icons/{{spec['reviews'][0]['rating']}}B.png" height="12">)</p>
                         {% else %}
-                            {% for review in spec["reviews"] %}
-                                <p>{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}Y.png" height="12">)</p>
+                            <p>{{spec['reviews'][0]['text'] | safe}} <br>(<img src="/static/rating_icons/{{spec['reviews'][0]['rating']}}Y.png" height="12">)</p>
+                        {% endif %}
+
+                        {% if spec["reviews"][1:]|length > 0 %}
+                            <span id="more_reviews">
+                            {% for review in spec["reviews"][1:] %}
+                                {% if queryType == "movie" %}
+                                    <p>{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}B.png" height="12">)</p>
+                                {% else %}
+                                    <p>{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}Y.png" height="12">)</p>
+                                {% endif %}
                             {% endfor %}
+                            </span>
+                            <button class=readMoreButton onclick="readMore('reviews')" id="reviewsReadMoreBtn">Read more</button>
                         {% endif %}
                     {% endif %}
 
