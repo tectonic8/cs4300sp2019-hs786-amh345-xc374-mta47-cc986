@@ -256,6 +256,7 @@ a.linkNoStyle{
     padding-top: 50px;
 }
 
+
 /* The actual popup (appears on top) */
 .tropeButton .popuptext {
     visibility: hidden;
@@ -332,6 +333,7 @@ a.linkNoStyle{
 
 /* The slider */
 .slider {
+    z-index: -1;
     position: absolute;
     cursor: pointer;
     top: 0;

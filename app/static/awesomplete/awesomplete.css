@@ -23,7 +23,7 @@
 
 .awesomplete > ul {
     left: 0;
-    z-index: 1;
+    z-index: 10;
     min-width: 20%;
     box-sizing: border-box;
     list-style: none;
@@ -35,6 +35,7 @@
 
 .awesomplete > ul:empty {
     display: none;
+	z-index: 100;
 }
 
 .awesomplete > ul {
