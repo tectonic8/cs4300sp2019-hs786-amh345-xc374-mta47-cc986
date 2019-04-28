@@ -113,19 +113,16 @@
   				<div>
                     <br>
                     Get more popular results?<br>
-  					{% if pastPop and spec == "False" %}
+  					{% if spec == "False" %}
                         <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round" name="popSlide" value="{{ pastPop }}"></span>
+                        {% if pastPop == "1" %}
+                            <input type="checkbox" name="popSlide" value="1" checked>
+                        {% else %}
+                            <input type="checkbox" name="popSlide" value="1">
+                        {% endif %}
+                            <span class="slider round"></span>
                         </label>
-{#                        <input type="range" name="popSlide" id="slider" min="0" max="1" value="{{pastPop}}" step="1">#}
-                    {% else %}
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round" name="popSlide" value="0"></span>
-                        </label>
-{#  						<input type="range" name="popSlide" id="slider" min="0" max="1" value="0" step="0.25">#}
-  					{% endif %}
+                    {% endif %}
   				</div>
   				<div>
                     <br>
@@ -228,10 +225,9 @@
                     {% endif %}
 
                     <!-- Summary -->
-
+                    <br>
+                    <p><i><h3>Summary</h3></i></p>
                     {% if spec["summary"]%}
-                        <br>
-                        <p><i><h3>Summary</h3></i></p>
                         <p class="summaryText">{{ spec["summary"][0] }}</p>
 
                         {% if spec["summary"][1:]|length > 0 %}
@@ -242,7 +238,8 @@
                             </span>
                             <button class='readMoreButton' onclick="readMore('summary', 'Read more', 'Read less')" id='summaryReadMoreBtn'>Read more</button>
                         {% endif %}
-
+                    {% else %}
+                        <p class="summaryText"><i>No summary information available.</i></p>
                     {% endif %}
 
                     <!-- Tropes -->
@@ -279,8 +276,9 @@
                     {% endif %}
 
                     <!-- Reviews -->
+                    <p><i><h3>Reviews</h3></i></p>
                     {% if spec["reviews"]%}
-                        <p><i><h3>Reviews</h3></i></p>
+
                         {% if queryType == "movie" %}
                             <p class="reviewText">{{spec['reviews'][0]['text'] | safe}} <br> (<img src="/static/rating_icons/{{spec['reviews'][0]['rating']}}B.png" height="12">)</p>
                         {% else %}
@@ -299,6 +297,8 @@
                             </span>
                             <button class=readMoreButton onclick="readMore('reviews', 'Read more', 'Read less')" id="reviewsReadMoreBtn">Read more</button>
                         {% endif %}
+                    {% else %}
+                        <p class="reviewText">No reviews found.</p>
                     {% endif %}
                     <br><br>
                     <form>
