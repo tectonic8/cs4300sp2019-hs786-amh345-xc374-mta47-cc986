@@ -54,7 +54,16 @@
 
         function getTropeDescription(tropeId) {
             var popup = document.getElementById(tropeId);
-            popup.classList.toggle("show");
+            var wasOn = popup.classList.contains("show");
+            var tropeClass = popup.className;
+            var trope_list = document.getElementsByClassName(tropeClass);
+            for (var i = 0; i < trope_list.length; i++) {
+                var trope = trope_list[i];
+                trope.classList.remove("show");
+            }
+            if (!(wasOn)) {
+                popup.classList.toggle("show");
+            }
         }
 	</script>
 
@@ -141,45 +150,34 @@
                 {% endif %}
         		{% if output %}
 		            {% for o in output %}
-		            	{% if queryType == "movie" %}
-		            		<div class = "outputCard" onclick='useSpec("{{queryType}}",escapeString("{{o.title}}"))'>
-			            		{% if o["img"]%}
-				            		<div class = "outputCardImg">
-				            			<img src="{{o['img']}}" width="100%" height="100%">
-				            		</div>
-				            		<div class = "outputCardText" style= "width:80%;">
-				            	{% else %}
-				            		<div class = "outputCardText" style= "width:100%;">
-			            		{% endif %}
-				                	<p class = "title">{{o["title"]}}</p>
-				                	<p class = "author">{{o["author"]}}</p>
-				                	<p><i>Similarity Score</i>: {{o["simScore"]}}</p>
-				                	<p> {% for trope in o["tropes"] %}
-				                		{{trope[0]}}
-				                	{% endfor %}</p>
-			                	</div>
-			                </div> <br>
-		                {% endif %}
-		                {% if queryType == "book" %}
-			            	<div class = "outputCard" onclick='useSpec("{{queryType}}",escapeString("{{o.title}}"))'>
+                        <div class = "outputCard" onclick='useSpec("{{queryType}}",escapeString("{{o.title}}"))'>
+                        {% if o["img"]%}
+                            <div class = "outputCardImg">
+                                <img src="{{o['img']}}" width="100%" height="100%" style="border-radius:10px;">
+                            </div>
 
-			         			{% if o["img"]%}
-				            		<div class = "outputCardImg">
-				            			<img src="{{o['img']}}" width="100%" height="100%" style="border-radius:10px;">
-				            		</div>
-
-				            		<div class = "outputCardText" style= "width:80%;">
-				            	{% else %}
-				            		<div class = "outputCardText" style= "width:100%;">
-			            		{% endif %}
-				                	<p class = "title">{{o["title"]}}</p>
-				                	<p><i>Similarity Score</i>: {{o["simScore"]}}</p>
-				                	<p> {% for trope in o["tropes"] %}
-				                		{{trope[0]}}
-				                	{% endfor %}</p>
-				                </div>
-			                </div> <br>
-		                {% endif %}
+                            <div class = "outputCardText" style= "width:80%;">
+                        {% else %}
+                            <div class = "outputCardText" style= "width:100%;">
+                        {% endif %}
+                            <p class = "title">{{o["title"]}}</p>
+                        {% if queryType == "movie" %}
+                            <p class = "author">{{o["author"]}}</p>
+                        {% endif %}
+                            <p><i>Similarity Score</i>: {{o["simScore"]}}</p><br>
+                            {% for trope in o["tropes"] %}
+                                <div class='tropeButton' onclick="getTropeDescription('{{ trope[0] }}')">{{trope[0]}}
+                                    <span class="popuptext" id='{{ trope[0] }}'>
+                                            {% if trope[1] %}
+                                                {% for para in trope[1] %}
+                                                    <p class="tropePara">{{ para }}</p>
+                                                {% endfor %}
+                                            {% endif %}
+                                            </span>
+                                </div>
+                            {% endfor %}
+                            </div>
+                        </div> <br>
 		            {% endfor %}
 	        	{% endif %}
 	        {% else %}
@@ -214,15 +212,16 @@
                         <div class = "outputCardImg">
                             <img src="{{spec['img']}}" width="100%" height="100%" style="border-radius:10px;">
                         </div>
-                        <br><br>
                     {% endif %}
 
                     <!-- Rating -->
                     {% if queryType == "movie" %}
+                        <br><br>
 		        		{% if spec["rating"]%}
 		        			<img src="/static/rating_icons/{{spec['rating']}}B.png" height="20">
                         {% endif %}
                     {% else %}
+                        <br><br>
                         {% if spec["rating"]%}
                             <img src="/static/rating_icons/{{spec['rating']}}Y.png" height="20">
                         {% endif %}
@@ -275,26 +274,26 @@
                         </div>
                             {% endfor %}
                         </span>
-                        <br>
+                        <br><br>
                         <button class='readMoreButton' onclick="readMore('tropes', 'See more', 'See less')" id='tropesReadMoreBtn'>See more</button>
                     {% endif %}
 
                     <!-- Reviews -->
                     {% if spec["reviews"]%}
-                        <p><i><h3>Reviews</h3></i><br></p>
+                        <p><i><h3>Reviews</h3></i></p>
                         {% if queryType == "movie" %}
-                            <p>{{spec['reviews'][0]['text'] | safe}} <br>(<img src="/static/rating_icons/{{spec['reviews'][0]['rating']}}B.png" height="12">)</p>
+                            <p class="reviewText">{{spec['reviews'][0]['text'] | safe}} <br> (<img src="/static/rating_icons/{{spec['reviews'][0]['rating']}}B.png" height="12">)</p>
                         {% else %}
-                            <p>{{spec['reviews'][0]['text'] | safe}} <br>(<img src="/static/rating_icons/{{spec['reviews'][0]['rating']}}Y.png" height="12">)</p>
+                            <p class="reviewText">{{spec['reviews'][0]['text'] | safe}} <br> (<img src="/static/rating_icons/{{spec['reviews'][0]['rating']}}Y.png" height="12">)</p>
                         {% endif %}
 
                         {% if spec["reviews"][1:]|length > 0 %}
                             <span id="more_reviews">
                             {% for review in spec["reviews"][1:] %}
                                 {% if queryType == "movie" %}
-                                    <p>{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}B.png" height="12">)</p>
+                                    <p class="reviewText">{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}B.png" height="12">)</p>
                                 {% else %}
-                                    <p>{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}Y.png" height="12">)</p>
+                                    <p class="reviewText">{{review['text'] | safe}} <br>(<img src="/static/rating_icons/{{review['rating']}}Y.png" height="12">)</p>
                                 {% endif %}
                             {% endfor %}
                             </span>

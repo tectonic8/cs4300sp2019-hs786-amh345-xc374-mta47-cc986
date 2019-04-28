@@ -4,9 +4,13 @@ body {
     background-size: 100% 100%;
 }
 
+:root {
+    --titleTextFont: courier;
+    --denseTextFont: Helvetica;
+}
 /* All Text */
 h1, h2, h3, p, #inForm{
-    font-family : courier;
+    font-family : var(--titleTextFont);
     text-align : center;
     color : var(--highContrast);
 }
@@ -45,7 +49,7 @@ h2 {
     background: none;
     color : var(--back);
     font-size: 16px;
-    font-family : courier;
+    font-family : var(--titleTextFont);
     text-align: center;
     border: none;
     height: 100%;
@@ -57,7 +61,7 @@ h2 {
     background: none;
     color : var(--back);
     font-size: 16px;
-    font-family : courier;
+    font-family : var(--titleTextFont);
     text-align: center;
     border: none;
     height: 100%;
@@ -91,7 +95,7 @@ h2 {
     background-color : var(--mid);
     color : var(--back);
     border : none;
-    font-family : courier;
+    font-family : var(--titleTextFont);
     border-radius : 20px;
     margin-top: 10px;
     font-size : 16px;
@@ -125,6 +129,7 @@ h2 {
     display: inline-flex;
     margin: 5px;
     padding: 10px;
+    z-index: 1;
 }
 
 .outputCard:hover {
@@ -151,8 +156,13 @@ h2 {
 .outputCardImg{
     border : 2px solid var(--highContrast);
     border-radius : 10px;
+<<<<<<< HEAD
     width: 15%;
     height: 40%;
+=======
+    width: 150px;
+    height: 200px;
+>>>>>>> 12f6541bb2f5f2d0ef5f4ac7023819dedd6206a1
     display: inline-block;
     margin: 5px;
     text-align: center;
@@ -169,6 +179,7 @@ h2 {
 }
 
 p.summaryText{
+    font-family: var(--denseTextFont);
     text-align: justify;
 }
 
@@ -213,7 +224,7 @@ a.linkNoStyle{
     background-color : var(--mid);
     color : var(--back);
     border : none;
-    font-family : courier;
+    font-family : var(--titleTextFont);
     /*border-radius : 20px;*/
     font-size : 16px;
     padding : 6px;
@@ -230,7 +241,7 @@ a.linkNoStyle{
 
 .tropeButton {
     color : var(--highContrast);
-    font-family : Helvetica;
+    font-family : var(--denseTextFont);
     font-size: 14px;
     /*color: var(--highContrast);*/
     position: relative;
@@ -239,11 +250,12 @@ a.linkNoStyle{
     margin: 2px;
     margin-left: 3px;
     margin-right: 3px;
+    /*z-index: 100; will not work as long as it is within the div */
 }
 
 .tropeButton:hover{
     cursor: pointer;
-    font-weight: bold;
+    font-style: italic;
 }
 
 .tropeButton:focus{
@@ -253,7 +265,7 @@ a.linkNoStyle{
 /* The actual popup (appears on top) */
 .tropeButton .popuptext {
     visibility: hidden;
-    width: 400px;
+    width: 500px;
     background-color: var(--lowContrast);
     /*color: var(--back);*/
     text-align: justify;
@@ -263,13 +275,15 @@ a.linkNoStyle{
     z-index: 1;
     bottom: 125%;
     left: 50%;
-    margin-left: -200px;
+    margin-left: -250px;
 }
 
 .tropePara {
     color: var(--back);
     text-align: justify;
     font-weight: normal;
+    font-style: normal;
+    font-family: var(--denseTextFont);
     font-size: 14px;
 }
 
@@ -288,8 +302,8 @@ a.linkNoStyle{
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .tropeButton .show {
     visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
+    -webkit-animation: fadeIn 0.5s;
+    animation: fadeIn 0.5s
 }
 
 /* Add animation (fade in the popup) */
@@ -301,4 +315,9 @@ a.linkNoStyle{
 @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity:1 ;}
+}
+
+.reviewText {
+    font-family: var(--denseTextFont);
+    font-size: 14px;
 }

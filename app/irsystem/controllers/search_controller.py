@@ -95,25 +95,27 @@ def search():
     if spec == "False":
         if retrieval:
             i = 0
-            for entry in retrieval[0]:
+            for title, score in retrieval[0]:
                 output.append(dict())
                 if queryType == "movie":
-                    output[i]["title"] = entry[0]
-                    if "author" in booksJSON.get(entry[0], ""):
-                        output[i]["author"] = booksJSON[entry[0]]["author"]
-                    output[i]["simScore"] = round(entry[1], 3)
-                    output[i]["tropes"] = topNTropes(retrieval[1][entry[0]], 5)
-                    if "img" in booksJSON.get(entry[0], ""):
-                        output[i]["img"] = booksJSON[entry[0]]["img"]
+                    output[i]["title"] = title
+                    if "author" in booksJSON.get(title, ""):
+                        output[i]["author"] = booksJSON[title]["author"]
+                    output[i]["simScore"] = round(score, 3)
+                    output[i]["tropes"] = topNTropes(retrieval[1][title], 5)
+                    if "img" in booksJSON.get(title, ""):
+                        output[i]["img"] = booksJSON[title]["img"]
 
                 if queryType == "book":
-                    output[i]["title"] = entry[0]
-                    output[i]["simScore"] = round(entry[1], 3)
-                    output[i]["tropes"] = topNTropes(retrieval[1][entry[0]], 5)
-                    if entry[0] in moviesJSON and "img" in moviesJSON[entry[0]]:
-                        output[i]["img"] = moviesJSON[entry[0]]["img"]
+                    output[i]["title"] = title
+                    output[i]["simScore"] = round(score, 3)
+                    output[i]["tropes"] = topNTropes(retrieval[1][title], 5)
+                    if title in moviesJSON and "img" in moviesJSON[title]:
+                        output[i]["img"] = moviesJSON[title]["img"]
 
                 i += 1
+            if len(retrieval[0]) == 0:
+                failedSearch = "Sorry, '{}' has too few tropes for recommendations to be made.".format(q)
         elif (q):
             failedSearch = "Sorry, \'" + q + "\' is an invalid query."
     else:
