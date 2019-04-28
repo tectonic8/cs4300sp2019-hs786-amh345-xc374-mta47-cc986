@@ -132,7 +132,7 @@ def search():
             if "img" in booksJSON.get(q, ""):
                 spec["img"] = booksJSON[q]["img"]
 
-            spec["tropes"] = allTropes(book_tropes_data[q])
+            spec["tropes"] = trope_with_descriptions(book_tropes_data[q])
         else:
             spec["title"] = q
             if q in moviesJSON:
@@ -146,7 +146,7 @@ def search():
                     spec["reviews"] = moviesJSON[q]["reviews"][::-1]
                 if "img" in moviesJSON[q]:
                     spec["img"] = moviesJSON[q]["img"]
-            spec["tropes"] = allTropes(movie_tropes_data[q])
+            spec["tropes"] = trope_with_descriptions(movie_tropes_data[q])
 
     # export
     return render_template('search.html', 

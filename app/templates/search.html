@@ -39,22 +39,28 @@
             return string.replace(",", "\,").replace("'", "\'");
         }
 
-        function readMore(type) {
+        function readMore(type, readMoreText, readLessText) {
             var moreText = document.getElementById("more_" + type);
             var btnText = document.getElementById(type + "ReadMoreBtn");
 
-            if (btnText.innerHTML === "Read less") {
-                btnText.innerHTML = "Read more";
+            if (btnText.innerHTML === readLessText) {
+                btnText.innerHTML = readMoreText;
                 moreText.style.display = "none";
             } else {
-                btnText.innerHTML = "Read less";
+                btnText.innerHTML = readLessText;
                 moreText.style.display = "inline";
             }
+        }
+
+        function getTropeDescription(tropeId) {
+            var popup = document.getElementById(tropeId);
+            popup.classList.toggle("show");
         }
 
 	</script>
 
 	<body>
+
         {% if queryType == "movie" %}
             <button type = "button" id="invertButton" class = "styleButton" style="font-size: 20px;" onclick='invertQueryType("{{queryType}}", "{{query}}")'>The Movie Was Better?</button>
         {% else %}
@@ -228,7 +234,7 @@
 
                     {% if spec["summary"]%}
                         <br>
-                        <h3><p><i>Summary</i></p></h3>
+                        <p><i><h3>Summary</h3></i></p>
                         <p class="summaryText">{{ spec["summary"][0] }}</p>
 
                         {% if spec["summary"][1:]|length > 0 %}
@@ -237,20 +243,47 @@
                                 <p class="summaryText">{{ para }}</p>
                             {% endfor %}
                             </span>
-                            <button class='readMoreButton' onclick="readMore('summary')" id='summaryReadMoreBtn'>Read more</button>
+                            <button class='readMoreButton' onclick="readMore('summary', 'Read more', 'Read less')" id='summaryReadMoreBtn'>Read more</button>
                         {% endif %}
 
                     {% endif %}
 
                     <!-- Tropes -->
-                    <h3><p><i>Tropes</i></p></h3>
-                    {% for trope in spec["tropes"] %}
-                        <button class='tropeButton'>{{trope[0]}}<span class="tropeText">{{trope[1]}}</span></button>
+                    <p><h3><i>Tropes</i></h3></p>
+
+                    {% for trope in spec["tropes"][:5] %}
+                        <div class='tropeButton' onclick="getTropeDescription('{{ trope[0] }}')">{{trope[0]}}
+                            <span class="popuptext" id='{{ trope[0] }}'>
+                            {% if trope[1] %}
+                                {% for para in trope[1] %}
+                                    <p class="tropePara">{{ para }}</p>
+                                {% endfor %}
+                            {% endif %}
+                            </span>
+                        </div>
                     {% endfor %}
+
+                    {% if spec["tropes"][5:]|length > 0 %}
+                        <span id="more_tropes">
+                            {% for trope in spec["tropes"][5:] %}
+                                <div class='tropeButton' onclick="getTropeDescription('{{ trope[0] }}')">{{trope[0]}}
+                                <span class="popuptext" id='{{ trope[0] }}'>
+                                {% if trope[1] %}
+                                    {% for para in trope[1] %}
+                                        <p class="tropePara">{{ para }}</p>
+                                    {% endfor %}
+                                {% endif %}
+                                </span>
+                        </div>
+                            {% endfor %}
+                        </span>
+                        <br>
+                        <button class='readMoreButton' onclick="readMore('tropes', 'See more', 'See less')" id='tropesReadMoreBtn'>See more</button>
+                    {% endif %}
 
                     <!-- Reviews -->
                     {% if spec["reviews"]%}
-                        <h3><p><i>Reviews</i><br></p></h3>
+                        <p><i><h3>Reviews</h3></i><br></p>
                         {% if queryType == "movie" %}
                             <p>{{spec['reviews'][0]['text'] | safe}} <br>(<img src="/static/rating_icons/{{spec['reviews'][0]['rating']}}B.png" height="12">)</p>
                         {% else %}
@@ -267,7 +300,7 @@
                                 {% endif %}
                             {% endfor %}
                             </span>
-                            <button class=readMoreButton onclick="readMore('reviews')" id="reviewsReadMoreBtn">Read more</button>
+                            <button class=readMoreButton onclick="readMore('reviews', 'Read more', 'Read less')" id="reviewsReadMoreBtn">Read more</button>
                         {% endif %}
                     {% endif %}
                     <br><br>

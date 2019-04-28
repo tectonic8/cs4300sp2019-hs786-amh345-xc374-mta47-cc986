@@ -54,19 +54,21 @@ def json_numpy_obj_hook(dct):
         return np.frombuffer(data, dct['dtype']).reshape(dct['shape'])
     return dct
 
-def allTropes(l):
-    out = []
-    i = 0
-    for trope in l:
-        trope = re.sub(r"([A-Z])([A-Z])", r"\1 \2", trope)
-        trope = re.sub(r"(\w)([A-Z])", r"\1 \2", trope)
-        if (i == len(l)-1):
-            out.append((trope, tropeDescriptions[trope.replace(" ", "")]))
-        else:
-            out.append((trope + ", ", tropeDescriptions[trope.replace(" ", "")]))
-        i += 1
+def shorten_trope_desc(text):
+    paras = text.split("\n")
+    paras = [p for p in paras if len(p) >= 60]
+    return paras[:3]
 
-    return out
+def trope_with_descriptions(tropes_of_title):
+    retval = []
+    for trope in tropes_of_title:
+        cleaned_trope_name = re.sub(r"([A-Z])([A-Z])", r"\1 \2", trope)
+        cleaned_trope_name = re.sub(r"(\w)([A-Z])", r"\1 \2", cleaned_trope_name)
+
+        retval.append((cleaned_trope_name, shorten_trope_desc(tropeDescriptions[trope])))
+            # out.append((trope + ", ", tropeDescriptions[trope.replace(" ", "")]))
+
+    return retval
 
 def topNTropes(d, n):
     top = []
