@@ -5,7 +5,7 @@ body {
 
 :root {
     --titleTextFont: courier;
-    --denseTextFont: Helvetica;
+    --denseTextFont: helvetica;
 }
 /* All Text */
 h1, h2, h3, p, #inForm{
@@ -124,7 +124,7 @@ h2 {
     display: inline-flex;
     margin: 5px;
     padding: 10px;
-    z-index: 1;
+    z-index: -1;
 }
 
 .outputCard:hover {
@@ -215,7 +215,7 @@ a.linkNoStyle{
     color : var(--back);
     border : none;
     font-family : var(--titleTextFont);
-    /*border-radius : 20px;*/
+    border-radius : 20px;
     font-size : 16px;
     padding : 6px;
 }
@@ -233,14 +233,13 @@ a.linkNoStyle{
     color : var(--highContrast);
     font-family : var(--denseTextFont);
     font-size: 16px;
-    /*color: var(--highContrast);*/
     position: relative;
     display: inline-block;
     cursor: pointer;
     margin: 2px;
     margin-left: 3px;
     margin-right: 3px;
-    /*z-index: 100; will not work as long as it is within the div */
+    z-index: 100; will not work as long as it is within the div 
 }
 
 .tropeButton:hover{
@@ -352,13 +351,13 @@ a.linkNoStyle{
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: var(--back);
     -webkit-transition: .4s;
     transition: .4s;
 }
 
 input:checked + .slider {
-    background-color: var(--highContrast);
+    background-color: var(--lowContrast);
 }
 
 input:focus + .slider {
