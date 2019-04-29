@@ -239,7 +239,7 @@ a.linkNoStyle{
     margin: 2px;
     margin-left: 3px;
     margin-right: 3px;
-    z-index: 100; will not work as long as it is within the div 
+    z-index: 100;
 }
 
 .tropeButton:hover{
