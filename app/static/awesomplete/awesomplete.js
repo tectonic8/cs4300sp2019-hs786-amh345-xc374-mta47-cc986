@@ -550,8 +550,3 @@ if (typeof module === "object" && module.exports) {
 return _;
 
 }());
-
-$(".tropeButton").click(function(e) {
-    // Do something
-    e.stopPropagation();
-});

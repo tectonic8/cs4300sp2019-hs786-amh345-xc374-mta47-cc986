@@ -215,7 +215,7 @@ a.linkNoStyle{
     color : var(--back);
     border : none;
     font-family : var(--titleTextFont);
-    border-radius : 20px;
+    /*border-radius : 20px;*/
     font-size : 16px;
     padding : 6px;
 }
@@ -357,7 +357,7 @@ a.linkNoStyle{
 }
 
 input:checked + .slider {
-    background-color: var(--lowContrast);
+    background-color: var(--highContrast);
 }
 
 input:focus + .slider {

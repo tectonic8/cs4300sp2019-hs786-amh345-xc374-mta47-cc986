@@ -124,15 +124,15 @@
   				</div>
   				<div>
                     <br>
-                    Weight for...<br>
-                    Relevance <label class="switch">
+                    Want results that are more popular?<br>
+                    <label class="switch">
                     {% if pastPop == "1" %}
                         <input type="checkbox" name="popSlide" value="1" checked>
                     {% else %}
                         <input type="checkbox" name="popSlide" value="1">
                     {% endif %}
                         <span class="slider round"></span>
-                    </label> Popularity
+                    </label>
   				</div>
   				<div>
                     <br>
@@ -247,7 +247,7 @@
                                 <p class="summaryText">{{ para }}</p>
                             {% endfor %}
                             </span>
-                            <button class='readMoreButton' onclick="readMore('summary', 'Read more', 'Read less')" id='summaryReadMoreBtn'>Read More</button>
+                            <button class='readMoreButton' onclick="readMore('summary', 'Read more', 'Read less')" id='summaryReadMoreBtn'>Read more</button>
                         {% endif %}
                     {% else %}
                         <p class="noSummary summaryText">No summary information available.</p>
@@ -283,7 +283,7 @@
                             {% endfor %}
                         </span>
                         <br><br>
-                        <button class='readMoreButton' onclick="readMore('tropes', 'See more', 'See less')" id='tropesReadMoreBtn'>Read More</button>
+                        <button class='readMoreButton' onclick="readMore('tropes', '+', '-')" id='tropesReadMoreBtn'>+</button>
                     {% endif %}
 
                     <!-- Reviews -->
@@ -306,14 +306,14 @@
                                 {% endif %}
                             {% endfor %}
                             </span>
-                            <button class=readMoreButton onclick="readMore('reviews', 'Read more', 'Read less')" id="reviewsReadMoreBtn">Read More</button>
+                            <button class=readMoreButton onclick="readMore('reviews', 'Read more', 'Read less')" id="reviewsReadMoreBtn">Read more</button>
                         {% endif %}
                     {% else %}
                         <p class="reviewText"><i>No reviews found.</i></p>
                     {% endif %}
                     <br>
                     <form>
-                        <input type="button" class="styleButton" value="Go Back" onclick="history.back()">
+                        <input type="button" class="styleButton" value="Go back" onclick="history.back()">
                     </form>
 	        	</div>
         	{% endif %}
