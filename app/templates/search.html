@@ -77,6 +77,24 @@
 			    }
 			}
 		}
+        
+        function rocchio(title) {
+            var rocchio_count = 1
+            for (var i = 5; i >= 1; i--) {
+                if (window.location.href.includes("rocchio"+i)) {
+                    rocchio_count = Math.min(i+1,5);
+                    break;
+                }
+            }
+            window.location.href = window.location.href + "&rocchio" + rocchio_count + "=" + title.replace(/ /g,"+")
+            if (!e) {
+            	var e = window.event;
+			    e.cancelBubble = true;
+			    if (e.stopPropagation) {
+			    	e.stopPropagation();
+			    }
+			}
+        }
 	</script>
 
 	<body>
@@ -186,6 +204,7 @@
                                 </div>
                             {% endfor %}
                             </div>
+                            <a id="rocchio-link" href="#" onclick="rocchio('{{ o["title"] }}')">More like this</a>
                         </div> <br>
 		            {% endfor %}
 	        	{% endif %}

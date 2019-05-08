@@ -86,7 +86,20 @@ def top_tropes_from_vector(v, n_tropes, col_to_trope_list):
             top_tropes.append(col_to_trope_list[i])
     return top_tropes
 
-def find_relevant(title, keyword = None, n_recs = 5, n_tropes=5, direction='mb', popularity_weight=0, keyword_weight=5):
+def add_rocchio(q_vec, titles, direction, beta=0.3):
+    if direction == 'mb':
+        doc_titles = book_titles
+        doc_by_trope = sparse_bbt
+    else:
+        doc_titles = movie_titles
+        doc_by_trope = sparse_mbt
+    for title in titles:
+        i = doc_titles.index(title)
+        q_vec = q_vec + beta * doc_by_trope[i]
+    return q_vec
+        
+
+def find_relevant(title, keyword = None, n_recs = 5, n_tropes=5, direction='mb', popularity_weight=0, keyword_weight=5, rocchio_titles = None):
     if popularity_weight is None: popularity_weight = 0
     popularity_weight = float(popularity_weight)
     
@@ -94,6 +107,8 @@ def find_relevant(title, keyword = None, n_recs = 5, n_tropes=5, direction='mb',
         if title not in movie_titles: return False
         i = movie_titles.index(title)
         query_vec = sparse_mbt[i]
+        if rocchio_titles is not None:
+            query_vec = add_rocchio(query_vec, rocchio_titles, direction=direction, beta=0.3)
         similarities = np.ndarray.flatten((sparse_bbt @ query_vec.T).A)
         if keyword is not None:
             keyword_vec = search_by_keyword(title, keyword, direction)
@@ -120,6 +135,8 @@ def find_relevant(title, keyword = None, n_recs = 5, n_tropes=5, direction='mb',
         if title not in book_titles: return False
         i = book_titles.index(title)
         query_vec = sparse_bbt[i]
+        if rocchio_titles is not None:
+            query_vec = add_rocchio(query_vec, rocchio_titles, direction=direction, beta=0.3)
         similarities = np.ndarray.flatten((sparse_mbt @ query_vec.T).A)
         if keyword is not None:
             keyword_vec = search_by_keyword(title, keyword, direction)

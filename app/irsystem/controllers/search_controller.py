@@ -27,6 +27,13 @@ def search():
     q = None
     if(request.args.get('query')):
         q = request.args.get('query')
+        
+    rel_titles = []
+    for i in range(1, 6):
+        title = request.args.get('rocchio' + str(i), None)
+        if title is not None:
+            rel_titles.append(title)
+        
     k = None
     if(request.args.get('keyword')):
         k = request.args.get('keyword')
@@ -70,7 +77,8 @@ def search():
 
         results = find_relevant(q, keyword=k, n_recs=5, n_tropes=5,
                                                   direction=direction,
-                                                  popularity_weight=popularity)
+                                                  popularity_weight=popularity,
+                                                  rocchio_titles = rel_titles)
 
         if results:
             recs, scores, top_tropes = results
