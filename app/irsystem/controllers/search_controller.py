@@ -1,6 +1,5 @@
 from . import *  
 from app.irsystem.models.helpers import *
-# from app.irsystem.controllers.TVTropesScraper.TFIDF import *
 from app.irsystem.controllers.combined.recommender import *
 
 # initialize internal vars
@@ -46,8 +45,6 @@ def search():
     output = []
 
     inspiration = None
-
-
     
     # books_lower_to_proper = {title.lower(): title for title in books}
     # movies_lower_to_proper = {title.lower(): title for title in movies}
@@ -101,7 +98,6 @@ def search():
         inspiration = randomNInsp(booksJSON, 3)
 
     if spec == "False":
-        print(retrieval)
         if retrieval:
             i = 0
             for title, score in retrieval[0]:

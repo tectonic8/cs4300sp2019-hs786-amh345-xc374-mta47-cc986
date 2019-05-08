@@ -15,11 +15,6 @@ with open("./app/irsystem/controllers/TVTropesScraper/Literature/Literature_trop
 movies = movie_tropes_data.keys()
 books = book_tropes_data.keys()
 
-def load_json(file_path): 
-    with open(file_path, 'r') as f: 
-        data = json.load(f)
-    return data
-
 sparse_mbt = scipy.sparse.load_npz("./app/irsystem/controllers/SPARSE OR NECESSARY/sparse_mbt.npz")
 sparse_bbt = scipy.sparse.load_npz("./app/irsystem/controllers/SPARSE OR NECESSARY/sparse_bbt.npz")
 movie_popularities = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/movie_popularities.p", "rb" ))
@@ -29,22 +24,15 @@ col_to_trope_list = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECES
 movie_titles = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/movie_titles.p", "rb" ))
 book_titles = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/book_titles.p", "rb" ))
 
-# book_tf_idf = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/book_tf_idf.p", "rb" ))
-# book_dictionary = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/book_dictionary.p", "rb" ))
-# book_similarity_matrix = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/book_similarity_matrix.p", "rb" ))
-# movie_tf_idf = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/movie_tf_idf.p", "rb" ))
-# movie_dictionary = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/movie_dictionary.p", "rb" ))
-# movie_similarity_matrix = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/movie_similarity_matrix.p", "rb" ))
-# model = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/model.p", "rb" ))
-
-book_word_to_trope = load_json('./app/irsystem/controllers/SPARSE OR NECESSARY/book_word_to_trope.json')
-movie_word_to_trope = load_json('./app/irsystem/controllers/SPARSE OR NECESSARY/movie_word_to_trope.json')
+with open('./app/irsystem/controllers/SPARSE OR NECESSARY/book_word_to_trope.json', 'r') as f: 
+    book_word_to_trope = json.load(f)
+with open('./app/irsystem/controllers/SPARSE OR NECESSARY/movie_word_to_trope.json', 'r') as f: 
+    movie_word_to_trope = json.load(f)
 book_to_movie_vectorizer = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/book_to_movie_vectorizer.pickle", "rb" ))
 movie_to_book_vectorizer = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/movie_to_book_vectorizer.pickle", "rb" ))
 movie_tf_idf = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/movie_tf_idf.pickle", "rb" ))
 book_tf_idf = pickle.load(open("./app/irsystem/controllers/SPARSE OR NECESSARY/book_tf_idf.pickle", "rb" ))
 model = KeyedVectors.load("./app/irsystem/controllers/SPARSE OR NECESSARY/tbwb_model.bin")
-
 
 
 def get_closest_tropes_to_keyword(keyword, word_to_trope, model, top_k = 5): 
@@ -63,7 +51,6 @@ def get_closest_tropes_to_keyword(keyword, word_to_trope, model, top_k = 5):
 
 def best_titles_by_tropes_enhanced(title, from_dataset, keyword, word_to_trope, vectorizer, to_tf_idf_matrix, model): 
     # documentation in jupyter notebook
-    print(from_dataset)
     title_tropes =  from_dataset[title]    
     top_k_tropes = int(len(title_tropes)/2)
     most_similar_tropes = get_closest_tropes_to_keyword(keyword, word_to_trope, model, top_k_tropes)
@@ -87,13 +74,8 @@ def search_by_keyword(title, keyword, direction):
         to_tf_idf_matrix = book_tf_idf
     else:
         raise Exception("Bad direction")
-    similarity_scores = best_titles_by_tropes_enhanced(title, 
-                                                       from_dataset, 
-                                                       keyword, 
-                                                       word_to_trope, 
-                                                       vectorizer, 
-                                                       to_tf_idf_matrix, 
-                                                       model)
+    
+    similarity_scores = best_titles_by_tropes_enhanced(title, from_dataset, keyword, word_to_trope, vectorizer, to_tf_idf_matrix, model)
     return similarity_scores
 
 def top_tropes_from_vector(v, n_tropes, col_to_trope_list):
