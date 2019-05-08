@@ -1,7 +1,13 @@
 from . import *  
 from app.irsystem.models.helpers import *
-from app.irsystem.controllers.TVTropesScraper.TFIDF import *
-from app.irsystem.models.helpers import NumpyEncoder as NumpyEncoder
+# from app.irsystem.controllers.TVTropesScraper.TFIDF import *
+from app.irsystem.controllers.combined.recommender import *
+
+# initialize internal vars
+with open('app/irsystem/controllers/DatasetInfo/book_dataset.json') as json_file:
+    booksJSON = json.load(json_file)
+with open('app/irsystem/controllers/DatasetInfo/movie_dataset.json') as json_file:
+    moviesJSON = json.load(json_file)
 
 @irsystem.route('/', methods=['GET'])
 def search():
@@ -41,11 +47,7 @@ def search():
 
     inspiration = None
 
-    # initialize internal vars
-    with open('app/irsystem/controllers/DatasetInfo/book_dataset.json') as json_file:
-        booksJSON = json.load(json_file)
-    with open('app/irsystem/controllers/DatasetInfo/movie_dataset.json') as json_file:
-        moviesJSON = json.load(json_file)
+
     
     # books_lower_to_proper = {title.lower(): title for title in books}
     # movies_lower_to_proper = {title.lower(): title for title in movies}
@@ -59,21 +61,27 @@ def search():
     retrieval = None
 
     # run query
-    if q:
+    if q and spec == "False":
         pastSearch = q
         if k:
             pastKeyword = k
         if popularity:
             pastPop = popularity
-        retrieval = find_relevant(datasets = datasets,
-                                  inverted_indices = inverted_indices,
-                                  query = q,
-                                  input_category = queryType,
-                                  result_category = outputType,
-                                  min_df = 3,
-                                  normalize = True,
-                                  idf = "log",
-                                  popularity_weight = popularity)
+
+        direction = 'bm' if queryType == "book" else 'mb'
+
+
+        results = find_relevant(q, keyword=k, n_recs=5, n_tropes=5,
+                                                  direction=direction,
+                                                  popularity_weight=popularity)
+
+        if results:
+            recs, scores, top_tropes = results
+            title_to_tropes = {recs[i]: top_tropes[i] for i in range(len(recs))}
+            retrieval = ([(recs[i], scores[i]) for i in range(len(recs))], title_to_tropes)
+        else:
+            retrieval = False
+
 
     # set export vars
     validQueries = ""
@@ -93,6 +101,7 @@ def search():
         inspiration = randomNInsp(booksJSON, 3)
 
     if spec == "False":
+        print(retrieval)
         if retrieval:
             i = 0
             for title, score in retrieval[0]:
@@ -115,7 +124,7 @@ def search():
 
                 i += 1
             if len(retrieval[0]) == 0:
-                failedSearch = "Sorry, '{}' has too few tropes for recommendations to be made.".format(q)
+                failedSearch = "Sorry, insufficient data on '{}' for recommendations to be made.".format(q)
         elif (q):
             failedSearch = "Sorry, \'" + q + "\' is an invalid query."
     else:

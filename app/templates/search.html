@@ -1,4 +1,5 @@
 <html>
+
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"> </script>
@@ -84,8 +85,8 @@
         {% else %}
             <button type = "button" id="invertButton" class = "styleButton" onclick='invertQueryType("{{queryType}}", "{{query}}")'>The Book Was Better.</button>
         {% endif %}
-        <button type = "button" id="versionOneButton" class = "styleButton" onclick="location.href='http://the-book-was-better.herokuapp.com';">V1 Prototype</button>
-        <button type = "button" id="versionTwoButton" class = "styleButton" onclick="location.href='http://the-book-was-better-2.herokuapp.com';">V2 Prototype</button>
+        <button type = "button" id="versionOneButton" class = "styleButton" onclick="location.href='http://the-book-was-better-v1.herokuapp.com';">V1 Prototype</button>
+        <button type = "button" id="versionTwoButton" class = "styleButton" onclick="location.href='http://the-book-was-better-v2.herokuapp.com';">V2 Prototype</button>
 
         <div id = "Header">
 			{% if queryType == "movie" %}
@@ -95,7 +96,6 @@
 				<h1><a class="linkNoStyle" href="/?queryType=book&query=">The Movie Was Better?</a></h1>
 				<h2>Film recommendations for the post-literature age.</h2>
 			{% endif %}
-
 
 			<form id="inForm">
   				<div class = "inFormSearch">
@@ -126,15 +126,15 @@
   				</div>
   				<div>
                     <br>
-                    Weight for...<br>
-                    Relevance <label class="switch">
+                    Want results that are more popular?<br>
+                    <label class="switch">
                     {% if pastPop == "1" %}
                         <input type="checkbox" name="popSlide" value="1" checked>
                     {% else %}
                         <input type="checkbox" name="popSlide" value="1">
                     {% endif %}
                         <span class="slider round"></span>
-                    </label> Popularity
+                    </label>
   				</div>
   				<div>
                     <br>
@@ -249,7 +249,7 @@
                                 <p class="summaryText">{{ para }}</p>
                             {% endfor %}
                             </span>
-                            <button class='readMoreButton' onclick="readMore('summary', 'Read more', 'Read less')" id='summaryReadMoreBtn'>Read More</button>
+                            <button class='readMoreButton' onclick="readMore('summary', 'Read more', 'Read less')" id='summaryReadMoreBtn'>Read more</button>
                         {% endif %}
                     {% else %}
                         <p class="noSummary summaryText">No summary information available.</p>
@@ -285,7 +285,7 @@
                             {% endfor %}
                         </span>
                         <br><br>
-                        <button class='readMoreButton' onclick="readMore('tropes', 'See more', 'See less')" id='tropesReadMoreBtn'>Read More</button>
+                        <button class='readMoreButton' onclick="readMore('tropes', 'Read more', 'Read less')" id='tropesReadMoreBtn'>Read more</button>
                     {% endif %}
 
                     <!-- Reviews -->
@@ -308,14 +308,14 @@
                                 {% endif %}
                             {% endfor %}
                             </span>
-                            <button class=readMoreButton onclick="readMore('reviews', 'Read more', 'Read less')" id="reviewsReadMoreBtn">Read More</button>
+                            <button class=readMoreButton onclick="readMore('reviews', 'Read more', 'Read less')" id="reviewsReadMoreBtn">Read more</button>
                         {% endif %}
                     {% else %}
                         <p class="reviewText"><i>No reviews found.</i></p>
                     {% endif %}
                     <br>
                     <form>
-                        <input type="button" class="styleButton" value="Go Back" onclick="history.back()">
+                        <input type="button" class="styleButton" value="Go back" onclick="history.back()">
                     </form>
 	        	</div>
         	{% endif %}
