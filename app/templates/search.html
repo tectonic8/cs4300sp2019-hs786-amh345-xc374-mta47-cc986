@@ -86,6 +86,7 @@
                     break;
                 }
             }
+            title = title.replace(/'/g, "%27");
             window.location.href = window.location.href + "&rocchio" + rocchio_count + "=" + title.replace(/ /g,"+")
             if (!e) {
             	var e = window.event;
@@ -204,7 +205,7 @@
                                 </div>
                             {% endfor %}
                             </div>
-                            <a id="rocchio-link" href="#" onclick="rocchio('{{ o["title"] }}')">More like this</a>
+                            <a id="rocchio-link" href="#" onclick='rocchio(escapeString("{{o.title}}"))'>More like this</a>
                         </div> <br>
 		            {% endfor %}
 	        	{% endif %}
