@@ -389,3 +389,12 @@ input:checked + .slider:before {
     font-style: italic;
     text-align: center;
 }
+
+#rocchio-link {
+    position: relative;
+    color: var(--lowContrast);
+}
+
+#rocchio-link:hover {
+    color: var(--highContrast);
+}
